@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2b6f7da0dbc9142a4792337f10b1c4, type: 3}
+  m_Name: "\xC1o Ba l\u1ED7"
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 10000
+  <Name>k__BackingField: "\xC1o Ba L\u1ED7"
+  <Description>k__BackingField: "Gi\xE1p +4"
+  <ItemImage>k__BackingField: {fileID: 1404469899670529539, guid: 13a886764c145b44c94d3b283555d5f6, type: 3}
+  DropChange: 90
+  index: 8
+  <DefaultParametersList>k__BackingField: []
+  <actionSFX>k__BackingField: {fileID: 0}
