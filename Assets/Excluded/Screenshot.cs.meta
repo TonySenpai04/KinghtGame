@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c2cabac2a9a98e84495b26f6eed9c6cf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143805
+  packageName: 'Fantasy Inventory Icons [Free]'
+  packageVersion: 1.0
+  assetPath: Assets/Excluded/Screenshot.cs
+  uploadId: 571782

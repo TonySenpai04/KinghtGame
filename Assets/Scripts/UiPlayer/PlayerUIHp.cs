@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
+    public static PlayerUI instance;
     [Header("HP")]
-   // [SerializeField] protected GameObject FloatingText;
     [SerializeField] private TextMeshProUGUI TextTime;
     public TextMeshProUGUI healthText;
     public HealthBar healthbar;
     public TextMeshProUGUI bottletext;
-    [SerializeField] private TextMeshProUGUI Info;
+    [SerializeField] private TextMeshProUGUI Info; 
+    [SerializeField] public GameObject FloatingText;
+    [SerializeField] public TextMeshProUGUI TextArmor;
     void Start()
     {
+        instance = this;
         TextTime.text = "Time remaining:" + HPController.instance.CurrentTime.ToString("0");
         healthbar.SetMaxHp(HPController.instance.maxhp);
         healthbar.SetHp(HPController.instance.currenthp);
+        
     }
 
     // Update is called once per frame
@@ -27,7 +31,7 @@ public class PlayerUI : MonoBehaviour
     }
     public void updateUi()
     {
-        if (HPController.instance.currenthp > HPController.instance.maxhp)
+        if (HPController.instance.currenthp >= HPController.instance.maxhp)
         {
             HPController.instance.currenthp = HPController.instance.maxhp;
         }
@@ -36,10 +40,17 @@ public class PlayerUI : MonoBehaviour
             HPController.instance.currenthp = 0;
         }
         bottletext.text =HPController.instance. Countbottle + "";
-        healthText.text = "HP:" + HPController.instance.currenthp.ToString("N1") + "/" + HPController.instance.maxhp.ToString("N1");
+        healthText.text = "HP:" + HPController.instance.currenthp.ToString("#,##").Replace(',','.') + "/" + HPController.instance.maxhp.ToString("#,##").Replace(',', '.');
         healthbar.SetMaxHp(HPController.instance.maxhp);
         healthbar.SetHp(HPController.instance.currenthp);
-
+        if (HPController.instance.Armor == 0)
+        {
+            TextArmor.text = "Armor:0";
+        }
+        else
+        {
+            TextArmor.text = "Armor:" + HPController.instance.Armor.ToString("#,##").Replace(',', '.');
+        }
     }
     public void TimeHPX2()
     {
@@ -64,5 +75,10 @@ public class PlayerUI : MonoBehaviour
             TextTime.gameObject.SetActive(true);
         }
         HPController.instance.TimeMinute = (int)(HPController.instance.CurrentTime / 60);
+    }
+    public void Showfloatingtext(int Dmg)
+    {
+        var Text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+        Text.GetComponent<TextMesh>().text = "-" + Dmg.ToString();
     }
 }

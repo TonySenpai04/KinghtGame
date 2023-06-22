@@ -6,18 +6,18 @@ using UnityEngine;
 public class DropItem : MonoBehaviour
 {
     [SerializeField] private GameObject  ItemDrop;
-    [SerializeField] private List<EquippableItemSO> lootList=new List<EquippableItemSO>();
+    [SerializeField] private List<ItemSO> lootList=new List<ItemSO>();
     public static DropItem Instance;
      void Start()
     {
         Instance = this;
     }
 
-    EquippableItemSO GetDropItem()
+    ItemSO GetDropItem()
     {
         int RanDom = Random.Range(1, 101);
-        List<EquippableItemSO> itemList = new List<EquippableItemSO>();
-        foreach (EquippableItemSO item in lootList)
+        List<ItemSO> itemList = new List<ItemSO>();
+        foreach (ItemSO item in lootList)
         {
           
             if (RanDom <= item.DropChange)
@@ -27,7 +27,7 @@ public class DropItem : MonoBehaviour
         }
         if (itemList.Count > 0)
         {
-            EquippableItemSO dropitem = itemList[Random.Range(0, itemList.Count)];
+            ItemSO dropitem = itemList[Random.Range(0, itemList.Count)];
            
             return dropitem;
         }
@@ -35,7 +35,7 @@ public class DropItem : MonoBehaviour
     }
     public void CreateItem(Vector3 spawnPosition)
     {
-        EquippableItemSO dropitem =GetDropItem();
+        ItemSO dropitem =GetDropItem();
         if (dropitem != null)
         {
             GameObject LootGameObject = Instantiate(ItemDrop, spawnPosition, Quaternion.identity);

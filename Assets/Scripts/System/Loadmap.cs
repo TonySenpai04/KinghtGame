@@ -22,25 +22,42 @@ public class Loadmap : MonoBehaviour
             instance = this;
         }
         isLoad = false;
-        player = GameObject.Find("player").transform; 
+        player = GameObject.Find("player").transform;
     }
     private void Update()
     {
         player = GameObject.Find("player").transform;
+       // Debug.Log(isLoad.ToString());
+     
     }
+
     public void loadMap()
     {
-            player.transform.position = new Vector2(targetdoor.transform.position.x, targetdoor.transform.position.y);
+        player.transform.position = new Vector2(targetdoor.transform.position.x, targetdoor.transform.position.y);
         isLoad = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-            player.transform.position = new Vector2(targetdoor.transform.position.x, targetdoor.transform.position.y);
             isLoad = true;
+            player.transform.position = new Vector2(targetdoor.transform.position.x, targetdoor.transform.position.y);
+            Vector3 pos = follow.instance.transform.position;
+            if (player.transform.position.x < 0)
+            {
+                pos.x = -2.7f;
+                pos.y = player.position.y;
+                follow.instance.transform.position = pos;
+            }
+            else
+            {
+                pos.x = 51f;
+                pos.y = player.position.y;
+                follow.instance.transform.position = pos;
+            }
         }
+        
     }
 
 

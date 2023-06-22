@@ -21,7 +21,7 @@ public class AttackFunction : MonoBehaviour
     private AudioSource source;
     [SerializeField] private float dmgAddSkill2;
     [SerializeField] private float dmgAddSkill1;
-    [SerializeField] private int Dmg { get => dmg; set => dmg = value; }
+    [SerializeField] public int Dmg { get => dmg; set => dmg = value; }
     [SerializeField] private int ExpDmg { get => expDmg; set => expDmg = value; }
     public float DmgAddSkill1 { get => dmgAddSkill1; set => dmgAddSkill1 = value; }
     public float DmgAddSkill2 { get => dmgAddSkill2; set => dmgAddSkill2 = value; }
@@ -29,7 +29,8 @@ public class AttackFunction : MonoBehaviour
     [SerializeField] private GameObject FloatingTextExp;
     public int DmgSkill2;
     public int DmgClone;
-    [SerializeField] private int Crit;
+    [SerializeField] public int Crit;
+    public int damageAdd;
     
     void Start()
     {
@@ -39,6 +40,14 @@ public class AttackFunction : MonoBehaviour
         //pointatk = GameObject.Find("PointAttack").transform;
         textdmg.text = "DMG:" + dmg; 
         source = GetComponent<AudioSource>();
+    }
+    public int AddDamge()
+    {
+        return damageAdd;
+    }
+    public void UpdateDamage()
+    {
+        dmg += damageAdd;
     }
 
     void Update()
@@ -67,6 +76,7 @@ public class AttackFunction : MonoBehaviour
         foreach (Collider2D var in enemy)
         {
             var.GetComponent<HpEnemy>().TakeDamageEnemy((int)(Dmg * DmgAddSkill1));
+         
             MPController.instance.MpAttack(1);
             HpEnemy.hp.Showfloatingtext(HpEnemy.hp.expDmg);
         }
@@ -77,12 +87,14 @@ public class AttackFunction : MonoBehaviour
     }
     public void IncreaseAtk(int level)
     {
-        dmg += Mathf.RoundToInt((dmg * 0.037f) * ((100 - level) * 0.1f));
-        if (dmg > info.MaxDmg)
+        DmgClone += Mathf.RoundToInt((DmgClone * 0.037f) * ((100 - level) * 0.1f));
+        if (DmgClone > info.MaxDmg)
         {
-            dmg = info.MaxDmg;
+            DmgClone = info.MaxDmg;
         }
-       
+        dmg = DmgClone + damageAdd;
+
+
     }
     IEnumerator ResetDmg()
     {
@@ -109,6 +121,7 @@ public class AttackFunction : MonoBehaviour
         Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
         foreach (Collider2D var in enemy)
         {
+            
             var.GetComponent<HpEnemy>().TakeDamageEnemy((int)((int)DmgSkill2));
             MPController.instance.MpAttack(2);
             StartCoroutine(Coutdown()); 
@@ -116,13 +129,14 @@ public class AttackFunction : MonoBehaviour
 
       
     }
+   
     protected void UpdateUI()
     {
-        if (Dmg > info.MaxDmg)
+        if (DmgClone > info.MaxDmg)
         {
-            Dmg = info.MaxDmg;
+            DmgClone = info.MaxDmg;
         }
-        textdmg.text = "DMG:" + dmg.ToString("N1");
+        textdmg.text = "DMG:" + dmg.ToString("#,##").Replace(',', '.');
         CritText.text = "Crit:" + Crit + "%";
     }
     IEnumerator Coutdown()

@@ -4,14 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+
 namespace Inventory.UI
 {
     public class InventoryPageUsingItem : MonoBehaviour
     {
-        public static InventoryPageUsingItem Instance;
-       
-        
-         
+            public static InventoryPageUsingItem Instance;
             [SerializeField] private InventoryItemUsing inventoryUiItem;
             [SerializeField] private RectTransform contentPanel;
             [SerializeField] InventoryDescription inventoryDescription;
@@ -20,10 +19,10 @@ namespace Inventory.UI
             public MouseFollower mouseFollower;
             [SerializeField]
             public ItemActionPanel actionPanel;
-          
-            
+          //  public List<InventoryItem> initialItems = new List<InventoryItem>();
 
-            private void Awake()
+
+        private void Awake()
             {
             Instance = this;
                 inventoryDescription.ResetDescription();
@@ -50,7 +49,9 @@ namespace Inventory.UI
                     item.Deselect();
                 }
             }
-            public void AddAction(string name, Action performAction,Action end)
+       
+
+        public void AddAction(string name, Action performAction,Action end)
             {
                 actionPanel.AddButon(name, performAction, end);
             }

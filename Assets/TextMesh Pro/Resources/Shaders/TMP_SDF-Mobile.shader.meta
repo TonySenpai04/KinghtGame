@@ -1,7 +1,16 @@
 fileFormatVersion: 2
 guid: fe393ace9b354375a9cb14cdbbc28be4
 ShaderImporter:
+  externalObjects: {}
   defaultTextures: []
+  nonModifiableTextures: []
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 243902
+  packageName: 110 Free Armor And Jewelry Icons
+  packageVersion: 1.0
+  assetPath: Assets/TextMesh Pro/Resources/Shaders/TMP_SDF-Mobile.shader
+  uploadId: 567027

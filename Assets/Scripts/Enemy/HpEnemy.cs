@@ -15,7 +15,9 @@ public class HpEnemy : Healthsystem
     public GameObject FloatingTextExp;
     protected Transform player;
     [SerializeField] private float respawnTime;
-    
+    [SerializeField] private float currentTime;
+
+
     private void Awake()
     {
         Maxhp = Enemy.MaxHp;
@@ -34,15 +36,33 @@ public class HpEnemy : Healthsystem
        
     }
     void Update()
-    {
-       
+    {  
         UpdateUI();
         Flip();
-      
-
     } 
     public void TakeDamageEnemy(int Dmg)
     {
+        Showfloatingtext(Dmg);
+        if (LevelSystem.mylevel.IsUse == false && currenthp > 0)
+        {
+
+            //expDmg = (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
+            expDmg = (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
+            ShowfloatingExp(expDmg);
+            LevelSystem.mylevel.GainExperienceFlatRate(expDmg);
+        }
+        else if (LevelSystem.mylevel.IsUse == true && currenthp > 0)
+        {
+
+            //expDmg =2* (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
+            expDmg = 2 * (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
+            ShowfloatingExp(expDmg);
+            LevelSystem.mylevel.GainExperienceFlatRate(expDmg);
+        }
+        if (LevelSystem.mylevel.level <= 30 && currenthp > 0)
+        {
+            ShowfloatingExp(expDmg);
+        }
         currenthp -= Dmg;
         animator.SetTrigger("ishit");
         healthbar.sethp(currenthp);
@@ -60,31 +80,15 @@ public class HpEnemy : Healthsystem
         }
         if (currenthp == 0)
         {
-           
+
             StartCoroutine(Enemydie());
         }
-        if (LevelSystem.mylevel.IsUse == false && currenthp>0)
-        {
-            //expDmg = (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
-            expDmg = (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
-
-            LevelSystem.mylevel.GainExperienceFlatRate(expDmg);
-        }
-        else if (LevelSystem.mylevel.IsUse == true && currenthp > 0)
-        {
-            //expDmg =2* (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
-            expDmg =2* (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
-            LevelSystem.mylevel.GainExperienceFlatRate(expDmg);
-        }
-        if (LevelSystem.mylevel.level < 30 && currenthp > 0)
-        {
-            ShowfloatingExp(expDmg);
-        }
+     
     }
-   public void Showfloatingtext(int expDmg)
+   public void Showfloatingtext(int Dmg)
     {
             var Text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-            Text.GetComponent<TextMesh>().text = "-" + expDmg.ToString();
+            Text.GetComponent<TextMesh>().text = "-" + Dmg.ToString();
     }
     IEnumerator Enemydie()
     {
@@ -99,7 +103,7 @@ public class HpEnemy : Healthsystem
         healthbar.sethp(Maxhp);
         healthbar.gameObject.SetActive(true);
         gameObject.SetActive(true);
-       // healthbar.gameObject.SetActive(true);
+        // healthbar.gameObject.SetActive(true);
 
     }
     protected new void UpdateUI()

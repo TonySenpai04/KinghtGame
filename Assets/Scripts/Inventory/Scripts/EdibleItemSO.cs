@@ -14,7 +14,7 @@ namespace Inventory.Model
         public string ActionName => "Consume";
         [field:SerializeField]
         public AudioClip actionSFX { get; private set; }
-
+        
         public bool PerformAction(GameObject character, List<ItemParameter> itemState=null)
         {
             foreach (ModifierData data in modifiersData)
@@ -23,9 +23,17 @@ namespace Inventory.Model
             }
             return true;
         }
+        public bool PerformActionRemove(GameObject character, List<ItemParameter> itemState = null)
+        {
+            foreach (ModifierData data in modifiersData)
+            {
+                data.statModifier.AffectCharacter(character, data.value*-1);
+            }
+            return true;
+        }
 
     }
-
+ 
     public interface IDestroyableItem
     {
 
@@ -37,6 +45,7 @@ namespace Inventory.Model
         [field: SerializeField]
         public AudioClip actionSFX { get; }
         bool PerformAction(GameObject character, List<ItemParameter> itemState );
+        bool PerformActionRemove(GameObject character, List<ItemParameter> itemState);
     }
 
     [Serializable]

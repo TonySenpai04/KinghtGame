@@ -24,7 +24,7 @@ public class MPController : MonoBehaviour
     [SerializeField] public int TimeMinute;
     [SerializeField] public bool Isuse;
     [SerializeField] private int mpclone;
-    [SerializeField] private int addmp;
+    [SerializeField] public int addMp;
     [SerializeField] private bool Levelup;
     [SerializeField] private int timeHouse;
 
@@ -55,18 +55,11 @@ public class MPController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.P))
-        {
-            MaxMp += 100;
-        }
         MPRecuperate = MaxMp / 5;
         if (Isuse == true)
         {
             CountDown();
-        }
-        AddMP();
-      
-       
+        }  
     }
     public void CountDown()
     {
@@ -95,7 +88,7 @@ public class MPController : MonoBehaviour
         yield return new WaitForSeconds(CurrentTime);
         if (LevelSystem.mylevel.level == 30 && CanX2 == false)
         {
-            Maxmp = mpclone+addmp;
+            Maxmp = mpclone+addMp;
         }
         else
         {
@@ -111,15 +104,12 @@ public class MPController : MonoBehaviour
     }
     public int AddMP()
     {
-        if (Input.GetKey(KeyCode.O))
-        {
-            addmp += 100;
-        }
-        return addmp;
+        
+        return addMp;
     }
-    public void  MPReal()
+    public void  UpdateMp()
     {
-        Maxmp += AddMP();
+        MaxMp += addMp;
     }
     public void IncreaseMP(int level)
     {
@@ -128,9 +118,9 @@ public class MPController : MonoBehaviour
         if (LevelSystem.mylevel.level == 30)
         {
                 mpclone = info.MaxMp;
-                MaxMp = mpclone + AddMP();   
+                MaxMp = mpclone + addMp;   
         }
-        MaxMp = mpclone+AddMP();
+        MaxMp = mpclone+ addMp;
         CurrentMp = MaxMp;
     }
     protected void RecuperateMp()

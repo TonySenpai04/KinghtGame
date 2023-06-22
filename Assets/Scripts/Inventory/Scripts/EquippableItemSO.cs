@@ -24,6 +24,19 @@ namespace Inventory.Model
             }
             return false;
         }
+
+        public bool PerformActionRemove(GameObject character, List<ItemParameter> itemState)
+        {
+            AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            if (weaponSystem != null)
+            {
+                weaponSystem.SetWeapon(this, itemState == null ?
+                    DefaultParametersList : itemState);
+                return true;
+            }
+            return false;
+        }
+
         public interface IDestroyableItem
         {
 
@@ -35,6 +48,7 @@ namespace Inventory.Model
             [field: SerializeField]
             public AudioClip actionSFX { get; }
             bool PerformAction(GameObject character, List<ItemParameter> itemState);
+            bool PerformActionRemove(GameObject character, List<ItemParameter> itemState);
         }
         [Serializable]
         public class ModifierData

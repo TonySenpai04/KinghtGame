@@ -5,16 +5,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ChacracterHealthModifie : CharacterStatModifierSO
 {
-   
-    
+    public static ChacracterHealthModifie chars;
+  
     public override void AffectCharacter(GameObject character, float val)
     {
-        character = GameObject.Find("Player");
-        //Hpplayer hpplayer = character.GetComponent<Hpplayer>();
-        //if (hpplayer != null)
-        //{
-        //    hpplayer.RecuperateHp();
-        //}
-        Debug.Log("1");
+       
+        HPController.instance.AddHp =(int) val;
+        HPController.instance.UpdateHP();
     }
 }

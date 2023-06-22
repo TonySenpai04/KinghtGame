@@ -53,11 +53,118 @@ namespace Inventory.UI
         public virtual void Equip()
         {
             InventoryPage.Instance.ResetSelection();
+            InventoryItem inventoryItem = InventoryController.Instance.inventoryData.GetItemAt(InventoryUiItem.Instance.index);
+            IItemAction itemAction =  inventoryItem.item as IItemAction;
+            itemAction.PerformAction(gameObject, null);
             InventoryUiItem.Instance.inventoryItem = InventoryUiItem.Instance.GetItemAt();
-            InventoryPageUsingItem.Instance.InventorySO.AddItem(GetComponent<InventoryUiItem>().inventoryItem);
+            InventoryController.Instance.inventoryUI.ShowItemAction(InventoryUiItem.Instance.index);
             InventoryController.Instance.inventoryData.RemoveItem(InventoryUiItem.Instance.index, InventoryUiItem.Instance.inventoryItem.quantity);
+            for (int i = 0; i < 6; i++)
+            {
+                
+                    InventoryPageUsingItem.Instance.inventoryUiItems[i].inventoryItem = inventoryItem;
+
+                    switch (InventoryPageUsingItem.Instance.inventoryUiItems[i].inventoryItem.item.index)
+                    {
+                        case 0:
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[0].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 0);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 0);
+                            SetInddexItem(inventoryItem, i, 0);
+                            return;
+                        }
+                        case 1:
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[1].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 1);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 1);
+                            SetInddexItem(inventoryItem, i, 1);
+                            return;
+                        }
+                        case 2:
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[2].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 2);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 2);
+                            SetInddexItem(inventoryItem, i, 2);
+                            return;
+                        }
+                        case 3:
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[3].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 3);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 3);
+                            SetInddexItem(inventoryItem, i, 3);
+                            return;
+                        }
+                        case 4:
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[4].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 4);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 4);
+                            SetInddexItem(inventoryItem, i, 4);
+                            return;
+                        }
+                        case 5:
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[5].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 5);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 5);
+                            SetInddexItem(inventoryItem, i, 5);
+                            return;
+                        }
+                       
+                }
+            }
 
 
         }
+        public void SetInddexItem(InventoryItem inventoryItem,int i,int index)
+        {
+            InventoryPageUsingItem.Instance.InventorySO.inventoryItems[index] = InventoryPageUsingItem.Instance.inventoryUiItems[i].inventoryItem;
+            //InventoryPageUsingItem.Instance.InventorySO.inventoryItems.Add(inventoryItem);
+            foreach (var item in InventoryPageUsingItem.Instance.InventorySO.GetCurrentInventoryState())
+            {
+                InventoryPageUsingItem.Instance.UpdateData(item.Key,
+                    item.Value.item.ItemImage,
+                    item.Value.quantity);
+            }
+
+        }
+        public void ChangeItem(InventoryItem inventoryItem, IItemAction itemAction,int index)
+        {
+            inventoryItem = UsingItemController.Instance.inventoryData.GetItemAt(index);
+            itemAction = inventoryItem.item as IItemAction;
+            itemAction.PerformActionRemove(gameObject, null);
+            InventoryPageUsingItem.Instance.ResetSelection();
+            InventoryController.Instance.inventoryData.AddItem(InventoryPageUsingItem.Instance.InventorySO.inventoryItems[index]);
+            UsingItemController.Instance.RemoveItem(index, InventoryItemUsing.Instance.inventoryItem.quantity);
+        }
+
     }
 }

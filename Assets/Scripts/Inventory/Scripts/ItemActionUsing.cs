@@ -51,9 +51,13 @@ namespace Inventory.UI
         public void RemoveItem()
         {
             InventoryPageUsingItem.Instance.ResetSelection();
+            InventoryItem inventoryItem = UsingItemController.Instance.inventoryData.GetItemAt(InventoryItemUsing.Instance.index);
+            IItemAction itemAction = inventoryItem.item as IItemAction;
+            itemAction.PerformActionRemove(gameObject, null);
             InventoryItemUsing.Instance.inventoryItem = InventoryItemUsing.Instance.GetItemAt();
             UsingItemController.Instance.RemoveItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity);
-            InventoryPage.Instance.InventorySO.AddItem(GetComponent<InventoryItemUsing>().inventoryItem);
+            InventoryController.Instance.inventoryData.AddItem(InventoryItemUsing.Instance.inventoryItem);
+           
         }
     }
 }

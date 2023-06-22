@@ -22,6 +22,7 @@ namespace Inventory.UI
         [SerializeField] protected bool empty = true;
         [SerializeField] public int index;
         [SerializeField] public ItemActionPanel panelConfirm;
+        public int a;
 
          public InventoryItem inventoryItem;
         private void Awake()
@@ -44,14 +45,15 @@ namespace Inventory.UI
             empty = true;
 
         }
+      
         public virtual void Select()
         {    
             borderImage.enabled = true;
             transform.gameObject.SetActive(true);
             InventoryPage.Instance.actionPanel.Toggle(true);
             InventoryPage.Instance.actionPanel.transform.position = transform.position;
-            ItemAction.Instance.AddAction(); 
-            
+            ItemAction.Instance.AddAction();
+           
         }      
         public void Deselect()
         {

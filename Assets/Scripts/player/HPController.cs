@@ -19,7 +19,7 @@ public class HPController : MonoBehaviour
     public float currenthp { get => Currenthp; set => Currenthp = value; }
     public int maxhp { get => Maxhp; set => Maxhp = value; }
     public int Countbottle { get => countbottle; set => countbottle = value; }
-    [SerializeField]private int AddHp;
+    [SerializeField]public int AddHp;
     [SerializeField] private float HpRecuperate ;
     public int countbottle;
     protected int maxbottle = 99;
@@ -34,16 +34,16 @@ public class HPController : MonoBehaviour
     [SerializeField] public bool Isuse;
     [SerializeField] private int CloneHP;
     [SerializeField] private bool Levelup;
-    [Header("UI")]
-    [SerializeField] protected GameObject FloatingText;
+    public int Armor;
  
     private void Awake()
-    {        instance = this;
+    {    instance = this;
         Maxhp = info.HpStart;
         Countbottle = 10;
         CloneHP=Maxhp;
         Levelup = false;
         Onrevive.gameObject.SetActive(false);
+        Armor = 0;
     }
     void Start()
     {
@@ -73,14 +73,6 @@ public class HPController : MonoBehaviour
             Isuse = false;
         } 
     }
-    public int Addhp()
-    {
-      //  if (Input.GetKey(KeyCode.O))
-      //  {
-            AddHp += 100;
-      //  }
-        return AddHp;
-    }
     public void UpdateHP()
     {
          Maxhp+=AddHp;
@@ -94,14 +86,19 @@ public class HPController : MonoBehaviour
     }
     public  void TakeDamage(int Dmg)
     {
-        currenthp-=Dmg;
+        int Bleed = (Dmg - (Armor / 4));
+        if (Bleed <= 0)
+        {
+            Bleed = 1;
+        }
+        currenthp -=Bleed;
         if(currenthp < 0)
         {
             currenthp = 0;
         }
-        if (FloatingText != null)
+        if (PlayerUI.instance.FloatingText != null)
         {
-            Showfloatingtext(Dmg);
+          PlayerUI.instance.Showfloatingtext(Bleed);
         }
     }
 
@@ -119,14 +116,7 @@ public class HPController : MonoBehaviour
             }
             CanX2 = false;
         }
-    }
-    
-    void Showfloatingtext(int Dmg)
-    {
-        var Text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-        Text.GetComponent<TextMesh>().text = "-" + Dmg.ToString();
-    }
-
+    }  
     public void IncreaseHealth(int level)
     {
         CloneHP += Mathf.RoundToInt((CloneHP  * 0.037f) * ((100 - level) * 0.1f));
@@ -134,9 +124,9 @@ public class HPController : MonoBehaviour
         if (LevelSystem.mylevel.level == 30)
         {
             CloneHP = info.HpMax;
-            Maxhp = CloneHP + Addhp();
+            Maxhp = CloneHP + AddHp;
         }
-        Maxhp = CloneHP + Addhp();
+        Maxhp = CloneHP + AddHp;
         Currenthp =Maxhp;
     }
     

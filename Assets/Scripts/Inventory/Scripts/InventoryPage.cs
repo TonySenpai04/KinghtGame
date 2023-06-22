@@ -75,6 +75,7 @@ namespace Inventory.UI
             actionPanel.Toggle(false);
             panel.Toggle(false );
         }
+       
         public void UpdateData(int itemIndex,
             Sprite itemImage, int itemQuantity)
         {
