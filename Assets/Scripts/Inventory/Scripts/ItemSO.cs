@@ -17,14 +17,15 @@ namespace Inventory.Model
         [field: SerializeField]
         public string Name { get; set; }
 
-
         [field: SerializeField]
         [field: TextArea]
         public string Description { get; set; }
       //  [field: SerializeField] public int a;
         [field: SerializeField]
          public Sprite ItemImage { get; set; }
-       [field: SerializeField] public int DropChange;
+        [field: SerializeField]
+        public Sprite BackGround { get; set; }
+        [field: SerializeField] public int DropChange;
         [field: SerializeField] public int index;
         [field: SerializeField] public List<ItemParameter> DefaultParametersList { get; set; }
     }

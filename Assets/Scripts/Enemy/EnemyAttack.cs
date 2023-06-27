@@ -14,10 +14,11 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float check;
     [SerializeField] float movespeed ;
     [SerializeField] Transform pointatk;
-  [SerializeField]  LayerMask mask;
+    [SerializeField]  LayerMask mask;
     public float ScaleX;
     public float ScaleY;
     [SerializeField]public float DistanAttack=7f;
+    
 
 
     // Start is called before the first frame update
@@ -29,12 +30,14 @@ public class EnemyAttack : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         movespeed = 2;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        player = GameObject.Find("player").transform;
+
         float distan = Vector2.Distance(transform.position, player.position);
         if (HPController.instance.currenthp > 0)
         {
@@ -78,14 +81,22 @@ public class EnemyAttack : MonoBehaviour
     }
     public void AttackPlayer()
     {
-
+        int DodgeAttack = Random.Range(1, 101);
+        
         Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, check, mask);
         foreach (Collider2D var in enemy)
         {
-            HPController.instance.TakeDamage(Dmg);
+            if (DodgeAttack > HPController.instance.dodgeAttack)
+            {
+                HPController.instance.TakeDamage(Dmg);
+            }
+            else
+            {
+                PlayerUI.instance.ShowFloatingTextMiss();
+
+            }
         }
-
-
     }
- 
+    
+
 }

@@ -35,9 +35,9 @@ namespace Inventory.UI
             public event Action<int, int> OnSwapItems;
 
 
-            internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description)
+            internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
             {
-                inventoryDescription.SetDescription(itemImage, name, description);
+                inventoryDescription.SetDescription(itemImage, name, description, background);
                 DeselectAllItems();
                 inventoryUiItems[itemIndex].Select();
             }
@@ -74,20 +74,21 @@ namespace Inventory.UI
                 }
                 actionPanel.Toggle(false);
             }
-            public void UpdateData(int itemIndex,
-                Sprite itemImage, int itemQuantity)
+        public void UpdateData(int itemIndex,
+         Sprite itemImage, int itemQuantity, Sprite background)
+        {
+            if (inventoryUiItems.Count > itemIndex)
             {
-                if (inventoryUiItems.Count > itemIndex)
-                {
-                    inventoryUiItems[itemIndex].SetData(itemImage, itemQuantity);
-                }
-
+                inventoryUiItems[itemIndex].SetData(itemImage, itemQuantity, background);
             }
 
-            public void CreateDraggedItem(Sprite sprite, int quantity)
+        }
+
+
+        public void CreateDraggedItem(Sprite sprite, int quantity,Sprite background)
             {
                 mouseFollower.Toggle(true);
-                mouseFollower.SetData(sprite, quantity);
+                mouseFollower.SetData(sprite, quantity, background);
             }
             public void IntializeInventory(int inventorysize)
             {

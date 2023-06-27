@@ -19,9 +19,9 @@ namespace Inventory.UI
             item = GetComponentInChildren<InventoryUiItem>();
         }
 
-        public void SetData(Sprite sprite, int quantity)
+        public void SetData(Sprite sprite, int quantity,Sprite background)
         {
-            item.SetData(sprite, quantity);
+            item.SetData(sprite, quantity,background);
         }
         void Update()
         {

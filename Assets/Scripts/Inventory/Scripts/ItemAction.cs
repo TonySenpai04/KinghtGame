@@ -152,7 +152,7 @@ namespace Inventory.UI
             {
                 InventoryPageUsingItem.Instance.UpdateData(item.Key,
                     item.Value.item.ItemImage,
-                    item.Value.quantity);
+                    item.Value.quantity,item.Value.item.BackGround);
             }
 
         }

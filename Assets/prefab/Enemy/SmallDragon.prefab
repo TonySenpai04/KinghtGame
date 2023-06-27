@@ -147,6 +147,7 @@ MonoBehaviour:
   expDmg: 0
   FloatingTextExp: {fileID: 7018559166563388670, guid: 8e5d06e481615df4f97e357f07ab692e, type: 3}
   respawnTime: 0
+  currentTime: 0
 --- !u!61 &7416004695392201473
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -287,6 +288,7 @@ MonoBehaviour:
   ScaleX: 1
   ScaleY: 1
   DistanAttack: 8
+  FloatingText: {fileID: 7018559166563388670, guid: 7e6c706d4c5305a419dee73366a99301, type: 3}
 --- !u!114 &7416004695392201502
 MonoBehaviour:
   m_ObjectHideFlags: 0

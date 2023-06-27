@@ -28,6 +28,19 @@ public class FloatingText : MonoBehaviour
             anim.SetBool("isright", false);
         }
     }
-  
+    private void Update()
+    {
+        if (player.localScale.x < 0)
+        {
+
+            anim.SetBool("isright", true);
+        }
+        else
+        {
+
+            anim.SetBool("isright", false);
+        }
+    }
+
 
 }

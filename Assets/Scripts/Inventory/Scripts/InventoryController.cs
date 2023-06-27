@@ -42,7 +42,7 @@ namespace Inventory
             foreach (var item in inventoryState)
             {
                 inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage,
-                    item.Value.quantity);
+                    item.Value.quantity,item.Value.item.BackGround);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Inventory
             InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
-            inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
+            inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity,inventoryItem.item.BackGround);
         }
 
         private void HandleSwapItems(int itemIndex_1, int itemIndex_2)
@@ -133,7 +133,7 @@ namespace Inventory
             ItemSO item = inventoryItem.item;
             string description = PrepareDescription(inventoryItem);
             inventoryUI.UpdateDescription(itemIndex, item.ItemImage,
-                item.name, description);
+                item.name, description,item.BackGround);
         }
 
         private string PrepareDescription(InventoryItem inventoryItem)
@@ -163,7 +163,7 @@ namespace Inventory
                     {
                         inventoryUI.UpdateData(item.Key,
                             item.Value.item.ItemImage,
-                            item.Value.quantity);
+                            item.Value.quantity,item.Value.item.BackGround);
                     }
                 }
                 else

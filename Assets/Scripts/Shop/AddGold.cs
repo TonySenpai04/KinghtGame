@@ -10,8 +10,8 @@ public class AddGold : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-             HpEnemy.hp.Enemy.GoldDrop=Random.Range(HpEnemy.hp.Enemy.MinGoldDrop, HpEnemy.hp.Enemy.MaxGoldDrop);
-            Gold_Diamond.instance.Gold += HpEnemy.hp.Enemy.GoldDrop;
+             HpEnemy.Instance.Enemy.GoldDrop=Random.Range(HpEnemy.Instance.Enemy.MinGoldDrop, HpEnemy.Instance.Enemy.MaxGoldDrop);
+            Gold_Diamond.instance.Gold += HpEnemy.Instance.Enemy.GoldDrop;
                 
             ShowGold();
             Destroy(gameObject,1f);
@@ -20,7 +20,7 @@ public class AddGold : MonoBehaviour
     void ShowGold()
     {
         var TextGold = Instantiate(FloatingText, transform.position, Quaternion.identity,transform);
-        TextGold.GetComponent<TextMesh>().text ="+"+ HpEnemy.hp.Enemy.GoldDrop;
+        TextGold.GetComponent<TextMesh>().text ="+"+ HpEnemy.Instance.Enemy.GoldDrop;
     }
     
    

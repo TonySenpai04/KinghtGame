@@ -37,9 +37,9 @@ namespace Inventory.UI
             panel.Toggle(false);
         }
         
-        internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description)
+        internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
         {
-            inventoryDescription.SetDescription(itemImage, name, description);
+            inventoryDescription.SetDescription(itemImage, name, description,background);
             DeselectAllItems();
             inventoryUiItems[itemIndex].Select();
         }
@@ -77,19 +77,19 @@ namespace Inventory.UI
         }
        
         public void UpdateData(int itemIndex,
-            Sprite itemImage, int itemQuantity)
+            Sprite itemImage, int itemQuantity, Sprite background)
         {
             if (inventoryUiItems.Count > itemIndex)
             {
-                inventoryUiItems[itemIndex].SetData(itemImage, itemQuantity);
+                inventoryUiItems[itemIndex].SetData(itemImage, itemQuantity, background);
             }
 
         }
        
-        public void CreateDraggedItem(Sprite sprite, int quantity)
+        public void CreateDraggedItem(Sprite sprite, int quantity,Sprite background)
         {
             mouseFollower.Toggle(true);
-            mouseFollower.SetData(sprite, quantity);
+            mouseFollower.SetData(sprite, quantity, background);
         }
         public void IntializeInventory(int inventorysize)
         {
@@ -146,7 +146,6 @@ namespace Inventory.UI
         {
             int index = inventoryUiItems.IndexOf(inventoryItemUI);
             InventoryUiItem.Instance.index = index;
-
             if (index == -1) 
                 return;
             OnDescriptionRequested?.Invoke(index);
@@ -178,7 +177,6 @@ namespace Inventory.UI
             actionPanel.Toggle(false);
             panel.Toggle(false);
             ResetDraggedItem();
-            
             AnimationPlayer.instance.IsSkill1 = true;
         }
     }

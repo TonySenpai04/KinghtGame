@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15c806c1b6e6e4045afbb272ef7defd8, type: 3}
-  m_Name: Canvas Helmet
+  m_Name: Dragon Pants
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Canvas Helmet
-  <Description>k__BackingField: 'Armor +2
-
-'
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: 17cae2ee3c78bf24bb9068925adac2c3, type: 3}
-  DropChange: 40
-  index: 0
+  <Name>k__BackingField: Dragon Pants
+  <Description>k__BackingField: Dodge ATK +6%
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: f08a5b400ee2f904f9cfe201d1230a9c, type: 3}
+  <BackGround>k__BackingField: {fileID: 21300000, guid: 5d35ab975d6af88468d063e407f56126, type: 3}
+  DropChange: 0
+  index: 2
   <DefaultParametersList>k__BackingField: []
   modifiersData:
-  - statModifier: {fileID: 11400000, guid: c4776f7c9605c5048a530134a103ff60, type: 2}
-    value: 2
+  - statModifier: {fileID: 11400000, guid: 0b18ad34d3649304ab22d1ef4c456a8b, type: 2}
+    value: 6
   <actionSFX>k__BackingField: {fileID: 0}

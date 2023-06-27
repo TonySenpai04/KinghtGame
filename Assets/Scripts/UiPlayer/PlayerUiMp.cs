@@ -36,7 +36,7 @@ public class PlayerUIMp : MonoBehaviour
         {
             MPController.instance.Currentmp = 0;
         }
-        bottletext.text = HPController.instance.Countbottle + "";
+        bottletext.text = MPController.instance.Countbottle + "";
         mpText.text = "MP:" + MPController.instance.Currentmp.ToString("#,##").Replace(',', '.') + "/" + MPController.instance.Maxmp.ToString("#,##").Replace(',', '.');
         mpBar.SetMaxMp(MPController.instance.Maxmp);
         mpBar.SetMp(MPController.instance.Currentmp);

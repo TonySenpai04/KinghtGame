@@ -8,7 +8,7 @@ public class HpEnemy : Healthsystem
 {
     public EnemyScriptableInfo Enemy;
     public GameObject FloatingText;
-    public static HpEnemy hp;
+    public static HpEnemy Instance;
     protected Animator animator;
     [SerializeField]private float ScaleX;
     [SerializeField] public int expDmg;
@@ -23,7 +23,7 @@ public class HpEnemy : Healthsystem
         Maxhp = Enemy.MaxHp;
         healthbar.setmaxh(Maxhp);
         currenthp = Maxhp;
-        hp = this;
+        Instance = this;
     }
     
     void Start()
@@ -46,16 +46,16 @@ public class HpEnemy : Healthsystem
         if (LevelSystem.mylevel.IsUse == false && currenthp > 0)
         {
 
-            //expDmg = (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
-            expDmg = (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
+            expDmg = (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
+           // expDmg = (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
             ShowfloatingExp(expDmg);
             LevelSystem.mylevel.GainExperienceFlatRate(expDmg);
         }
         else if (LevelSystem.mylevel.IsUse == true && currenthp > 0)
         {
 
-            //expDmg =2* (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
-            expDmg = 2 * (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
+            expDmg =2* (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
+            // = 2 * (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
             ShowfloatingExp(expDmg);
             LevelSystem.mylevel.GainExperienceFlatRate(expDmg);
         }

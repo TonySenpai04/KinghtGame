@@ -10,6 +10,7 @@ namespace Inventory.UI
         [SerializeField] public Image ItemImage;
         [SerializeField] private TextMeshProUGUI Title;
         [SerializeField] private TextMeshProUGUI Description;
+        [SerializeField] public Image Background;
         private void Awake()
         {
             ResetDescription();
@@ -17,15 +18,16 @@ namespace Inventory.UI
         public void ResetDescription()
         {
 
-            ItemImage.gameObject.SetActive(false);
+            Background.gameObject.SetActive(false);
             this.Title.text = "";
             this.Description.text = "";
         }
-        public void SetDescription(Sprite sprite, string itemname, string itemDescription)
+        public void SetDescription(Sprite sprite, string itemname, string itemDescription,Sprite background)
         {
-            this.ItemImage.gameObject.SetActive(true);
+            this.Background.gameObject.SetActive(true);
             this.ItemImage.sprite = sprite;
             this.Title.text = itemname;
+            this.Background.sprite = background;
             this.Description.text = itemDescription;
 
         }

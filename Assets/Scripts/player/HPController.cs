@@ -26,6 +26,8 @@ public class HPController : MonoBehaviour
    [SerializeField] private InventorySO inventoryData;
     [SerializeField] private GameObject Onrevive;
     public bool isselection;
+    public int dodgeAttack;
+    public int Armor;
     [Header("TimeItem")]
     [SerializeField] private bool CanX2;
     [SerializeField] public float CurrentTime;
@@ -34,16 +36,17 @@ public class HPController : MonoBehaviour
     [SerializeField] public bool Isuse;
     [SerializeField] private int CloneHP;
     [SerializeField] private bool Levelup;
-    public int Armor;
+   
  
     private void Awake()
-    {    instance = this;
+    {   instance = this;
         Maxhp = info.HpStart;
         Countbottle = 10;
         CloneHP=Maxhp;
         Levelup = false;
         Onrevive.gameObject.SetActive(false);
         Armor = 0;
+        dodgeAttack = 0;
     }
     void Start()
     {
@@ -77,13 +80,6 @@ public class HPController : MonoBehaviour
     {
          Maxhp+=AddHp;
     }
-    private void FixedUpdate()
-    {
-        if (Input.GetKey(KeyCode.V))
-        {
-            TakeDamage(10);
-        }     
-    }
     public  void TakeDamage(int Dmg)
     {
         int Bleed = (Dmg - (Armor / 4));
@@ -98,7 +94,7 @@ public class HPController : MonoBehaviour
         }
         if (PlayerUI.instance.FloatingText != null)
         {
-          PlayerUI.instance.Showfloatingtext(Bleed);
+          PlayerUI.instance.ShowFloatingText(Bleed);
         }
     }
 

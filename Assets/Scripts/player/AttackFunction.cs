@@ -56,29 +56,19 @@ public class AttackFunction : MonoBehaviour
         DmgClone = dmg;
     }
 
-    public void Attack()
+    public void Skill1()
     {
-        
-       int TyLeChimang = Random.Range(1, 101);
-        if (Crit >=TyLeChimang)
+        int TyLeChimang = Random.Range(1, 101);
+        if (Crit >= TyLeChimang)
         {
-            DmgClone *= 2;
-            //StartCoroutine(Coutdown());
-            HpEnemy.hp.FloatingText.GetComponent<TextMesh>().color=Color.yellow;
-            StartCoroutine(Coutdown());
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            Attack((int)(Dmg * DmgAddSkill1) * 2, 1);
         }
         else
         {
-            HpEnemy.hp.FloatingText.GetComponent<TextMesh>().color = Color.red;
-        }
-        
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
-        foreach (Collider2D var in enemy)
-        {
-            var.GetComponent<HpEnemy>().TakeDamageEnemy((int)(Dmg * DmgAddSkill1));
-         
-            MPController.instance.MpAttack(1);
-            HpEnemy.hp.Showfloatingtext(HpEnemy.hp.expDmg);
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            Attack((int)(Dmg * DmgAddSkill1), 1);
+            
         }
     }
     protected void OnDrawGizmos()
@@ -96,40 +86,31 @@ public class AttackFunction : MonoBehaviour
 
 
     }
-    IEnumerator ResetDmg()
+    public void Skill2()
     {
-        yield  return new WaitForSeconds(2f);
-        DmgSkill2 = DmgClone;
-    }
-    public void AttackSkill1()
-    {
-        DmgSkill2 = (int)(DmgClone * DmgAddSkill2);
-        StartCoroutine(ResetDmg());
         int TyLeChimang = Random.Range(1, 101);
         if (Crit >= TyLeChimang)
         {
-            DmgClone *= 2;
-            DmgSkill2 *= 2;
-            expDmg*=2;
-            HpEnemy.hp.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
-            StartCoroutine(Coutdown());
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            Attack((int)(Dmg * DmgAddSkill2) * 2, 3);
         }
         else
         {
-            HpEnemy.hp.FloatingText.GetComponent<TextMesh>().color = Color.red;
-        }
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
-        foreach (Collider2D var in enemy)
-        {
-            
-            var.GetComponent<HpEnemy>().TakeDamageEnemy((int)((int)DmgSkill2));
-            MPController.instance.MpAttack(2);
-            StartCoroutine(Coutdown()); 
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            Attack((int)(Dmg * DmgAddSkill2), 3);
+
         }
 
-      
     }
-   
+   public void Attack(int Dmg,int Mp)
+    {
+            Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
+            foreach (Collider2D var in enemy)
+            {
+                var.GetComponent<HpEnemy>().TakeDamageEnemy(Dmg);
+                MPController.instance.MpAttack(Mp);
+            }
+    }
     protected void UpdateUI()
     {
         if (DmgClone > info.MaxDmg)
@@ -138,13 +119,6 @@ public class AttackFunction : MonoBehaviour
         }
         textdmg.text = "DMG:" + dmg.ToString("#,##").Replace(',', '.');
         CritText.text = "Crit:" + Crit + "%";
-    }
-    IEnumerator Coutdown()
-    {
-        yield return new WaitForSeconds(1.2f);
-        DmgClone /= 2;
-        DmgSkill2 /= 2;
-        HpEnemy.hp.FloatingText.GetComponent<TextMesh>().color = Color.red;
     }
     
 }

@@ -601,6 +601,7 @@ MonoBehaviour:
   expDmg: 0
   FloatingTextExp: {fileID: 7018559166563388670, guid: 8e5d06e481615df4f97e357f07ab692e, type: 3}
   respawnTime: 0
+  currentTime: 0
 --- !u!61 &6905749814490444673
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -741,6 +742,7 @@ MonoBehaviour:
   ScaleX: 1
   ScaleY: 1
   DistanAttack: 6
+  FloatingText: {fileID: 7018559166563388670, guid: 7e6c706d4c5305a419dee73366a99301, type: 3}
 --- !u!114 &6905749814490444676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,8 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemDrop: {fileID: 926461239330704325, guid: cd41159df3f05c5428c8ea53d56c8ac2, type: 3}
   lootList:
-  - {fileID: 11400000, guid: 9c201dbfa05cd5647aa64c0c1da60ed1, type: 2}
-  - {fileID: 11400000, guid: 672e5282fb929534eb6e679d448c5578, type: 2}
+  - {fileID: 11400000, guid: 475aec4ab30d45440a533f481579a165, type: 2}
   - {fileID: 11400000, guid: 717ff6d2b049c77459349d0e4950760d, type: 2}
 --- !u!1 &6905749815566558155
 GameObject:

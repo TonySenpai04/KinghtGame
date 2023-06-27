@@ -76,9 +76,14 @@ public class PlayerUI : MonoBehaviour
         }
         HPController.instance.TimeMinute = (int)(HPController.instance.CurrentTime / 60);
     }
-    public void Showfloatingtext(int Dmg)
+    public void ShowFloatingText(int Dmg)
     {
-        var Text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+        var Text = Instantiate(FloatingText, transform.parent.position, Quaternion.identity, transform);
         Text.GetComponent<TextMesh>().text = "-" + Dmg.ToString();
+    }
+    public void ShowFloatingTextMiss()
+    {
+        var Text = Instantiate(FloatingText, transform.parent.position, Quaternion.identity, transform);
+        Text.GetComponent<TextMesh>().text = "Miss" ;
     }
 }

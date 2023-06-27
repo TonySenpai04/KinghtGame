@@ -23,7 +23,7 @@ namespace Inventory.UI
         [SerializeField] public int index;
         [SerializeField]
         public ItemActionPanel panelConfirm;
-        
+        [SerializeField] protected Image BackGround;
 
         public InventoryItem inventoryItem;
         private void Awake()
@@ -42,7 +42,7 @@ namespace Inventory.UI
         }
         public void ResetData()
         {
-            this.Image.gameObject.SetActive(false);
+            this.BackGround.gameObject.SetActive(false);
             this.quantitytext.text = "";
             empty = true;
 
@@ -59,12 +59,20 @@ namespace Inventory.UI
         {
             borderImage.enabled = false;
         }
-        public void SetData(Sprite sprite, int quatity)
+        public void SetData(Sprite sprite, int quatity, Sprite background)
         {
 
-            this.Image.gameObject.SetActive(true);
+            this.BackGround.gameObject.SetActive(true);
             this.Image.sprite = sprite;
-            this.quantitytext.text = quatity.ToString();
+            this.BackGround.sprite = background;
+            if (quatity <= 1)
+            {
+                this.quantitytext.text = "";
+            }
+            else
+            {
+                this.quantitytext.text = quatity.ToString();
+            }
             empty = false;
         }
         public void OnPointerClick(PointerEventData pointerdata)

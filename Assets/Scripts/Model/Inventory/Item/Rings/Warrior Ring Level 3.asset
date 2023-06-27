@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15c806c1b6e6e4045afbb272ef7defd8, type: 3}
-  m_Name: Wooden Sword
+  m_Name: Warrior Ring Level 3
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Wooden Sword
-  <Description>k__BackingField: ATK +6
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: c278ec36abbc540489a08ba8765cd092, type: 3}
-  DropChange: 20
-  index: 3
+  <Name>k__BackingField: Warrior Ring Level 3
+  <Description>k__BackingField: Crit +3%
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 85023bf699c56124d81e7cfead621430, type: 3}
+  <BackGround>k__BackingField: {fileID: 21300000, guid: 29114078ffdf3ad46a63ea39321bcc5b, type: 3}
+  DropChange: 0
+  index: 5
   <DefaultParametersList>k__BackingField: []
   modifiersData:
-  - statModifier: {fileID: 11400000, guid: 8d01e9bb7f78c8447bf03244c558a576, type: 2}
-    value: 6
+  - statModifier: {fileID: 11400000, guid: 2486ba22941e022419cc368019e7d8d7, type: 2}
+    value: 3
   <actionSFX>k__BackingField: {fileID: 0}

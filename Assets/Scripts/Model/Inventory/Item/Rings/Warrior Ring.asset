@@ -17,6 +17,7 @@ MonoBehaviour:
   <Name>k__BackingField: Warrior Ring
   <Description>k__BackingField: Crit +1%
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 161d4730f36de6b42ad214d0d33e423d, type: 3}
+  <BackGround>k__BackingField: {fileID: 21300000, guid: 29114078ffdf3ad46a63ea39321bcc5b, type: 3}
   DropChange: 0
   index: 5
   <DefaultParametersList>k__BackingField: []

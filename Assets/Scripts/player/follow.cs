@@ -22,7 +22,7 @@ public class follow : MonoBehaviour
     }
     protected void Camerafollow()
     {
-        if ((player.transform.position.x < 52.0f && player.transform.position.x > -2f) && Loadmap.instance.isLoad == false)
+        if (player.transform.position.x < 52.0f && player.transform.position.x > -2f)
         {
             Vector3 pos = transform.position;
             pos.x = player.position.x;
@@ -30,14 +30,11 @@ public class follow : MonoBehaviour
             transform.position = pos;
         }
         else
-        { if(Loadmap.instance.isLoad == true)
-            {
+        { 
                 Vector3 pos = transform.position;
-                pos.x = -2.7f;
                 pos.y = player.position.y;
                 transform.position = pos;
-                Loadmap.instance.isLoad = false;
-            }
+            
            
         }
 

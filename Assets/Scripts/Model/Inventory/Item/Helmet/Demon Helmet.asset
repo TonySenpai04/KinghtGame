@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15c806c1b6e6e4045afbb272ef7defd8, type: 3}
-  m_Name: Manticore Sword
+  m_Name: Demon Helmet
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Manticore Sword
-  <Description>k__BackingField: ATK + 10
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: 158be32ff2ccad14e8831bd617f89478, type: 3}
-  DropChange: 30
-  index: 3
+  <Name>k__BackingField: Demon Helmet
+  <Description>k__BackingField: Armor +90
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 3a33633e1ba06874694a36a52f144896, type: 3}
+  <BackGround>k__BackingField: {fileID: 21300000, guid: f1191f8d2b2b9784fa6ed9188da4a79e, type: 3}
+  DropChange: 0
+  index: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
-  - statModifier: {fileID: 11400000, guid: 8d01e9bb7f78c8447bf03244c558a576, type: 2}
-    value: 10
+  - statModifier: {fileID: 11400000, guid: c4776f7c9605c5048a530134a103ff60, type: 2}
+    value: 90
   <actionSFX>k__BackingField: {fileID: 0}

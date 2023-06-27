@@ -36,10 +36,9 @@ namespace Inventory.UI
         {
 
             InventoryPage.Instance.textConfirm.text = "Are you sure you want to drop this item?";
-
             InventoryPage.Instance.textConfirm.gameObject.SetActive(true);
             InventoryItemUsing.Instance.panelConfirm.Toggle(true);
-            InventoryItemUsing.Instance.panelConfirm.AddButon("Yes", () => UsingItemController.Instance.RemoveItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity), () => InventoryPage.Instance.panel.Toggle(false));
+            InventoryItemUsing.Instance.panelConfirm.AddButon("Yes", () => RemoveFuncitionItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity), () => InventoryPage.Instance.panel.Toggle(false));
             InventoryItemUsing.Instance.panelConfirm.AddButon("No", () => InventoryItemUsing.Instance.panelConfirm.Toggle(false), () => InventoryPage.Instance.textConfirm.text = "");
 
         }
@@ -58,6 +57,16 @@ namespace Inventory.UI
             UsingItemController.Instance.RemoveItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity);
             InventoryController.Instance.inventoryData.AddItem(InventoryItemUsing.Instance.inventoryItem);
            
+        }
+        public void RemoveFuncitionItem(int index, int mount)
+        {
+            InventoryItem inventoryItem = UsingItemController.Instance.inventoryData.GetItemAt(InventoryItemUsing.Instance.index);
+            IItemAction itemAction = inventoryItem.item as IItemAction;
+            itemAction.PerformActionRemove(gameObject, null);
+            UsingItemController.Instance.RemoveItem(index, mount);
+            InventoryPage.Instance.textConfirm.gameObject.SetActive(false);
+
+
         }
     }
 }

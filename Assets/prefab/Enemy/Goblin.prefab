@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.13, y: 0.2443}
+  m_AnchoredPosition: {x: 0.17, y: 0.2443}
   m_SizeDelta: {x: 1024, y: 826.7582}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6869268604237454182
@@ -483,8 +483,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120
-  m_fontSizeBase: 120
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -698,11 +698,12 @@ MonoBehaviour:
   healthbar: {fileID: 6869268604252572296}
   healthText: {fileID: 6869268604922833205}
   Enemy: {fileID: 11400000, guid: 9797e88ee79d10f489c1d22def13de86, type: 2}
-  FloatingText: {fileID: 7018559166563388670, guid: 8ecc4b683afb2e049870b0c7d59ef986, type: 3}
+  FloatingText: {fileID: 7018559166563388670, guid: 955124416daffa5408a3d7163f107656, type: 3}
   ScaleX: 1
   expDmg: 0
   FloatingTextExp: {fileID: 7018559166563388670, guid: 8e5d06e481615df4f97e357f07ab692e, type: 3}
   respawnTime: 0
+  currentTime: 0
 --- !u!61 &6869268605929993369
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -857,6 +858,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemDrop: {fileID: 926461239330704325, guid: cd41159df3f05c5428c8ea53d56c8ac2, type: 3}
   lootList:
-  - {fileID: 11400000, guid: 9c201dbfa05cd5647aa64c0c1da60ed1, type: 2}
-  - {fileID: 11400000, guid: 672e5282fb929534eb6e679d448c5578, type: 2}
-  - {fileID: 11400000, guid: 717ff6d2b049c77459349d0e4950760d, type: 2}
+  - {fileID: 11400000, guid: 475aec4ab30d45440a533f481579a165, type: 2}

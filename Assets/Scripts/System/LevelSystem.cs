@@ -96,7 +96,7 @@ public class LevelSystem : MonoBehaviour
             IsUse = true;
             if (CanX2 == true)
             {
-                HpEnemy.hp.expDmg *= 2;
+                HpEnemy.Instance.expDmg *= 2;
                 StartCoroutine(Setexp());
             }
 
@@ -129,7 +129,7 @@ public class LevelSystem : MonoBehaviour
     IEnumerator Setexp()
     {
         yield return new WaitForSeconds(CurrentTime);
-        HpEnemy.hp.expDmg /= 2;
+        HpEnemy.Instance.expDmg /= 2;
         CanX2 = true;
         CurrentTime = Timeitem;
 
