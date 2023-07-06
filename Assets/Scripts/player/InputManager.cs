@@ -7,13 +7,15 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     private float move;
     public float Move { get => move; }
-    public bool isSkill1 { get => IsSkill1; }
+    public bool IsSkill1 { get => isSkill1; set => isSkill1 = value; }
     public bool IsJump { get => Isjump; }
-    public bool isSkill2 { get => IsSkill2; }
+    public bool IsSkill2 { get => isSkill2; }
+    public bool IsSkill3 { get => isSkill3;}
 
-    private bool IsSkill2;
+    private bool isSkill3;
+    private bool isSkill2;
     private bool Isjump;
-    private bool IsSkill1;
+    private bool isSkill1;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class InputManager : MonoBehaviour
         Skill1();
         Jump();
         Skill2();
+        Skill3();
     }
     public void MovePlayer()
     {
@@ -34,7 +37,7 @@ public class InputManager : MonoBehaviour
     }
     public void Skill1()
     {
-        IsSkill1 = Input.GetKey(KeyCode.Alpha1);
+        isSkill1 = Input.GetKey(KeyCode.Alpha1);
     }
     public void Jump()
     {
@@ -42,6 +45,10 @@ public class InputManager : MonoBehaviour
     }
     public void Skill2()
     {
-        IsSkill2 = Input.GetKey(KeyCode.Alpha2);
+        isSkill2 = Input.GetKey(KeyCode.Alpha2);
+    }
+    public void Skill3()
+    {
+        isSkill3 = Input.GetKey(KeyCode.Alpha3);
     }
 }

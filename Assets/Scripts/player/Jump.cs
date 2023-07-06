@@ -7,7 +7,7 @@ public class Jump : MonoBehaviour
     // Start is called before the first frame update
     private float horizontal;
 
- [SerializeField]   private float jumpingPower = 16f;
+   [SerializeField]   private float jumpingPower = 16f;
     private bool isFacingRight = true;
 
     private bool doubleJump;

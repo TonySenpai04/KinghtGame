@@ -13,10 +13,7 @@ public class AnimationPlayer : MonoBehaviour
     [SerializeField] private bool isSkill1 ;
     [SerializeField] private bool isDead;
     public bool isSkill2;
-    [Header("Audio")]
-    [SerializeField] private AudioClip AtkClip;
-    [SerializeField] private AudioClip jumpClip;
-    [SerializeField] private AudioClip deathClip;
+    public bool isSkill3;
     public bool IsDead { get => isDead; set => isDead = value; }
     public Animator Animator { get => animator; set => animator = value; }
     public bool IsSkill1 { get => isSkill1; set => isSkill1 = value; }
@@ -54,6 +51,7 @@ public class AnimationPlayer : MonoBehaviour
             Jump();
             Skill1();
             Skill2();
+            Skill3();
         }
 
     }
@@ -90,7 +88,7 @@ public class AnimationPlayer : MonoBehaviour
         isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         if (InputManager.Instance.IsJump && isground)
         {
-            AudioSource.PlayClipAtPoint(jumpClip, transform.position);
+            AudioSource.PlayClipAtPoint(AudioPlayer.instance.jumpClip, transform.position);
 
             Animator.SetTrigger("jumping");
         }
@@ -101,10 +99,10 @@ public class AnimationPlayer : MonoBehaviour
     public void Skill1()
     {
         
-        if (InputManager.Instance.isSkill1 && MPController.instance.Currentmp >= 1f && isSkill1 == true )
+        if (InputManager.Instance.IsSkill1 && MPController.instance.Currentmp >= 1f && isSkill1 == true )
         {  
-            AudioSource.PlayClipAtPoint(AtkClip, transform.position);
-            Animator.SetTrigger("atk");
+            AudioSource.PlayClipAtPoint(AudioPlayer.instance.AtkClip, transform.position);
+            Animator.SetTrigger("Skill1");
             if (Skill.Instance.time[0].Isuse1 == true)
             {
                 Skill.Instance.time[0].Currenttime += Skill.Instance.time[0].timeskill;
@@ -117,21 +115,34 @@ public class AnimationPlayer : MonoBehaviour
         if (HPController.instance.currenthp == 0)
         {
             Animator.SetTrigger("isdeath");
-            AudioSource.PlayClipAtPoint(deathClip, transform.position);
+            AudioSource.PlayClipAtPoint(AudioPlayer.instance.deathClip, transform.position);
             IsDead = true;
             Animator.SetBool("Idle", false);
         }
     }
     public void Skill2()
     {
-        if (InputManager.Instance.isSkill2 && MPController.instance.Currentmp >= 2 && LevelSystem.mylevel.level >= 3
+        if (InputManager.Instance.IsSkill2 && MPController.instance.Currentmp >= 2 && LevelSystem.instance.level >= 3
             && isSkill2==true)
         {
-            Animator.SetTrigger("isskill");
+            Animator.SetTrigger("Skill2");
             if (Skill.Instance.time[1].Isuse1 == true)
             {
                 Skill.Instance.time[1].Currenttime += Skill.Instance.time[1].timeskill;
                 Skill.Instance.time[1].Isuse1 = false;
+            }
+        }
+    }
+    public void Skill3()
+    {
+        if (InputManager.Instance.IsSkill3 && MPController.instance.Currentmp >= 12 && LevelSystem.instance.level >= 5
+            && isSkill3 == true)
+        {
+            Animator.SetTrigger("Skill3");
+            if (Skill.Instance.time[2].Isuse1 == true)
+            {
+                Skill.Instance.time[2].Currenttime += Skill.Instance.time[2].timeskill;
+                Skill.Instance.time[2].Isuse1 = false;
             }
         }
     }

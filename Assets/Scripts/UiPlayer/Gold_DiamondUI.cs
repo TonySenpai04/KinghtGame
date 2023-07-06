@@ -8,7 +8,7 @@ public class Gold_DiamondUI : MonoBehaviour
     [Header("Coin_Diamond" + "")]
     [SerializeField]
     protected TextMeshProUGUI TextGold;
-   [SerializeField] protected TextMeshProUGUI TextDiamond;
+    [SerializeField] protected TextMeshProUGUI TextDiamond;
     // Start is called before the first frame update
     // Update is called once per frame
     void Update()
@@ -17,8 +17,8 @@ public class Gold_DiamondUI : MonoBehaviour
     }
     public void UpdateUI()
     {
-        TextGold.text = Gold_Diamond.instance.Gold+"";
-        TextDiamond.text = Gold_Diamond.instance.Diamond + "";
+        TextGold.text = Gold_Diamond.instance.Gold.ToString("#,##").Replace(',', '.') ;
+        TextDiamond.text = Gold_Diamond.instance.Diamond .ToString("#,##").Replace(',', '.');
 
     }
 }

@@ -10,11 +10,11 @@ using UnityEngine.UI;
 public class LevelSystem : MonoBehaviour
 {
    
-    public static LevelSystem mylevel;
+    public static LevelSystem instance;
     [SerializeField]  public int level;
     [SerializeField] protected float maxLevel=30;
-    [SerializeField] protected float currentXp;
-    [SerializeField] protected int nextLevelXp = 100;
+    [SerializeField] public float currentXp;
+    [SerializeField] public int nextLevelXp = 100;
     public int Exp;
     [Header("Multipliers")]
     [Range(1f, 400f)]
@@ -23,24 +23,13 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] private float powerMultiplier = 20f;
     [Range(7f, 14f)]
     [SerializeField] private float divisionMultiplier = 7f;
-    [Header("UI")]
-    public Slider exslider;
-    public TextMeshProUGUI levelText;
-    public TextMeshProUGUI XpText;
-    [SerializeField] private TextMeshProUGUI TextTime;
-    [SerializeField] private TextMeshProUGUI Info;
+   
     [Header("Item")]
     [SerializeField] private bool CanX2;
     [SerializeField] private float CurrentTime;
     [SerializeField] private int Timeitem;
     [SerializeField] private int TimeMinute;
     [SerializeField] private bool Isuse;
-
-
-    //Audio  
-    [Header("Audio")]
-    public AudioClip levelUpSound;
-    private AudioSource source;
     //Timers
     private float lerpTimer;
     private float delayTimer;
@@ -49,24 +38,19 @@ public class LevelSystem : MonoBehaviour
 
     private void Awake()
     {
-        mylevel = this;
+        instance = this;
         level = 1;
-        TextTime.text = "Time remaining:" + CurrentTime.ToString("0");
         CanX2 = true;
         IsUse = false;
     }
     
     void Start()
     {
-        setMaxExp(nextLevelXp);
-        SetExp(currentXp);
         currentXp=0;
-        Info.text = "X2 Exp In 10p";
-        levelText.text = "Level: " + level;
+       // levelText.text = "Level: " + level;
         level = 1;
-        XpText.text = Mathf.Round(currentXp) + "/" + Mathf.Round(nextLevelXp);
+       // XpText.text = Mathf.Round(currentXp) + "/" + Mathf.Round(nextLevelXp);
         nextLevelXp = CalculateNextLevelXp();
-        source = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -75,7 +59,6 @@ public class LevelSystem : MonoBehaviour
         {
             CountDown();
         }
-        UpdateXpUI();
         if (level != maxLevel)
         {
             if (currentXp >= nextLevelXp)
@@ -85,7 +68,7 @@ public class LevelSystem : MonoBehaviour
         }
         else
         {
-            XpText.text = "MAX";
+            LevelUI.instance. XpText.text = "MAX";
         }
     }
     public void ItemExp()
@@ -97,7 +80,7 @@ public class LevelSystem : MonoBehaviour
             if (CanX2 == true)
             {
                 HpEnemy.Instance.expDmg *= 2;
-                StartCoroutine(Setexp());
+                StartCoroutine(SetExp());
             }
 
             CanX2 = false;
@@ -108,25 +91,25 @@ public class LevelSystem : MonoBehaviour
         CurrentTime -= 1 * Time.deltaTime;
         if (CurrentTime < 60)
         {
-            TextTime.text = "Time remaining:" + CurrentTime.ToString("0") + "s";
+           // TextTime.text = "Time remaining:" + CurrentTime.ToString("0") + "s";
         }
         else
         {
-            TextTime.text = "Time remaining:" + TimeMinute.ToString("0") + "'";
+           // TextTime.text = "Time remaining:" + TimeMinute.ToString("0") + "'";
         }
         if (CurrentTime <= 0)
         {
             CurrentTime = 0;
-            TextTime.gameObject.SetActive(true);
+           // TextTime.gameObject.SetActive(true);
             IsUse = false;
         }
         else if (CurrentTime > 0)
         {
-            TextTime.gameObject.SetActive(true);
+            //TextTime.gameObject.SetActive(true);
         }
         TimeMinute = (int)(CurrentTime / 60);
     }
-    IEnumerator Setexp()
+    IEnumerator SetExp()
     {
         yield return new WaitForSeconds(CurrentTime);
         HpEnemy.Instance.expDmg /= 2;
@@ -135,20 +118,7 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    private void setMaxExp(float maxxp)
-    {
-        exslider.maxValue = maxxp;
-    }
-    private void SetExp(float currentxp)
-    {
-        exslider.value = currentxp;
-    }
-    private void UpdateXpUI()
-    { 
-        setMaxExp(nextLevelXp);
-        SetExp(currentXp);
-        XpText.text = currentXp + "/" + nextLevelXp;
-    }
+   
     
     public void GainExperienceFlatRate(int xpGained)
     {
@@ -188,11 +158,11 @@ public class LevelSystem : MonoBehaviour
         currentXp = Mathf.Round(currentXp-nextLevelXp);
         nextLevelXp = CalculateNextLevelXp();
         level = Mathf.Clamp(level,0, 50);
-        SetExp(currentXp);
-        levelText.text = "Level:" + level;
+        LevelUI.instance.SetExp(currentXp);
+        LevelUI.instance. levelText.text = "Level:" + level;
         GetComponent<HPController>().IncreaseHealth(level);
         GetComponent<MPController>().IncreaseMP(level);
-        AudioSource.PlayClipAtPoint(levelUpSound, transform.position);
+        AudioSource.PlayClipAtPoint(AudioPlayer.instance.levelUpSound, transform.position);
 
     }
     private void DisplayAccrueAmount() 

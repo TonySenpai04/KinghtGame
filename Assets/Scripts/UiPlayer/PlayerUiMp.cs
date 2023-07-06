@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerUIMp : MonoBehaviour
 {
+    public static PlayerUIMp Instance;
     [Header("MP")]
     // [SerializeField] protected GameObject FloatingText;
     [SerializeField] private TextMeshProUGUI TextTime;
@@ -13,9 +14,11 @@ public class PlayerUIMp : MonoBehaviour
     public MpBar mpBar;
     public TextMeshProUGUI bottletext;
     [SerializeField] private TextMeshProUGUI Info;
+    public float time = 0;
     void Start()
     {
-        TextTime.text = "Time remaining:" + MPController.instance.CurrentTime.ToString("0");
+        Instance = this;
+        TextTime.text = time.ToString("0");
         mpBar.SetMaxMp(MPController.instance.Maxmp);
         mpBar.SetMp(MPController.instance.Currentmp);
     }
@@ -24,7 +27,12 @@ public class PlayerUIMp : MonoBehaviour
     void Update()
     {
         updateUi();
-        TimeHPX2();
+        if (time > 0)
+        {
+            time -= 1 * Time.deltaTime;
+            UiTimeX2Mp();
+        }
+       
     }
     public void updateUi()
     {
@@ -42,28 +50,30 @@ public class PlayerUIMp : MonoBehaviour
         mpBar.SetMp(MPController.instance.Currentmp);
 
     }
-    public void TimeHPX2()
+    public void UiTimeX2Mp()
     {
-        if (MPController.instance.CurrentTime < 60)
+        if (time < 60)
         {
-            TextTime.text = "Time remaining:" + MPController.instance.CurrentTime.ToString("0") + "s";
+            TextTime.text = time.ToString("0") + "s";
         }
         else
         {
 
-            TextTime.text = "Time remaining:" + MPController.instance.TimeMinute.ToString("0") + "'";
+            TextTime.text = (time / 60).ToString("0") + "'";
         }
-        if (MPController.instance.CurrentTime <= 0)
+        if (time <= 0)
         {
-            HPController.instance.CurrentTime = 0;
-            TextTime.text = "Time remaining:" + MPController.instance.CurrentTime.ToString("0");
+            time = 0;
+            TextTime.text = time.ToString("0");
             TextTime.gameObject.SetActive(true);
-            // HPController.instance.Isuse = false;
+            MPController.instance.Maxmp = MPController.instance.CloneMp + MPController.instance.addMp;
+            MPController.instance.CanX2 = true;
+            MPController.instance.Isuse = false;
         }
-        else if (MPController.instance.CurrentTime > 0)
+        else if (time > 0)
         {
             TextTime.gameObject.SetActive(true);
         }
-        MPController.instance.TimeMinute = (int)(MPController.instance.CurrentTime / 60);
+   ;
     }
 }

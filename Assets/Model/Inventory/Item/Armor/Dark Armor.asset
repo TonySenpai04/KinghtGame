@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c806c1b6e6e4045afbb272ef7defd8, type: 3}
+  m_Name: Dark Armor
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Name>k__BackingField: Dark Armor
+  <Description>k__BackingField: Health +6000
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 7e03ed8b653ed2845aadb9ea3b7519c0, type: 3}
+  <BackGround>k__BackingField: {fileID: 21300000, guid: f51787da7231e434c9f318683e9d5011, type: 3}
+  DropChange: 0
+  index: 1
+  Price: 180000
+  <DefaultParametersList>k__BackingField: []
+  modifiersData:
+  - statModifier: {fileID: 11400000, guid: 6b1908dfa7076424b9f7d61e0c87337d, type: 2}
+    value: 6000
+  <actionSFX>k__BackingField: {fileID: 0}

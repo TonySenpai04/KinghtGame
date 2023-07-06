@@ -16,11 +16,11 @@ public class ButtonInfo : MonoBehaviour
     {
       
         instance=this;
-        TextPrice.text = Shopmanager.GetComponent<ShopMananger>().Items[2,ItemID].ToString();
+       // TextPrice.text = Shopmanager.GetComponent<ShopMananger>().Items[2,ItemID].ToString();
     }
     // Update is called once per frame
     void Update()
     {
-        TextPrice.text =  Shopmanager.GetComponent<ShopMananger>().Items[2, ItemID].ToString();
+      //  TextPrice.text =  Shopmanager.GetComponent<ShopMananger>().Items[2, ItemID].ToString();
     }
 }

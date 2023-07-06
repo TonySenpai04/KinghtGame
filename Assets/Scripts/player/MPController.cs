@@ -14,19 +14,15 @@ public class MPController : MonoBehaviour
     [SerializeField] protected float MPRecuperate;
     [SerializeField] private int countbottle;
     [SerializeField] private int maxbottle = 99;
-    [SerializeField] private bool CanX2;
+    [SerializeField] public int CloneMp;
+    [SerializeField] public int addMp;
     public int Currentmp { get => CurrentMp; set => CurrentMp = value; }
     public int Maxmp { get => MaxMp; set => MaxMp = value; }
     public int Countbottle { get => countbottle; set => countbottle = value; }
     [Header("TimeItem")]
-    [SerializeField] public float CurrentTime;
-    [SerializeField] private int Timeitem;
-    [SerializeField] public int TimeMinute;
     [SerializeField] public bool Isuse;
-    [SerializeField] private int mpclone;
-    [SerializeField] public int addMp;
+    [SerializeField] public bool CanX2;
     [SerializeField] private bool Levelup;
-    [SerializeField] private int timeHouse;
 
 
   
@@ -35,7 +31,7 @@ public class MPController : MonoBehaviour
         instance = this;
         MaxMp = info.MpStart; 
         Countbottle = 10;
-        mpclone = MaxMp;
+        CloneMp = MaxMp;
         Levelup = false;
     }
   
@@ -45,59 +41,22 @@ public class MPController : MonoBehaviour
         instance= this;
         CurrentMp = MaxMp;
         CanX2 = true;
-        Timeitem = 0;
-        CurrentTime = Timeitem;
-        TimeMinute = 0;
         Isuse = false;
         
      }
 
-    // Update is called once per frame
-    void Update()
-    {
-        MPRecuperate = MaxMp / 5;
-        if (Isuse == true)
-        {
-            CountDown();
-        }  
-    }
-    public void CountDown()
-    {
-        CurrentTime -= 1 * Time.deltaTime;
-        if (CurrentTime <= 0)
-        {
-            Isuse = false;
-        }
-    }
     public void ItemMP()
     {
-           CurrentTime += 600; 
-            if(CurrentTime>0)
+            if(PlayerUIMp.Instance.time>0)
             {
             Isuse = true;
             if (CanX2 == true )
             {
                 Maxmp *= 2;
-                StartCoroutine(SetMp());
             }
             CanX2 = false;
         }
     }
-    IEnumerator SetMp()
-    {
-        yield return new WaitForSeconds(CurrentTime);
-        if (LevelSystem.mylevel.level == 30 && CanX2 == false)
-        {
-            Maxmp = mpclone+addMp;
-        }
-        else
-        {
-            Maxmp /= 2;
-        }
-        CanX2 = true;
-        CurrentTime = Timeitem;
-    }
-
     public void MpAttack(int mpAttack)
     {
         CurrentMp -= mpAttack;
@@ -113,15 +72,16 @@ public class MPController : MonoBehaviour
     }
     public void IncreaseMP(int level)
     {
-        mpclone += Mathf.RoundToInt((mpclone * 0.037f) * ((100 - level) * 0.1f));
+        CloneMp += Mathf.RoundToInt((CloneMp * 0.037f) * ((100 - level) * 0.1f));
         Levelup = true;
-        if (LevelSystem.mylevel.level == 30)
+        if (LevelSystem.instance.level == 30)
         {
-                mpclone = info.MaxMp;
-                MaxMp = mpclone + addMp;   
+                CloneMp = info.MaxMp;
+                MaxMp = CloneMp + addMp;   
         }
-        MaxMp = mpclone+ addMp;
+        MaxMp = CloneMp+ addMp;
         CurrentMp = MaxMp;
+        MPRecuperate = MaxMp / 5;
     }
     protected void RecuperateMp()
     {

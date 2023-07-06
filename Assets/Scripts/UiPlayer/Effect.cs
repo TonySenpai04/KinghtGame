@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
-    [SerializeField] private Transform effect;
-    [SerializeField] private Transform effect2;
+    [SerializeField] private Transform Blueeffect;
+    [SerializeField] private Transform Violeteffect;
 
-    [SerializeField] private Transform effect3;
+    [SerializeField] private Transform Yelloweffect;
+    [SerializeField] private Transform Whiteffect;
+
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
        
-        effect = GameObject.Find("Blueeffect").transform;
-        effect2 = GameObject.Find("Violeteffect").transform;
-        effect3 = GameObject.Find("Redeffect").transform;
-        effect.gameObject.SetActive(false);
-        effect2.gameObject.SetActive(false);
-        effect3.gameObject.SetActive(false);
+        Blueeffect.gameObject.SetActive(false);
+        Violeteffect.gameObject.SetActive(false);
+        Yelloweffect.gameObject.SetActive(false);
+        Whiteffect.gameObject.SetActive(false);
 
     }
 
@@ -28,19 +29,26 @@ public class Effect : MonoBehaviour
     }
     protected void ActiveEffect()
     {
-        if (LevelSystem.mylevel.level >= 10)
+        if (LevelSystem.instance.level >= 10)
         {
-            effect3.gameObject.SetActive(true);
+            Yelloweffect.gameObject.SetActive(true);
         }
-        if (LevelSystem.mylevel.level >= 15)
+        if (LevelSystem.instance.level >= 15)
         {
-            effect3.gameObject.SetActive(false);
-            effect.gameObject.SetActive(true);
+            Yelloweffect.gameObject.SetActive(false);
+            Violeteffect.gameObject.SetActive(true);
+           
         }
-        if(LevelSystem.mylevel.level >= 25)
+        if(LevelSystem.instance.level >= 20)
         {
-           effect.gameObject.SetActive(false);
-            effect2.gameObject.SetActive(true);
+           Blueeffect.gameObject.SetActive(true);
+            Violeteffect.gameObject.SetActive(false);
+        }
+        if (LevelSystem.instance.level >= 25)
+        {
+            Blueeffect.gameObject.SetActive(false);
+            Whiteffect.gameObject.SetActive(true);
+
         }
     }
 }

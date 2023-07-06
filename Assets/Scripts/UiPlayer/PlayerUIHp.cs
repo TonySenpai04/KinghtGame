@@ -13,11 +13,11 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI bottletext;
     [SerializeField] private TextMeshProUGUI Info; 
     [SerializeField] public GameObject FloatingText;
-    [SerializeField] public TextMeshProUGUI TextArmor;
+    public float time=0;
     void Start()
     {
         instance = this;
-        TextTime.text = "Time remaining:" + HPController.instance.CurrentTime.ToString("0");
+        TextTime.text = time.ToString("0");
         healthbar.SetMaxHp(HPController.instance.maxhp);
         healthbar.SetHp(HPController.instance.currenthp);
         
@@ -26,10 +26,14 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateUi();
-        TimeHPX2();
+        UpdateUi();
+        if(time>0)
+        {
+            time-=1*Time.deltaTime;
+            UiTimeHPX2();
+        }
     }
-    public void updateUi()
+    public void UpdateUi()
     {
         if (HPController.instance.currenthp >= HPController.instance.maxhp)
         {
@@ -43,38 +47,33 @@ public class PlayerUI : MonoBehaviour
         healthText.text = "HP:" + HPController.instance.currenthp.ToString("#,##").Replace(',','.') + "/" + HPController.instance.maxhp.ToString("#,##").Replace(',', '.');
         healthbar.SetMaxHp(HPController.instance.maxhp);
         healthbar.SetHp(HPController.instance.currenthp);
-        if (HPController.instance.Armor == 0)
-        {
-            TextArmor.text = "Armor:0";
-        }
-        else
-        {
-            TextArmor.text = "Armor:" + HPController.instance.Armor.ToString("#,##").Replace(',', '.');
-        }
+      
     }
-    public void TimeHPX2()
+    public void UiTimeHPX2()
     {
-        if (HPController.instance.CurrentTime < 60 )
+        if (time < 60 )
         {
-            TextTime.text = "Time remaining:" + HPController.instance.CurrentTime.ToString("0") + "s";
+            TextTime.text =  time.ToString("0") + "s";
         }
         else
         {
 
-            TextTime.text = "Time remaining:" + HPController.instance.TimeMinute.ToString("0") + "'";
+            TextTime.text = (time/60).ToString("0") + "'";
         }
-        if (HPController.instance.CurrentTime <= 0)
+        if (time <= 0)
         {
-            HPController.instance.CurrentTime = 0;
-            TextTime.text = "Time remaining:" + HPController.instance.CurrentTime.ToString("0");
+            time = 0;
+            TextTime.text =  time.ToString("0");
             TextTime.gameObject.SetActive(true);
-           // HPController.instance.Isuse = false;
+            HPController.instance.maxhp = HPController.instance.CloneHP + HPController.instance.AddHp;
+            HPController.instance.CanX2 = true;
+            HPController.instance.Isuse = false;
         }
-        else if (HPController.instance.CurrentTime > 0)
+        else if (time > 0)
         {
             TextTime.gameObject.SetActive(true);
         }
-        HPController.instance.TimeMinute = (int)(HPController.instance.CurrentTime / 60);
+   
     }
     public void ShowFloatingText(int Dmg)
     {

@@ -23,58 +23,35 @@ public class HPController : MonoBehaviour
     [SerializeField] private float HpRecuperate ;
     public int countbottle;
     protected int maxbottle = 99;
-   [SerializeField] private InventorySO inventoryData;
+    [SerializeField] private InventorySO inventoryData;
     [SerializeField] private GameObject Onrevive;
-    public bool isselection;
     public int dodgeAttack;
-    public int Armor;
+    [SerializeField] public int CloneHP;
     [Header("TimeItem")]
-    [SerializeField] private bool CanX2;
-    [SerializeField] public float CurrentTime;
-    [SerializeField] private int Timeitem;
-    [SerializeField] public int TimeMinute;
+    [SerializeField] public bool CanX2;
     [SerializeField] public bool Isuse;
-    [SerializeField] private int CloneHP;
     [SerializeField] private bool Levelup;
-   
- 
     private void Awake()
-    {   instance = this;
+    {
+        instance = this;
         Maxhp = info.HpStart;
         Countbottle = 10;
         CloneHP=Maxhp;
         Levelup = false;
         Onrevive.gameObject.SetActive(false);
-        Armor = 0;
+  
         dodgeAttack = 0;
     }
     void Start()
     {
-        Timeitem = 0;
-        CurrentTime = Timeitem;
         Currenthp = Maxhp;  
         CanX2 = true;
         Isuse = false;
         AddHp = 0;
-        isselection = false;
     }
     void Update()
     {
-        HpRecuperate = Maxhp / 5;
-        if (Isuse == true)
-        {
-            CountDown();
-        }
         Ondead();
-    }
-   
-    public void CountDown()
-    {
-        CurrentTime -= 1 * Time.deltaTime;
-        if(CurrentTime <= 0)
-        {
-            Isuse = false;
-        } 
     }
     public void UpdateHP()
     {
@@ -82,7 +59,7 @@ public class HPController : MonoBehaviour
     }
     public  void TakeDamage(int Dmg)
     {
-        int Bleed = (Dmg - (Armor / 4));
+        int Bleed = (Dmg - (DefencePlayer.Instance.Defense / 4));
         if (Bleed <= 0)
         {
             Bleed = 1;
@@ -100,15 +77,13 @@ public class HPController : MonoBehaviour
 
     public void ItemHP()
     {
-        CurrentTime += 600;
-        //  CloneHP+=AddHp;
-        if (CurrentTime > 0 )
+        if (PlayerUI.instance.time > 0 )
         {
             Isuse = true;
             if (CanX2 == true)
             {
-                Maxhp *= 2;
-                StartCoroutine(SetHp());
+                Maxhp = CloneHP + AddHp;
+                Maxhp*= 2;
             }
             CanX2 = false;
         }
@@ -117,13 +92,14 @@ public class HPController : MonoBehaviour
     {
         CloneHP += Mathf.RoundToInt((CloneHP  * 0.037f) * ((100 - level) * 0.1f));
         Levelup = true;
-        if (LevelSystem.mylevel.level == 30)
+        if (LevelSystem.instance.level == 30)
         {
             CloneHP = info.HpMax;
             Maxhp = CloneHP + AddHp;
         }
         Maxhp = CloneHP + AddHp;
         Currenthp =Maxhp;
+        HpRecuperate = Maxhp / 5;
     }
     
     public void RecuperateHp()
@@ -142,21 +118,6 @@ public class HPController : MonoBehaviour
             }
             Countbottle--;
         }
-    }
-    IEnumerator SetHp()
-    {
-        yield return new WaitForSeconds(CurrentTime);
-        if (LevelSystem.mylevel.level == 30 && CanX2 == false)
-        {
-            Maxhp = CloneHP + AddHp;
-        }
-        else
-        {
-            Maxhp /= 2;
-        }
-        CanX2=true;
-        CurrentTime = Timeitem;
-
     }
     public void Ondead()
     {

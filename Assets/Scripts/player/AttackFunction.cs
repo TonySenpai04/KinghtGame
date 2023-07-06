@@ -7,24 +7,17 @@ using UnityEngine;
 public class AttackFunction : MonoBehaviour
 {
     public static AttackFunction instance;
-    [Header("UI")]
-    [SerializeField]  protected Transform pointatk;
+    public List<SkillS0> skillS0;
+    [SerializeField] protected Transform pointatk;
     [SerializeField] protected float radius=1.5f;
     [SerializeField] protected LayerMask mask;
     public AudioClip AttackSound;
-    public TextMeshProUGUI textdmg;
-    [SerializeField] protected InfoCharacter info;
-    [SerializeField] private TextMeshProUGUI CritText;
+    [SerializeField] public InfoCharacter info;
     [Header("Info")]
     [SerializeField] private int expDmg;
-    [SerializeField] private int dmg = 10;
-    private AudioSource source;
-    [SerializeField] private float dmgAddSkill2;
-    [SerializeField] private float dmgAddSkill1;
+    [SerializeField] public int dmg = 10;
     [SerializeField] public int Dmg { get => dmg; set => dmg = value; }
     [SerializeField] private int ExpDmg { get => expDmg; set => expDmg = value; }
-    public float DmgAddSkill1 { get => dmgAddSkill1; set => dmgAddSkill1 = value; }
-    public float DmgAddSkill2 { get => dmgAddSkill2; set => dmgAddSkill2 = value; }
 
     [SerializeField] private GameObject FloatingTextExp;
     public int DmgSkill2;
@@ -37,9 +30,6 @@ public class AttackFunction : MonoBehaviour
         instance = this;
         dmg = info.DmgStart;
         DmgClone = dmg;
-        //pointatk = GameObject.Find("PointAttack").transform;
-        textdmg.text = "DMG:" + dmg; 
-        source = GetComponent<AudioSource>();
     }
     public int AddDamge()
     {
@@ -52,7 +42,7 @@ public class AttackFunction : MonoBehaviour
 
     void Update()
     {
-        UpdateUI();
+       // UpdateUI();
         DmgClone = dmg;
     }
 
@@ -62,12 +52,12 @@ public class AttackFunction : MonoBehaviour
         if (Crit >= TyLeChimang)
         {
             HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
-            Attack((int)(Dmg * DmgAddSkill1) * 2, 1);
+            Attack((int)(Dmg * skillS0[0].DmgAdd) * 2, skillS0[0].ManaConsumption);
         }
         else
         {
             HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
-            Attack((int)(Dmg * DmgAddSkill1), 1);
+            Attack((int)(Dmg * skillS0[0].DmgAdd), skillS0[0].ManaConsumption);
             
         }
     }
@@ -84,7 +74,6 @@ public class AttackFunction : MonoBehaviour
         }
         dmg = DmgClone + damageAdd;
 
-
     }
     public void Skill2()
     {
@@ -92,33 +81,52 @@ public class AttackFunction : MonoBehaviour
         if (Crit >= TyLeChimang)
         {
             HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
-            Attack((int)(Dmg * DmgAddSkill2) * 2, 3);
+            Attack((int)(Dmg * skillS0[1].DmgAdd) * 2, skillS0[1].ManaConsumption);
         }
         else
         {
             HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
-            Attack((int)(Dmg * DmgAddSkill2), 3);
+            Attack((int)(Dmg * skillS0[1].DmgAdd), skillS0[1].ManaConsumption);
 
         }
 
     }
-   public void Attack(int Dmg,int Mp)
+    public void Skill3()
+    {
+        int TyLeChimang = Random.Range(1, 101);
+        if (Crit >= TyLeChimang)
+        {
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            Attack((int)(Dmg * skillS0[2].DmgAdd) * 2, skillS0[2].ManaConsumption);
+        }
+        else
+        {
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            Attack((int)(Dmg * skillS0[2].DmgAdd), skillS0[2].ManaConsumption);
+
+        }
+
+    }
+    public void Attack(int Dmg,int Mp)
     {
             Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
             foreach (Collider2D var in enemy)
             {
+            if (var != null)
+            {
                 var.GetComponent<HpEnemy>().TakeDamageEnemy(Dmg);
                 MPController.instance.MpAttack(Mp);
             }
+          }
     }
-    protected void UpdateUI()
-    {
-        if (DmgClone > info.MaxDmg)
-        {
-            DmgClone = info.MaxDmg;
-        }
-        textdmg.text = "DMG:" + dmg.ToString("#,##").Replace(',', '.');
-        CritText.text = "Crit:" + Crit + "%";
-    }
+    //protected void UpdateUI()
+    //{
+    //    if (DmgClone > info.MaxDmg)
+    //    {
+    //        DmgClone = info.MaxDmg;
+    //    }
+    //    textdmg.text = "DMG:" + dmg.ToString("#,##").Replace(',', '.');
+    //    CritText.text = "Crit:" + Crit + "%";
+    //}
     
 }
