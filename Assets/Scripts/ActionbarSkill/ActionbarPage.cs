@@ -8,24 +8,19 @@ using UnityEngine;
 
 public class ActionbarPage : MonoBehaviour
 {
-    [SerializeField] public ActionbarUi actionBarUI;
     [SerializeField] private RectTransform contentPanel;
-
     public List<ActionbarUi> actionList=new List<ActionbarUi>();
     private int currentlyDraggedItemIndex = -1;
     public event Action<int> OnDescriptionRequested,
             OnItemActionRequested,
             OnStartDragging;
     public event Action<int, int> OnSwapItems;
-
-    private void Awake()
-    {
-        IntializeInventory();
-    }
+    
+   
+   
     private void Start()
     {
-        
-
+        IntializeInventory();
     }
     public void Componets()
     {
@@ -39,8 +34,7 @@ public class ActionbarPage : MonoBehaviour
         ActionbarUi[] skill = GetComponentsInChildren<ActionbarUi>();
         this.actionList.AddRange(skill);
         foreach (var item in actionList)
-        {
-            //ActionbarUi item = Instantiate(actionBarUI, Vector3.zero, Quaternion.identity, transform);     
+        {   
             item.transform.SetParent(contentPanel);
             item.OnItemClicked += HandleItemSelection;
             item.OnItemBeginDrap += HandleBeginDrag;
@@ -84,6 +78,8 @@ public class ActionbarPage : MonoBehaviour
     public void HandleItemSelection(ActionbarUi inventoryItemUI)
     {
         int index = actionList.IndexOf(inventoryItemUI);
+
+  
         if (index == -1)
             return;
         OnDescriptionRequested?.Invoke(index);
@@ -100,6 +96,5 @@ public class ActionbarPage : MonoBehaviour
         HandleItemSelection(inventoryItemUI);
         OnStartDragging?.Invoke(index);
     }
-
 
 }

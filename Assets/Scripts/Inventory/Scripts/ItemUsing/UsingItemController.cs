@@ -26,7 +26,6 @@ namespace Inventory
         {
             PrepareUI();
             PrepareInventoryData();
-            Setindex();
             Instance=this;
             
         } 
@@ -39,26 +38,10 @@ namespace Inventory
                 if (item.IsEmpty)
                     continue;
                 inventoryData.AddItem(item); 
-              //  CountItem++;
-               //Debug.Log(CountItem);
             }
  
         }
         
-
-        public void Setindex()
-        {
-           
-            for (int i = 0; i < CountItem-1; i++)
-            {
-                if (initialItems[i].item.index> initialItems[i + 1].item.index)
-                {
-                    
-                    (initialItems[i + 1], initialItems[i]) = (initialItems[i], initialItems[i + 1]);
-                    inventoryData.SwapItems(i, i + 1);
-                }
-            }
-        }
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
@@ -176,29 +159,6 @@ namespace Inventory
 
         }
 
-        public void Update()
-        {
 
-            Setindex();
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-               
-                if (inventoryUI.isActiveAndEnabled == false)
-                {
-                    inventoryUI.Show();
-                    foreach (var item in inventoryData.GetCurrentInventoryState())
-                    {
-                        inventoryUI.UpdateData(item.Key,
-                            item.Value.item.ItemImage,
-                            item.Value.quantity,item.Value.item.BackGround);
-                    }
-                }
-                else
-                {
-                    inventoryUI.Hide();
-                }
-
-            }
-        }
     }
 }

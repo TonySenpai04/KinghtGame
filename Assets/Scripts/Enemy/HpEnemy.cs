@@ -70,25 +70,24 @@ public class HpEnemy : Healthsystem
         {
             Showfloatingtext(Dmg);
         }
-        if (LevelSystem.instance.IsUse == false && currenthp > 0)
+        if (LevelSystem.Instance.IsUse == false && currenthp > 0)
         {
 
             expDmg = (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
              //expDmg = (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
             ShowfloatingExp(expDmg);
-            LevelSystem.instance.GainExperienceFlatRate(expDmg);
-            LevelUI.instance.UPdateUI();
+            LevelSystem.Instance.GainExperienceFlatRate(expDmg);
+            LevelUI.Instance.UPdateUI();
         }
-        else if (LevelSystem.instance.IsUse == true && currenthp > 0)
+        else if (LevelSystem.Instance.IsUse == true && currenthp > 0)
         {
-
              expDmg = 2 * (int)((int)Random.Range((Enemy.MaxHp * 0.03f), (Enemy.MaxHp * 0.05f)) + 0.01f * Dmg);
             //expDmg = 2 * (int)((int)Random.Range((Enemy.MaxHp * 3f), (Enemy.MaxHp * 5f)) + 10f * Dmg);
             ShowfloatingExp(expDmg);
-            LevelSystem.instance.GainExperienceFlatRate(expDmg);
-            LevelUI.instance.UPdateUI();
+            LevelSystem.Instance.GainExperienceFlatRate(expDmg);
+            LevelUI.Instance.UPdateUI();
         }
-        if (LevelSystem.instance.level <= 30 && currenthp > 0)
+        if (LevelSystem.Instance.level <= 30 && currenthp > 0)
         {
             ShowfloatingExp(expDmg);
 

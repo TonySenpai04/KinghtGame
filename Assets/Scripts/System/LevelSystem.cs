@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class LevelSystem : MonoBehaviour
 {
    
-    public static LevelSystem instance;
+    public static LevelSystem Instance;
     [SerializeField]  public int level;
     [SerializeField] protected float maxLevel=30;
     [SerializeField] public float currentXp;
@@ -25,11 +25,8 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] private float divisionMultiplier = 7f;
    
     [Header("Item")]
-    [SerializeField] private bool CanX2;
-    [SerializeField] private float CurrentTime;
-    [SerializeField] private int Timeitem;
-    [SerializeField] private int TimeMinute;
-    [SerializeField] private bool Isuse;
+    [SerializeField] public bool CanX2;
+    [SerializeField] public bool Isuse;
     //Timers
     private float lerpTimer;
     private float delayTimer;
@@ -38,7 +35,7 @@ public class LevelSystem : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         level = 1;
         CanX2 = true;
         IsUse = false;
@@ -55,10 +52,6 @@ public class LevelSystem : MonoBehaviour
     void Update()
     {
         
-        if (IsUse == true)
-        {
-            CountDown();
-        }
         if (level != maxLevel)
         {
             if (currentXp >= nextLevelXp)
@@ -68,58 +61,25 @@ public class LevelSystem : MonoBehaviour
         }
         else
         {
-            LevelUI.instance. XpText.text = "MAX";
+            LevelUI.Instance. XpText.text = "MAX";
         }
     }
     public void ItemExp()
     {
-        CurrentTime += 600;
-        if (CurrentTime > 0)
+        //CurrentTime += 600;
+        if (LevelUI.Instance.time > 0)
         {
             IsUse = true;
             if (CanX2 == true)
             {
                 HpEnemy.Instance.expDmg *= 2;
-                StartCoroutine(SetExp());
             }
 
             CanX2 = false;
         }
     }
-    public void CountDown()
-    {
-        CurrentTime -= 1 * Time.deltaTime;
-        if (CurrentTime < 60)
-        {
-           // TextTime.text = "Time remaining:" + CurrentTime.ToString("0") + "s";
-        }
-        else
-        {
-           // TextTime.text = "Time remaining:" + TimeMinute.ToString("0") + "'";
-        }
-        if (CurrentTime <= 0)
-        {
-            CurrentTime = 0;
-           // TextTime.gameObject.SetActive(true);
-            IsUse = false;
-        }
-        else if (CurrentTime > 0)
-        {
-            //TextTime.gameObject.SetActive(true);
-        }
-        TimeMinute = (int)(CurrentTime / 60);
-    }
-    IEnumerator SetExp()
-    {
-        yield return new WaitForSeconds(CurrentTime);
-        HpEnemy.Instance.expDmg /= 2;
-        CanX2 = true;
-        CurrentTime = Timeitem;
-
-    }
-
-   
     
+
     public void GainExperienceFlatRate(int xpGained)
     {
        
@@ -154,12 +114,12 @@ public class LevelSystem : MonoBehaviour
     {
         
         level += 1;
-        AttackFunction.instance.IncreaseAtk(level);
+        AttackFunction.Instance.IncreaseAtk(level);
         currentXp = Mathf.Round(currentXp-nextLevelXp);
         nextLevelXp = CalculateNextLevelXp();
         level = Mathf.Clamp(level,0, 50);
-        LevelUI.instance.SetExp(currentXp);
-        LevelUI.instance. levelText.text = "Level:" + level;
+        LevelUI.Instance.SetExp(currentXp);
+        LevelUI.Instance. levelText.text = "Level:" + level;
         GetComponent<HPController>().IncreaseHealth(level);
         GetComponent<MPController>().IncreaseMP(level);
         AudioSource.PlayClipAtPoint(AudioPlayer.instance.levelUpSound, transform.position);

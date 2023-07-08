@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AttackFunction : MonoBehaviour
 {
-    public static AttackFunction instance;
+    public static AttackFunction Instance;
     public List<SkillS0> skillS0;
     [SerializeField] protected Transform pointatk;
     [SerializeField] protected float radius=1.5f;
@@ -14,22 +14,22 @@ public class AttackFunction : MonoBehaviour
     public AudioClip AttackSound;
     [SerializeField] public InfoCharacter info;
     [Header("Info")]
-    [SerializeField] private int expDmg;
     [SerializeField] public int dmg = 10;
     [SerializeField] public int Dmg { get => dmg; set => dmg = value; }
-    [SerializeField] private int ExpDmg { get => expDmg; set => expDmg = value; }
-
-    [SerializeField] private GameObject FloatingTextExp;
-    public int DmgSkill2;
+   // [SerializeField] private int ExpDmg { get => expDmg; set => expDmg = value; }
     public int DmgClone;
     [SerializeField] public int Crit;
     public int damageAdd;
-    
+    public bool Isuse;
+    public bool CanX2;
+
     void Start()
     {
-        instance = this;
+        Instance = this;
         dmg = info.DmgStart;
         DmgClone = dmg;
+        CanX2 = true;
+        Isuse = false;
     }
     public int AddDamge()
     {
@@ -40,12 +40,18 @@ public class AttackFunction : MonoBehaviour
         dmg += damageAdd;
     }
 
-    void Update()
+    public void ItemDmg()
     {
-       // UpdateUI();
-        DmgClone = dmg;
+        if (UiDamagePlayer.Instance.time > 0)
+        {
+            Isuse = true;
+            if (CanX2 == true)
+            {
+                dmg *= 2;
+            }
+            CanX2 = false;
+        }
     }
-
     public void Skill1()
     {
         int TyLeChimang = Random.Range(1, 101);
@@ -115,7 +121,7 @@ public class AttackFunction : MonoBehaviour
             if (var != null)
             {
                 var.GetComponent<HpEnemy>().TakeDamageEnemy(Dmg);
-                MPController.instance.MpAttack(Mp);
+                MPController.Instance.MpAttack(Mp);
             }
           }
     }

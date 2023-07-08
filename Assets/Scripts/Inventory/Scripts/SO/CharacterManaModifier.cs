@@ -6,7 +6,7 @@ public class CharacterManaModifi : CharacterStatModifierSO
 {
     public override void AffectCharacter(GameObject character, float val)
     {
-        MPController.instance.addMp = (int)val;
-        MPController.instance.UpdateMp();
+        MPController.Instance.addMp = (int)val;
+        MPController.Instance.UpdateMp();
     }
 }

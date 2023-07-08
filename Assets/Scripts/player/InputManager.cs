@@ -5,17 +5,17 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
-    private float move;
+    [SerializeField] private float move;
     public float Move { get => move; }
     public bool IsSkill1 { get => isSkill1; set => isSkill1 = value; }
     public bool IsJump { get => Isjump; }
     public bool IsSkill2 { get => isSkill2; }
     public bool IsSkill3 { get => isSkill3;}
 
-    private bool isSkill3;
-    private bool isSkill2;
-    private bool Isjump;
-    private bool isSkill1;
+    [SerializeField] private bool isSkill3;
+    [SerializeField] private bool isSkill2;
+    [SerializeField] private bool Isjump;
+    [SerializeField] private bool isSkill1;
     // Start is called before the first frame update
     void Start()
     {

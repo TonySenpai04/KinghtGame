@@ -17,6 +17,7 @@ namespace Inventory
         public InventorySO inventoryData;
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
+
         private void Start()
         {
             Instance = this;
@@ -117,28 +118,6 @@ namespace Inventory
             return sb.ToString();
         }
 
-        public void Update()
-        {
-            
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                if (inventoryUI.isActiveAndEnabled == false)
-                {
-                    inventoryUI.Show();
-                    foreach (var item in inventoryData.GetCurrentInventoryState())
-                    {
-                        inventoryUI.UpdateData(item.Key,
-                            item.Value.item.ItemImage,
-                            item.Value.quantity,item.Value.item.BackGround);
-                    }
-                }
-                else
-                {
-                    inventoryUI.Hide();
-                }
-
-            }
-        }
     }
 }
 

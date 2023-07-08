@@ -21,13 +21,12 @@ namespace Inventory.UI
         [SerializeField]
         public ItemActionPanel panel;
         public TextMeshProUGUI textConfirm;
-        //   public GameObject panelSure;
         public int currentlyDraggedItemIndex = -1;
         public event Action<int> OnDescriptionRequested,
                 OnItemActionRequested,
                 OnStartDragging;
         public event Action<int, int> OnSwapItems;
-
+        public GameObject BtnClose;
         private void Awake()
         {
             Instance = this;
@@ -35,6 +34,7 @@ namespace Inventory.UI
             mouseFollower.Toggle(false);
             textConfirm.gameObject.SetActive(false);
             panel.Toggle(false);
+            BtnClose.SetActive(false);
         }
         
         internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
@@ -170,7 +170,13 @@ namespace Inventory.UI
             gameObject.SetActive(true);
             ResetSelection();
             AnimationPlayer.instance.IsSkill1 = false;
-           // actionPanel.Toggle(true);
+            foreach (var item in InventorySO.GetCurrentInventoryState())
+            {
+                UpdateData(item.Key,
+                    item.Value.item.ItemImage,
+                    item.Value.quantity, item.Value.item.BackGround);
+            }
+            BtnClose.SetActive(true);
         }
         public void Hide()
         {
@@ -179,7 +185,7 @@ namespace Inventory.UI
             panel.Toggle(false);
             textConfirm.gameObject.SetActive(false);
             ResetDraggedItem();
-            AnimationPlayer.instance.IsSkill1 = true;
+            BtnClose.SetActive(false);
         }
     }
 }

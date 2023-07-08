@@ -37,7 +37,7 @@ public class ShopMananger : MonoBehaviour
             PanelShop.SetActive(false);
             itemPanel.SetActive(false);
             itemPanel.GetComponentInChildren<ShopItemPage>().Hide();
-            ActionItemShop.Instance.PanelNotification.SetActive(false);
+          
 
         }
     }

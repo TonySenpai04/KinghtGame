@@ -37,13 +37,13 @@ public class Skill : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        update();
+        UpdateSkill();
     }
     private void Update()
     {
         
     }
-    private void update()
+    private void UpdateSkill()
     {
 
         CooldownSkill1(0);
@@ -54,7 +54,7 @@ public class Skill : MonoBehaviour
     }
     public void SetSkill(int level,int index,string description)
     {
-        if (LevelSystem.instance.level >= level)
+        if (LevelSystem.Instance.level >= level)
         {
             skill[index].SetActive(true);
             textIndex[index].text = description;

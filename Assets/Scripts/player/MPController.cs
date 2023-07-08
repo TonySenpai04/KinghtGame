@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MPController : MonoBehaviour
 {
-    public static MPController instance;
+    public static MPController Instance;
     [Header("Info")]
     [SerializeField] InfoCharacter info;
     [SerializeField] private int MaxMp;
@@ -28,7 +28,7 @@ public class MPController : MonoBehaviour
   
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         MaxMp = info.MpStart; 
         Countbottle = 10;
         CloneMp = MaxMp;
@@ -38,7 +38,7 @@ public class MPController : MonoBehaviour
         // Start is called before the first frame update
     void Start()
     {
-        instance= this;
+        Instance= this;
         CurrentMp = MaxMp;
         CanX2 = true;
         Isuse = false;
@@ -47,7 +47,7 @@ public class MPController : MonoBehaviour
 
     public void ItemMP()
     {
-            if(PlayerUIMp.Instance.time>0)
+            if(UiMpPlayer.Instance.time>0)
             {
             Isuse = true;
             if (CanX2 == true )
@@ -74,7 +74,7 @@ public class MPController : MonoBehaviour
     {
         CloneMp += Mathf.RoundToInt((CloneMp * 0.037f) * ((100 - level) * 0.1f));
         Levelup = true;
-        if (LevelSystem.instance.level == 30)
+        if (LevelSystem.Instance.level == 30)
         {
                 CloneMp = info.MaxMp;
                 MaxMp = CloneMp + addMp;   

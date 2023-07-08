@@ -36,6 +36,7 @@ public class ActionbarUi : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         {
             OnItemClicked?.Invoke(this);
         }
+ 
     }
     public void OnBeginDrag(PointerEventData eventData)
     {

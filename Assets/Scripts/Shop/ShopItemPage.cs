@@ -17,7 +17,6 @@ public class ShopItemPage : MonoBehaviour
     [SerializeField]
     public ItemActionPanel actionPanel;
     [SerializeField]
-   // public ItemActionPanel panel;
     public int currentlyDraggedItemIndex = -1;
     public event Action<int> OnDescriptionRequested,
             OnItemActionRequested,

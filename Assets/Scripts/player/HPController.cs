@@ -69,15 +69,15 @@ public class HPController : MonoBehaviour
         {
             currenthp = 0;
         }
-        if (PlayerUI.instance.FloatingText != null)
+        if (UiHpPlayer.Instance.FloatingText != null)
         {
-          PlayerUI.instance.ShowFloatingText(Bleed);
+          UiHpPlayer.Instance.ShowFloatingText(Bleed);
         }
     }
 
     public void ItemHP()
     {
-        if (PlayerUI.instance.time > 0 )
+        if (UiHpPlayer.Instance.time > 0 )
         {
             Isuse = true;
             if (CanX2 == true)
@@ -92,7 +92,7 @@ public class HPController : MonoBehaviour
     {
         CloneHP += Mathf.RoundToInt((CloneHP  * 0.037f) * ((100 - level) * 0.1f));
         Levelup = true;
-        if (LevelSystem.instance.level == 30)
+        if (LevelSystem.Instance.level == 30)
         {
             CloneHP = info.HpMax;
             Maxhp = CloneHP + AddHp;
@@ -130,7 +130,7 @@ public class HPController : MonoBehaviour
     public void Revival()
     {
         currenthp += maxhp;
-        MPController.instance.Currentmp += MPController.instance.Maxmp;
+        MPController.Instance.Currentmp += MPController.Instance.Maxmp;
         Onrevive.gameObject.SetActive(false);
         AnimationPlayer.instance.Animator.SetBool("Idle", true);
         AnimationPlayer.instance.IsDead = false;

@@ -6,25 +6,38 @@ using UnityEngine.UI;
 
 public class LevelUI : MonoBehaviour
 {
-    public static LevelUI instance;
+    public static LevelUI Instance;
     public Slider exslider;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI XpText;
-   // [SerializeField] public TextMeshProUGUI TextTime;
+    public TextMeshProUGUI TextTime;
+    public float time = 0;
+    public Sprite IconItem;
+    public UiItemTonic itemTonic;
+    public bool IsUse = false;
     private void Start()
     {
-        instance = this;
-        levelText.text = "Level: " + LevelSystem.instance.level;
-        XpText.text = Mathf.Round(LevelSystem.instance.currentXp) + "/" + Mathf.Round(LevelSystem.instance.nextLevelXp);
-        XpText.text = LevelSystem.instance.currentXp + "/" + LevelSystem.instance.nextLevelXp;
+        Instance = this;
+        levelText.text = "Level: " + LevelSystem.Instance.level;
+        XpText.text = Mathf.Round(LevelSystem.Instance.currentXp) + "/" + Mathf.Round(LevelSystem.Instance.nextLevelXp);
+        XpText.text = LevelSystem.Instance.currentXp + "/" + LevelSystem.Instance.nextLevelXp;
+    }
+    private void Update()
+    {
+        if (time > 0 && TextTime != null)
+        {
+            IsUse = true;
+            time -= 1 * Time.deltaTime;
+            UpdateUiItemTonic();
+        }
     }
     public void UPdateUI()
     {
-        levelText.text = "Level: " + LevelSystem.instance.level;
-        XpText.text = Mathf.Round(LevelSystem.instance.currentXp) + "/" + Mathf.Round(LevelSystem.instance.nextLevelXp);
-        SetMaxExp(LevelSystem.instance.nextLevelXp);
-        SetExp(LevelSystem.instance.currentXp);
-        XpText.text = LevelSystem.instance. currentXp + "/" + LevelSystem.instance. nextLevelXp;
+        levelText.text = "Level: " + LevelSystem.Instance.level;
+        XpText.text = Mathf.Round(LevelSystem.Instance.currentXp) + "/" + Mathf.Round(LevelSystem.Instance.nextLevelXp);
+        SetMaxExp(LevelSystem.Instance.nextLevelXp);
+        SetExp(LevelSystem.Instance.currentXp);
+        XpText.text = LevelSystem.Instance. currentXp + "/" + LevelSystem.Instance. nextLevelXp;
     }
     public void SetMaxExp(float maxxp)
     {
@@ -34,5 +47,32 @@ public class LevelUI : MonoBehaviour
     {
         exslider.value = currentxp;
     }
-    
+    public void UpdateUiItemTonic()
+    {
+        if (time < 60)
+        {
+            TextTime.text = time.ToString("0") + "s";
+        }
+        else
+        {
+
+            TextTime.text = (time / 60).ToString("0") + "'";
+        }
+        if (time <= 0)
+        {
+            time = 0;
+            TextTime.text = time.ToString("0");
+            TextTime.gameObject.SetActive(true);
+            LevelSystem.Instance.CanX2 = true;
+            LevelSystem.Instance.Isuse = false;
+            IsUse = false;
+            Destroy(itemTonic.gameObject);
+        }
+        else if (time > 0)
+        {
+            TextTime.gameObject.SetActive(true);
+        }
+ ;
+    }
+
 }

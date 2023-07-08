@@ -6,6 +6,6 @@ public class CharacterCritModifier : CharacterStatModifierSO
 {
     public override void AffectCharacter(GameObject character, float val)
     {
-        AttackFunction.instance.Crit += (int)val;
+        AttackFunction.Instance.Crit += (int)val;
     }
 }

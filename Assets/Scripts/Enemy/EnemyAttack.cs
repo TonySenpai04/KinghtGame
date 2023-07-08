@@ -92,7 +92,7 @@ public class EnemyAttack : MonoBehaviour
             }
             else
             {
-                PlayerUI.instance.ShowFloatingTextMiss();
+                UiHpPlayer.Instance.ShowFloatingTextMiss();
 
             }
         }

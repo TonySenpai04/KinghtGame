@@ -19,20 +19,19 @@ namespace Inventory.UI
             public MouseFollower mouseFollower;
             [SerializeField]
             public ItemActionPanel actionPanel;
-          //  public List<InventoryItem> initialItems = new List<InventoryItem>();
 
 
         private void Awake()
-            {
+        {
             Instance = this;
-                inventoryDescription.ResetDescription();
-                mouseFollower.Toggle(false);
-            }
-            public int currentlyDraggedItemIndex = -1;
-            public event Action<int> OnDescriptionRequested,
-                    OnItemActionRequested,
-                    OnStartDragging;
-            public event Action<int, int> OnSwapItems;
+            inventoryDescription.ResetDescription();
+            mouseFollower.Toggle(false);
+        }
+         public int currentlyDraggedItemIndex = -1;
+         public event Action<int> OnDescriptionRequested,
+          OnItemActionRequested,
+           OnStartDragging;
+          public event Action<int, int> OnSwapItems;
 
 
             internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
@@ -52,30 +51,30 @@ namespace Inventory.UI
        
 
         public void AddAction(string name, Action performAction,Action end)
-            {
+        {
                 actionPanel.AddButon(name, performAction, end);
-            }
-            public void ResetSelection()
-            {
+        }
+        public void ResetSelection()
+        {
                 inventoryDescription.ResetDescription();
                 DeselectAllItems();
 
-            }
-            public void ShowItemAction(int index)
-            {
+        }
+         public void ShowItemAction(int index)
+         {
                 actionPanel.Toggle(true);
                 actionPanel.transform.position = inventoryUiItems[index].transform.position;
-            }
-            private void DeselectAllItems()
-            {
+         }
+         private void DeselectAllItems()
+          {
                 foreach (InventoryItemUsing item in inventoryUiItems)
                 {
                     item.Deselect();
                 }
                 actionPanel.Toggle(false);
-            }
+         }
         public void UpdateData(int itemIndex,
-         Sprite itemImage, int itemQuantity, Sprite background)
+        Sprite itemImage, int itemQuantity, Sprite background)
         {
             if (inventoryUiItems.Count > itemIndex)
             {
@@ -165,15 +164,13 @@ namespace Inventory.UI
             {
                 gameObject.SetActive(true);
                 ResetSelection();
-                AnimationPlayer.instance.IsSkill1 = false;
-                // actionPanel.Toggle(true);
-            }
+             
+             }
             public void Hide()
             {
                 gameObject.SetActive(false);
                 actionPanel.Toggle(false);
                 ResetDraggedItem();
-                AnimationPlayer.instance.IsSkill1 = true;
             }
         }
 

@@ -99,7 +99,7 @@ public class AnimationPlayer : MonoBehaviour
     public void Skill1()
     {
         
-        if (InputManager.Instance.IsSkill1 && MPController.instance.Currentmp >= 1f && isSkill1 == true )
+        if (InputManager.Instance.IsSkill1 && MPController.Instance.Currentmp >= 1f && isSkill1 == true )
         {  
             AudioSource.PlayClipAtPoint(AudioPlayer.instance.AtkClip, transform.position);
             Animator.SetTrigger("Skill1");
@@ -122,7 +122,7 @@ public class AnimationPlayer : MonoBehaviour
     }
     public void Skill2()
     {
-        if (InputManager.Instance.IsSkill2 && MPController.instance.Currentmp >= 2 && LevelSystem.instance.level >= 3
+        if (InputManager.Instance.IsSkill2 && MPController.Instance.Currentmp >= 2 && LevelSystem.Instance.level >= 3
             && isSkill2==true)
         {
             Animator.SetTrigger("Skill2");
@@ -135,7 +135,7 @@ public class AnimationPlayer : MonoBehaviour
     }
     public void Skill3()
     {
-        if (InputManager.Instance.IsSkill3 && MPController.instance.Currentmp >= 12 && LevelSystem.instance.level >= 5
+        if (InputManager.Instance.IsSkill3 && MPController.Instance.Currentmp >= 12 && LevelSystem.Instance.level >= 5
             && isSkill3 == true)
         {
             Animator.SetTrigger("Skill3");

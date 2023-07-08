@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,6 @@ namespace Inventory.UI
     public class ItemAction : MonoBehaviour
     {
         public static ItemAction Instance;
-       // private InventorySO inventoryData;
         [SerializeField] protected GameObject buttonPrefab;
         public  void Start()
         {
@@ -138,7 +138,9 @@ namespace Inventory.UI
                             SetInddexItem(inventoryItem, i, 5);
                             return;
                         }
-                       
+                        
+
+
                 }
             }
 

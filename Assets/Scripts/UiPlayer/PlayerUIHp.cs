@@ -1,37 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerUI : MonoBehaviour
+public class UiHpPlayer : MonoBehaviour
 {
-    public static PlayerUI instance;
+    public static UiHpPlayer Instance;
     [Header("HP")]
-    [SerializeField] private TextMeshProUGUI TextTime;
+    [SerializeField] public TextMeshProUGUI TextTime;
     public TextMeshProUGUI healthText;
     public HealthBar healthbar;
     public TextMeshProUGUI bottletext;
-    [SerializeField] private TextMeshProUGUI Info; 
     [SerializeField] public GameObject FloatingText;
     public float time=0;
+    public Sprite IconItem;
+    public UiItemTonic itemTonic;
+    public bool IsUse=false;
+    
     void Start()
     {
-        instance = this;
-        TextTime.text = time.ToString("0");
-        healthbar.SetMaxHp(HPController.instance.maxhp);
-        healthbar.SetHp(HPController.instance.currenthp);
         
+        Instance = this;
+        healthbar.SetMaxHp(HPController.instance.maxhp);
+        healthbar.SetHp(HPController.instance.currenthp); 
+
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateUi();
-        if(time>0)
+        if (time > 0 && TextTime!=null)
         {
-            time-=1*Time.deltaTime;
-            UiTimeHPX2();
+            IsUse = true;
+             time -= 1 * Time.deltaTime;
+             UpdateUiItemTonic();
         }
+       
     }
     public void UpdateUi()
     {
@@ -49,7 +56,8 @@ public class PlayerUI : MonoBehaviour
         healthbar.SetHp(HPController.instance.currenthp);
       
     }
-    public void UiTimeHPX2()
+    
+    public void UpdateUiItemTonic()
     {
         if (time < 60 )
         {
@@ -57,7 +65,6 @@ public class PlayerUI : MonoBehaviour
         }
         else
         {
-
             TextTime.text = (time/60).ToString("0") + "'";
         }
         if (time <= 0)
@@ -68,6 +75,9 @@ public class PlayerUI : MonoBehaviour
             HPController.instance.maxhp = HPController.instance.CloneHP + HPController.instance.AddHp;
             HPController.instance.CanX2 = true;
             HPController.instance.Isuse = false;
+            UiItemTonicPage.Instance.inventoryUiItems.Remove(itemTonic);
+            IsUse = false;
+            Destroy(itemTonic.gameObject); 
         }
         else if (time > 0)
         {

@@ -6,7 +6,7 @@ public class ChacracterDamageModifie : CharacterStatModifierSO
 {
     public override void AffectCharacter(GameObject character, float val)
     {
-        AttackFunction.instance.damageAdd =(int) val;
-        AttackFunction.instance.UpdateDamage();
+        AttackFunction.Instance.damageAdd =(int) val;
+        AttackFunction.Instance.UpdateDamage();
     }
 }

@@ -29,22 +29,22 @@ public class Effect : MonoBehaviour
     }
     protected void ActiveEffect()
     {
-        if (LevelSystem.instance.level >= 10)
+        if (LevelSystem.Instance.level >= 10)
         {
             Yelloweffect.gameObject.SetActive(true);
         }
-        if (LevelSystem.instance.level >= 15)
+        if (LevelSystem.Instance.level >= 15)
         {
             Yelloweffect.gameObject.SetActive(false);
             Violeteffect.gameObject.SetActive(true);
            
         }
-        if(LevelSystem.instance.level >= 20)
+        if(LevelSystem.Instance.level >= 20)
         {
            Blueeffect.gameObject.SetActive(true);
             Violeteffect.gameObject.SetActive(false);
         }
-        if (LevelSystem.instance.level >= 25)
+        if (LevelSystem.Instance.level >= 25)
         {
             Blueeffect.gameObject.SetActive(false);
             Whiteffect.gameObject.SetActive(true);

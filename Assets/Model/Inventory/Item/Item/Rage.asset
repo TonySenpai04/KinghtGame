@@ -23,5 +23,7 @@ MonoBehaviour:
   Price: 30
   type: 1
   <DefaultParametersList>k__BackingField: []
-  modifiersData: []
+  modifiersData:
+  - statModifier: {fileID: 11400000, guid: 3eff19e4ce7e75c4d8bce4a867813997, type: 2}
+    value: 600
   <actionSFX>k__BackingField: {fileID: 0}
