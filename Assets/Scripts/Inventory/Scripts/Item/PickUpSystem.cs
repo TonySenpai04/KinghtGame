@@ -8,26 +8,32 @@ namespace Inventory.Model
 {
     public class PickUpSystem : MonoBehaviour
     {
+        public static PickUpSystem Instance;    
         [SerializeField] private GameObject PanelPickUp;
         [SerializeField]
         private InventorySO inventoryData;
         public TextMeshProUGUI TxtPickUp;
+        public int GoldDrop;
+        public int DiamondDrop;
+        private void Start()
+        {
+           Instance = this;
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-      
             Item item = collision.GetComponent<Item>();
             if (item != null)
             {
                 if (item.InventoryItem.Name == "Gold")
                 {
-                    item.Quantity = Random.Range(5, 20);
+                    item.Quantity = GoldDrop;
                     ShowItemDrop(Color.yellow, "Gold +" + item.Quantity);
                     Gold_Diamond.instance.Gold += item.Quantity;
                     item.DestroyItem();
                 }
                 else if (item.InventoryItem.Name == "Diamond")
                 {
-                    item.Quantity = Random.Range(5, 20);
+                    item.Quantity = DiamondDrop;
                     ShowItemDrop(Color.blue, "Diamond +" + item.Quantity);
                     Gold_Diamond.instance.Diamond += item.Quantity;
                    item.DestroyItem();

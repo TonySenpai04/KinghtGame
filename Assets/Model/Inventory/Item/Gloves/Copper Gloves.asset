@@ -15,12 +15,13 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Copper Gloves
-  <Description>k__BackingField: ATK + 4
+  <Description>k__BackingField: Damage + 4
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 5f0600d85e9a7f442858654de7765f10, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: 6d62ab0bd6240c040bb125b47eee0ec9, type: 3}
   DropChange: 30
   index: 3
   Price: 700
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 8d01e9bb7f78c8447bf03244c558a576, type: 2}

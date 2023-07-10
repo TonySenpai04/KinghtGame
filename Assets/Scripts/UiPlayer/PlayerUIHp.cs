@@ -23,8 +23,8 @@ public class UiHpPlayer : MonoBehaviour
     {
         
         Instance = this;
-        healthbar.SetMaxHp(HPController.instance.maxhp);
-        healthbar.SetHp(HPController.instance.currenthp); 
+        healthbar.SetMaxHp(HPController.Instance.maxhp);
+        healthbar.SetHp(HPController.Instance.currenthp); 
 
     }
 
@@ -42,18 +42,18 @@ public class UiHpPlayer : MonoBehaviour
     }
     public void UpdateUi()
     {
-        if (HPController.instance.currenthp >= HPController.instance.maxhp)
+        if (HPController.Instance.currenthp >= HPController.Instance.maxhp)
         {
-            HPController.instance.currenthp = HPController.instance.maxhp;
+            HPController.Instance.currenthp = HPController.Instance.maxhp;
         }
-        if (HPController.instance.currenthp <= 0)
+        if (HPController.Instance.currenthp <= 0)
         {
-            HPController.instance.currenthp = 0;
+            HPController.Instance.currenthp = 0;
         }
-        bottletext.text =HPController.instance. Countbottle + "";
-        healthText.text = "HP:" + HPController.instance.currenthp.ToString("#,##").Replace(',','.') + "/" + HPController.instance.maxhp.ToString("#,##").Replace(',', '.');
-        healthbar.SetMaxHp(HPController.instance.maxhp);
-        healthbar.SetHp(HPController.instance.currenthp);
+        bottletext.text =HPController.Instance. CurrentBottle.ToString();
+        healthText.text = "HP:" + HPController.Instance.currenthp.ToString("#,##").Replace(',','.') + "/" + HPController.Instance.maxhp.ToString("#,##").Replace(',', '.');
+        healthbar.SetMaxHp(HPController.Instance.maxhp);
+        healthbar.SetHp(HPController.Instance.currenthp);
       
     }
     
@@ -72,9 +72,9 @@ public class UiHpPlayer : MonoBehaviour
             time = 0;
             TextTime.text =  time.ToString("0");
             TextTime.gameObject.SetActive(true);
-            HPController.instance.maxhp = HPController.instance.CloneHP + HPController.instance.AddHp;
-            HPController.instance.CanX2 = true;
-            HPController.instance.Isuse = false;
+            HPController.Instance.maxhp = HPController.Instance.CloneHP + HPController.Instance.AddHp;
+            HPController.Instance.CanX2 = true;
+            HPController.Instance.Isuse = false;
             UiItemTonicPage.Instance.inventoryUiItems.Remove(itemTonic);
             IsUse = false;
             Destroy(itemTonic.gameObject); 

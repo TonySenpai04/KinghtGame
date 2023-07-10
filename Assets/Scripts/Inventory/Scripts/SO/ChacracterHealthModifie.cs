@@ -8,7 +8,7 @@ public class ChacracterHealthModifie : CharacterStatModifierSO
   
     public override void AffectCharacter(GameObject character, float val)
     {
-        HPController.instance.AddHp =(int) val;
-        HPController.instance.UpdateHP();
+        HPController.Instance.AddHp =(int) val;
+        HPController.Instance.UpdateHP();
     }
 }

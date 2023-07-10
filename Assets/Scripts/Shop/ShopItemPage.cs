@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ShopItemPage : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class ShopItemPage : MonoBehaviour
     {
         IntializeInventory();
     }
-
     internal void UpdateDescription(int itemIndex)
     {
        
@@ -49,9 +49,9 @@ public class ShopItemPage : MonoBehaviour
             item.Deselect();
         }
     }
-    public void AddAction()
+    public void AddAction(ItemSO item)
     {
-        actionPanel.AddButon("Buy", () =>ActionItemShop.Instance. BuyItem(inventoryUiItem.item, 1), () => UiItemShop.Instance.transformPannelAction.Toggle(false));
+        actionPanel.AddButon("Buy", () =>ActionItemShop.Instance. BuyItem(item, 1), () => UiItemShop.Instance.transformPannelAction.Toggle(false));
         actionPanel.AddButon("Close", () => UiItemShop.Instance.transformPannelAction.Toggle(false), () => UiItemShop.Instance.transformPannelAction.Toggle(false));
     }
     public void ResetSelection()
@@ -148,7 +148,7 @@ public class ShopItemPage : MonoBehaviour
         int index = inventoryUiItems.IndexOf(inventoryItemUI);
         UiItemShop.Instance.index=index;
         ActionItemShop.Instance.item = inventoryUiItems[index].item;
-        AddAction();
+        AddAction(inventoryItemUI.item);
         UpdateDescription(index);
         if (index == -1)
             return;
@@ -172,8 +172,6 @@ public class ShopItemPage : MonoBehaviour
     {
         gameObject.SetActive(true);
         ResetSelection();
-        AnimationPlayer.instance.IsSkill1 = false;
-        // actionPanel.Toggle(true);
     }
     public void Hide()
     {

@@ -12,13 +12,13 @@ public class MPController : MonoBehaviour
     [SerializeField] private int MaxMp;
     [SerializeField] private int CurrentMp;
     [SerializeField] protected float MPRecuperate;
-    [SerializeField] private int countbottle;
+    [SerializeField] private int currentBottle;
     [SerializeField] private int maxbottle = 99;
     [SerializeField] public int CloneMp;
     [SerializeField] public int addMp;
     public int Currentmp { get => CurrentMp; set => CurrentMp = value; }
     public int Maxmp { get => MaxMp; set => MaxMp = value; }
-    public int Countbottle { get => countbottle; set => countbottle = value; }
+    public int CurrentBottle { get => currentBottle; set => currentBottle = value; }
     [Header("TimeItem")]
     [SerializeField] public bool Isuse;
     [SerializeField] public bool CanX2;
@@ -30,7 +30,7 @@ public class MPController : MonoBehaviour
     {
         Instance = this;
         MaxMp = info.MpStart; 
-        Countbottle = 10;
+        CurrentBottle = 10;
         CloneMp = MaxMp;
         Levelup = false;
     }
@@ -85,7 +85,7 @@ public class MPController : MonoBehaviour
     }
     protected void RecuperateMp()
     {
-        if (Countbottle > 0)
+        if (CurrentBottle > 0)
         {
             MPRecuperate = MaxMp / 5;
             if (MPRecuperate > 500000)
@@ -98,7 +98,7 @@ public class MPController : MonoBehaviour
             {
                 CurrentMp = MaxMp;
             }
-            Countbottle--;
+            CurrentBottle--;
         }
     }
 }

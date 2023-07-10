@@ -7,7 +7,7 @@ namespace Inventory.Model
     [CreateAssetMenu]
     public class EdibleItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-      //  [field: SerializeField] public int DropChange;
+      
         // Start is called before the first frame update
         [SerializeField]
         public List<ModifierData> modifiersData = new List<ModifierData>();

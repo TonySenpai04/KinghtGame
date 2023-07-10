@@ -26,36 +26,35 @@ public class EnemyAttack : MonoBehaviour
     {
         Instance = this;
         Dmg=Enemydamage.Damage;
-        player = GameObject.Find("player").transform;
+       // player = GameObject.Find("player").transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         movespeed = 2;
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        player = GameObject.Find("player").transform;
-
-        float distan = Vector2.Distance(transform.position, player.position);
-        if (HPController.instance.currenthp > 0)
-        {
-            if (distan < DistanAttack)
+        
+            player = GameObject.Find("player").transform;
+            float distan = Vector2.Distance(transform.position, player.position);
+            if (HPController.Instance.currenthp > 0)
             {
-                FollowPlayer();
-
-                if (distan >= 1f)
+                if (distan < DistanAttack)
                 {
-                    StopFollow();
+                    FollowPlayer();
+
+                    if (distan >= 1f)
+                    {
+                        StopFollow();
+                    }
                 }
             }
-        }
     }
     public void FollowPlayer()
     {
-
-        if ((transform.position.x < player.transform.position.x) && HPController.instance.currenthp > 0)
+        player = GameObject.Find("player").transform;
+        if ((transform.position.x < player.transform.position.x) && HPController.Instance.currenthp > 0)
         {
             rb.velocity = new Vector2(movespeed, 0);
             animator.SetBool("iswalk", false);
@@ -86,9 +85,9 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, check, mask);
         foreach (Collider2D var in enemy)
         {
-            if (DodgeAttack > HPController.instance.dodgeAttack)
+            if (DodgeAttack > HPController.Instance.dodgeAttack)
             {
-                HPController.instance.TakeDamage(Dmg);
+                HPController.Instance.TakeDamage(Dmg);
             }
             else
             {

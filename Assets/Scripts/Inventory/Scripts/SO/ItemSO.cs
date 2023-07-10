@@ -20,7 +20,6 @@ namespace Inventory.Model
         [field: SerializeField]
         [field: TextArea]
         public string Description { get; set; }
-      //  [field: SerializeField] public int a;
         [field: SerializeField]
          public Sprite ItemImage { get; set; }
         [field: SerializeField]

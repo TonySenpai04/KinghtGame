@@ -23,7 +23,7 @@ public class enemywalk : MonoBehaviour
     void Start()
     {
         instance = this; 
-       animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         player = GameObject.Find("player").transform;
         check = 6;
       
@@ -32,21 +32,22 @@ public class enemywalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distan = Vector2.Distance(transform.position, player.position);
-
-        //transform.Translate(Vector2.right*movespeed*Time.deltaTime);
-        RaycastHit2D groundinfo = Physics2D.Raycast(groundcheck.position, Vector2.down, distance,layer);
-        if (!groundinfo.collider)
-        {
-            Flip();
-        }
-        if (distan >= DistanWalk || HPController.instance.currenthp==0)
-        {
-
-            Walk();
-        }
         
-       
+            player = GameObject.Find("player").transform;
+
+            float distan = Vector2.Distance(transform.position, player.position);
+            RaycastHit2D groundinfo = Physics2D.Raycast(groundcheck.position, Vector2.down, distance, layer);
+            if (!groundinfo.collider)
+            {
+                Flip();
+            }
+            if (distan >= DistanWalk || HPController.Instance.currenthp == 0)
+            {
+
+                Walk();
+            }
+
+        
     }
     public void Flip()
 

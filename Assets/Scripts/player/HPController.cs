@@ -10,36 +10,32 @@ using Inventory;
 
 public class HPController : MonoBehaviour
 {
-    public static HPController instance;
+    public static HPController Instance;
     [Header("Info")]
     [SerializeField]protected InfoCharacter info;
     [SerializeField] private int Maxhp;
     [SerializeField] protected float Currenthp;
-    [SerializeField] private GameObject SkillUi;
     public float currenthp { get => Currenthp; set => Currenthp = value; }
     public int maxhp { get => Maxhp; set => Maxhp = value; }
-    public int Countbottle { get => countbottle; set => countbottle = value; }
+    public int CurrentBottle { get => currentBottle; set => currentBottle = value; }
     [SerializeField]public int AddHp;
     [SerializeField] private float HpRecuperate ;
-    public int countbottle;
+    public int currentBottle;
     protected int maxbottle = 99;
     [SerializeField] private InventorySO inventoryData;
-    [SerializeField] private GameObject Onrevive;
     public int dodgeAttack;
     [SerializeField] public int CloneHP;
-    [Header("TimeItem")]
+    [Header("Item")]
     [SerializeField] public bool CanX2;
     [SerializeField] public bool Isuse;
     [SerializeField] private bool Levelup;
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         Maxhp = info.HpStart;
-        Countbottle = 10;
+        CurrentBottle = 10;
         CloneHP=Maxhp;
         Levelup = false;
-        Onrevive.gameObject.SetActive(false);
-  
         dodgeAttack = 0;
     }
     void Start()
@@ -48,10 +44,6 @@ public class HPController : MonoBehaviour
         CanX2 = true;
         Isuse = false;
         AddHp = 0;
-    }
-    void Update()
-    {
-        Ondead();
     }
     public void UpdateHP()
     {
@@ -104,7 +96,7 @@ public class HPController : MonoBehaviour
     
     public void RecuperateHp()
     {
-        if (Countbottle > 0)
+        if (CurrentBottle > 0)
         {
             HpRecuperate = Maxhp / 5;
             if (HpRecuperate > 500000)
@@ -116,25 +108,9 @@ public class HPController : MonoBehaviour
             {
                 currenthp = Maxhp;
             }
-            Countbottle--;
+            CurrentBottle--;
         }
     }
-    public void Ondead()
-    {
-        if (currenthp == 0)
-        {
-            Onrevive. gameObject.SetActive(true);
-            SkillUi.SetActive(false);
-        }  
-    }
-    public void Revival()
-    {
-        currenthp += maxhp;
-        MPController.Instance.Currentmp += MPController.Instance.Maxmp;
-        Onrevive.gameObject.SetActive(false);
-        AnimationPlayer.instance.Animator.SetBool("Idle", true);
-        AnimationPlayer.instance.IsDead = false;
-        Gold_Diamond.instance.Diamond -= 1;
-        SkillUi.SetActive(true);
-    }
+    
+    
 }

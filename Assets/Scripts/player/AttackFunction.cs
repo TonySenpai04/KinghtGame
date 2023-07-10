@@ -1,3 +1,4 @@
+using Inventory.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,16 +14,13 @@ public class AttackFunction : MonoBehaviour
     [SerializeField] protected LayerMask mask;
     public AudioClip AttackSound;
     [SerializeField] public InfoCharacter info;
-    [Header("Info")]
     [SerializeField] public int dmg = 10;
     [SerializeField] public int Dmg { get => dmg; set => dmg = value; }
-   // [SerializeField] private int ExpDmg { get => expDmg; set => expDmg = value; }
     public int DmgClone;
     [SerializeField] public int Crit;
     public int damageAdd;
     public bool Isuse;
     public bool CanX2;
-
     void Start()
     {
         Instance = this;
@@ -34,6 +32,15 @@ public class AttackFunction : MonoBehaviour
     public int AddDamge()
     {
         return damageAdd;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.U) && skillS0[0].LevelSkill <= skillS0[0].MaxLevelSkill)
+        {
+            skillS0[0].LevelSkill++;
+            skillS0[0].DmgAdd += skillS0[0].IncreasesWithLevel;
+            SkillPage.Instance.IntializeInventory();
+        }
     }
     public void UpdateDamage()
     {

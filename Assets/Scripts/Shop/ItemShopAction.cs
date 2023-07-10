@@ -14,12 +14,14 @@ namespace Inventory.UI
         [SerializeField] public ItemSO item;
         public GameObject PanelNotification;
         public TextMeshProUGUI TxtNotification;
+        public ShopItemPage shop;
 
         public new void Start()
         {
             Instance = this;
-            PanelNotification=ShopItemPage.Instance.PanelNotification;
-            TxtNotification=ShopItemPage.Instance.TxtNotification;
+            PanelNotification=shop.PanelNotification;
+            TxtNotification=shop.TxtNotification;
+           // item = GetComponent<UiItemShop>().item;
         }
       
         public override void AddActionPanelConfirm()
@@ -35,48 +37,70 @@ namespace Inventory.UI
         }
         public override void AddAction()
         {
-            UiItemShop.Instance.transformPannelAction.AddButon("Buy", () => BuyItem(item, 1), () => ResetData()); 
+            UiItemShop.Instance.transformPannelAction.AddButon("Buy", () => BuyItem(this.item, 1), () => ResetData()); 
             UiItemShop.Instance.transformPannelAction.AddButon("Close", () => ResetData(), () => UiItemShop.Instance.transformPannelAction.Toggle(false));
 
         }
         public void BuyItem(ItemSO item,int quatity)
         {
-            if (item.type.ToString() == "Gold")
+            if (item.type ==Type.Gold)
             {
-                if (Gold_Diamond.instance.Gold >= ShopItemPage.Instance.inventoryUiItems[UiItemShop.Instance.index].Price)
+                if (Gold_Diamond.instance.Gold >= shop.inventoryUiItems[UiItemShop.Instance.index].Price)
                 {
-                    InventoryController.Instance.inventoryData.AddItem(item, quatity);
-                    Gold_Diamond.instance.Gold -= ShopItemPage.Instance.inventoryUiItems[UiItemShop.Instance.index].Price;
-                    ShopItemPage.Instance.TxtNotification.color = Color.black;
-                    ShopItemPage.Instance.TxtNotification.text = "successfully purchase " + item.Name;
-                    ShopItemPage.Instance.PanelNotification.SetActive(true);
-                    StartCoroutine(SetEnabled());
+                    if (item.Name == "Bottle Hp")
+                    {
+
+                        HPController.Instance.currentBottle += 1;
+                        Gold_Diamond.instance.Gold -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
+                        shop.TxtNotification.color = Color.black;
+                        shop.TxtNotification.text = "successfully purchase " + item.Name;
+                        shop.PanelNotification.SetActive(true);
+                        StartCoroutine(SetEnabled());
+                    }
+                    else if (item.Name == "Bottle Mp")
+                    {
+                        MPController.Instance.CurrentBottle += 1;
+                        Gold_Diamond.instance.Gold -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
+                        shop.TxtNotification.color = Color.black;
+                        shop.TxtNotification.text = "successfully purchase " + item.Name;
+                        shop.PanelNotification.SetActive(true);
+                        StartCoroutine(SetEnabled());
+                    }
+                    else
+                    {
+                        InventoryController.Instance.inventoryData.AddItem(item, quatity);
+                        Gold_Diamond.instance.Gold -=       shop.inventoryUiItems[UiItemShop.Instance.index].Price;
+                        shop.TxtNotification.color = Color.black;
+                            shop.TxtNotification.text = "successfully purchase " + item.Name;
+                            shop.PanelNotification.SetActive(true);
+                        StartCoroutine(SetEnabled());
+                    }
                 }
                 else
                 {
-                    ShopItemPage.Instance.TxtNotification.color = Color.black;
-                    ShopItemPage.Instance.TxtNotification.text = "You don't have enough gold!";
-                    ShopItemPage.Instance.PanelNotification.SetActive(true);
+                    shop.TxtNotification.color = Color.black;
+                    shop.TxtNotification.text = "You don't have enough gold!";
+                    shop.PanelNotification.SetActive(true);
                     StartCoroutine(SetEnabled());
 
                 }
             }
             else
             {
-                if (Gold_Diamond.instance.Diamond >= ShopItemPage.Instance.inventoryUiItems[UiItemShop.Instance.index].Price)
+                if (Gold_Diamond.instance.Diamond >= shop.inventoryUiItems[UiItemShop.Instance.index].Price)
                 {
                     InventoryController.Instance.inventoryData.AddItem(item, quatity);
-                    Gold_Diamond.instance.Diamond -= ShopItemPage.Instance.inventoryUiItems[UiItemShop.Instance.index].Price;
-                    ShopItemPage.Instance.TxtNotification.color = Color.black;
-                    ShopItemPage.Instance.TxtNotification.text = "successfully purchase " + item.Name;
-                    ShopItemPage.Instance.PanelNotification.SetActive(true);
+                    Gold_Diamond.instance.Diamond -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
+                    shop.TxtNotification.color = Color.black;
+                    shop.TxtNotification.text = "successfully purchase " + item.Name;
+                    shop.PanelNotification.SetActive(true);
                     StartCoroutine(SetEnabled());
                 }
                 else
                 {
-                    ShopItemPage.Instance.TxtNotification.color = Color.black;
-                    ShopItemPage.Instance.TxtNotification.text = "You don't have enough diamond!";
-                    ShopItemPage.Instance.PanelNotification.SetActive(true);
+                    shop.TxtNotification.color = Color.black;
+                    shop.TxtNotification.text = "You don't have enough diamond!";
+                    shop.PanelNotification.SetActive(true);
                     StartCoroutine(SetEnabled());
 
                 }
@@ -84,12 +108,12 @@ namespace Inventory.UI
         }
         public IEnumerator SetEnabled()
         {
-            yield return new WaitForSeconds(3);
-            PanelNotification.SetActive(false);
+            yield return new WaitForSeconds(2);
+            shop.PanelNotification.SetActive(false);
         }
         public void ResetData()
         {
-            ShopItemPage.Instance.Hide();
+            shop.Hide();
             
         }
     }

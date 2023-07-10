@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AnimationPlayer : MonoBehaviour
@@ -12,6 +13,7 @@ public class AnimationPlayer : MonoBehaviour
     [SerializeField] private bool isground;
     [SerializeField] private bool isSkill1 ;
     [SerializeField] private bool isDead;
+    [SerializeField] public int Count=0;
     public bool isSkill2;
     public bool isSkill3;
     public bool IsDead { get => isDead; set => isDead = value; }
@@ -35,14 +37,13 @@ public class AnimationPlayer : MonoBehaviour
     }
     void Update()
     {
-       
+
         if (IsDead == false)
         {
             Isfactright();
             Run();
         }
-        Isdeadth();
-
+            Isdeadth();
     }
     private void FixedUpdate()
     {
@@ -52,6 +53,7 @@ public class AnimationPlayer : MonoBehaviour
             Skill1();
             Skill2();
             Skill3();
+            
         }
 
     }
@@ -89,7 +91,6 @@ public class AnimationPlayer : MonoBehaviour
         if (InputManager.Instance.IsJump && isground)
         {
             AudioSource.PlayClipAtPoint(AudioPlayer.instance.jumpClip, transform.position);
-
             Animator.SetTrigger("jumping");
         }
 
@@ -112,13 +113,18 @@ public class AnimationPlayer : MonoBehaviour
     }
     protected void Isdeadth()
     {
-        if (HPController.instance.currenthp == 0)
+        if (HPController.Instance.currenthp == 0)
         {
             Animator.SetTrigger("isdeath");
-            AudioSource.PlayClipAtPoint(AudioPlayer.instance.deathClip, transform.position);
+            if (Count <= 1)
+            {
+                AudioSource.PlayClipAtPoint(AudioPlayer.instance.deathClip, transform.position, 1);
+                Count++;
+            }
             IsDead = true;
             Animator.SetBool("Idle", false);
         }
+        
     }
     public void Skill2()
     {
@@ -144,13 +150,6 @@ public class AnimationPlayer : MonoBehaviour
                 Skill.Instance.time[2].Currenttime += Skill.Instance.time[2].timeskill;
                 Skill.Instance.time[2].Isuse1 = false;
             }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "isAnimation")
-        {
-            IsDead = false;
         }
     }
 

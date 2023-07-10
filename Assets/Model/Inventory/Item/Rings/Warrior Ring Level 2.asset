@@ -20,6 +20,8 @@ MonoBehaviour:
   <BackGround>k__BackingField: {fileID: 21300000, guid: 29114078ffdf3ad46a63ea39321bcc5b, type: 3}
   DropChange: 0
   index: 5
+  Price: 5500
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 2486ba22941e022419cc368019e7d8d7, type: 2}

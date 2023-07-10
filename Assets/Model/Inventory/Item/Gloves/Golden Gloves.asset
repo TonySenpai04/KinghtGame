@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Golden Gloves
-  <Description>k__BackingField: 'ATk +2200
+  <Description>k__BackingField: 'Damage +2200
 
 '
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 4fecef46fa8a7894c919ebde06485831, type: 3}
@@ -23,6 +23,7 @@ MonoBehaviour:
   DropChange: 0
   index: 3
   Price: 150000000
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 8d01e9bb7f78c8447bf03244c558a576, type: 2}

@@ -28,16 +28,9 @@ public class Loadmap : MonoBehaviour
     }
     private void Update()
     {
-        player = GameObject.Find("player").transform;
-       // Debug.Log(isLoad.ToString());
+            player = GameObject.Find("player").transform;
      
     }
-
-    //public void loadMap()
-    //{
-    //    player.transform.position = new Vector2(targetdoor.transform.position.x, targetdoor.transform.position.y);
-    //    isLoad = true;
-    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

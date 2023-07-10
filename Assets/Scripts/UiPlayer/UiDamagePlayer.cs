@@ -6,7 +6,6 @@ using UnityEngine;
 public class UiDamagePlayer : MonoBehaviour
 {
     public static UiDamagePlayer Instance;
-    public AudioClip AttackSound;
     public TextMeshProUGUI textdmg;
     [SerializeField] private TextMeshProUGUI CritText;
     public TextMeshProUGUI TextTime;
@@ -18,7 +17,6 @@ public class UiDamagePlayer : MonoBehaviour
     private void Start()
     {
         Instance = this;
-      
     }
     private void Update()
     {
@@ -29,8 +27,8 @@ public class UiDamagePlayer : MonoBehaviour
                 IsUse = true;
                 time -= 1 * Time.deltaTime;
                 UpdateUiItemTonic();
-            
-        }
+
+             }
     }
     protected void UpdateUI()
     {

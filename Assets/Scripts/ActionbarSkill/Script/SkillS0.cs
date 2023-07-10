@@ -13,4 +13,8 @@ public class SkillS0 : ScriptableObject
     [field: SerializeField] public int Level;
     [field: SerializeField] public float DmgAdd;
     [field: SerializeField] public int ManaConsumption;
+    [field: SerializeField] public int LevelSkill { get; set; } = 1;
+    [field: SerializeField] public float IncreasesWithLevel;
+    [field: SerializeField] public int MaxLevelSkill;
+
 }

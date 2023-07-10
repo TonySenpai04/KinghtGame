@@ -27,10 +27,10 @@ namespace Inventory.UI
         public override void DropItem(int itemIndex, int quantity)
         {
 
-           // UseItemController.Instance.inventoryData.RemoveItem(itemIndex, quantity);
             InventoryPageUsingItem.Instance.ResetSelection();
             AddActionPanelConfirm();
             InventoryItemUsing.Instance.inventoryItem = InventoryItemUsing.Instance.GetItemAt();
+           
         }
         public override void AddActionPanelConfirm()
         {
@@ -39,8 +39,12 @@ namespace Inventory.UI
             InventoryPage.Instance.textConfirm.gameObject.SetActive(true);
             InventoryItemUsing.Instance.panelConfirm.Toggle(true);
             InventoryItemUsing.Instance.panelConfirm.AddButon("Yes", () => RemoveFuncitionItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity), () => InventoryPage.Instance.panel.Toggle(false));
-            InventoryItemUsing.Instance.panelConfirm.AddButon("No", () => InventoryItemUsing.Instance.panelConfirm.Toggle(false), () => InventoryPage.Instance.textConfirm.text = "");
+            InventoryItemUsing.Instance.panelConfirm.AddButon("No", () => SetActivePanel(), () => InventoryPage.Instance.textConfirm.text = "");
 
+        }
+        public void SetActivePannel()
+        {
+            InventoryItemUsing.Instance.panelConfirm.Toggle(false);
         }
         public override void AddAction()
         {
@@ -65,6 +69,7 @@ namespace Inventory.UI
             itemAction.PerformActionRemove(gameObject, null);
             UsingItemController.Instance.RemoveItem(index, mount);
             InventoryPage.Instance.textConfirm.gameObject.SetActive(false);
+           // AudioSource.PlayClipAtPoint(AudioPlayer.instance.ActionSound, transform.position);
 
 
         }

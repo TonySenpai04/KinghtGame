@@ -13,10 +13,6 @@ public class ActionbarUi : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         public SkillS0 Skill;
         public event Action<ActionbarUi> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
         public bool empty = true;
-        private void Start()
-        {
-          SetData();
-        }
         
         public void SetData()
         {

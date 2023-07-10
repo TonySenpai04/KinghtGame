@@ -17,7 +17,7 @@ namespace Inventory.UI
         public event Action<UiItemShop> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
         [SerializeField] protected Image Image;
         [SerializeField] public Image borderImage;
-         [SerializeField] public ItemActionPanel transformPannelAction;
+        [SerializeField] public ItemActionPanel transformPannelAction;
         [SerializeField] protected bool empty = true;
         [SerializeField] public int index;
         [SerializeField] protected Image BackGround;
@@ -30,8 +30,6 @@ namespace Inventory.UI
         private void Awake()
         {
             Instance = this;
-         
-            
 
         }
         private void Start()
@@ -47,7 +45,6 @@ namespace Inventory.UI
                 SetData(item.ItemImage, item.BackGround, item.Name + "\n" + item.Description + "\nPrice:" + Price.ToString("#,##").Replace(',', '.') + "D");
             }
             Deselect();
-          
         }
         internal virtual
             InventoryItem GetItemAt()
@@ -94,7 +91,6 @@ namespace Inventory.UI
             {
                 OnItemClicked?.Invoke(this);
             }
-            ActionItemShop.Instance.item = this.item;
 
         }
 

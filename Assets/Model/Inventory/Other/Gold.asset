@@ -17,7 +17,10 @@ MonoBehaviour:
   <Name>k__BackingField: Gold
   <Description>k__BackingField: vang
   <ItemImage>k__BackingField: {fileID: 21300000, guid: fcef2884c0718574a83415edec93ca7b, type: 3}
+  <BackGround>k__BackingField: {fileID: 0}
   DropChange: 70
   index: 0
+  Price: 0
+  type: 0
   <DefaultParametersList>k__BackingField: []
   <actionSFX>k__BackingField: {fileID: 0}

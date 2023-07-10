@@ -20,16 +20,7 @@ public class Skill : MonoBehaviour
         {
             skill[i] = transform.GetChild(i).gameObject;
         }
-        foreach (GameObject character in skill)
-        {
-            character.SetActive(false);
-        }
-        if (skill[0])
-        {
-            skill[0].SetActive(true);
-            textIndex[0].text = "1";
-
-        }
+       
         for(int i=0;i< time.Length-1; i++)
         {
             time[i] = skill[i].GetComponent<TimeSkill>();

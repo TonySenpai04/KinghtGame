@@ -23,7 +23,7 @@ public class CharacterBloodTonic : CharacterStatModifierSO
                     UiItemTonicPage.Instance.inventoryUiItems.Add(Item);
                 }
                 UiHpPlayer.Instance.time += val;
-                HPController.instance.ItemHP();
+                HPController.Instance.ItemHP();
                 break;
             case TypeBuff.MP:
                 if (UiMpPlayer.Instance.IsUse == false)

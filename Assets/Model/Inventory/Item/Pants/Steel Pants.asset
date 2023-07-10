@@ -18,9 +18,10 @@ MonoBehaviour:
   <Description>k__BackingField: Dodge ATK +3%
   <ItemImage>k__BackingField: {fileID: 21300000, guid: b3bfd41681cd89c478d505292331c787, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: 5d35ab975d6af88468d063e407f56126, type: 3}
-  DropChange: 0
+  DropChange: 20
   index: 2
   Price: 12000
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 0b18ad34d3649304ab22d1ef4c456a8b, type: 2}

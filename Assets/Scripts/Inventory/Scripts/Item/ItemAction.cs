@@ -24,18 +24,21 @@ namespace Inventory.UI
            
             InventoryPage.Instance.ResetSelection();
             AddActionPanelConfirm();
-            InventoryUiItem.Instance. inventoryItem = InventoryUiItem.Instance. GetItemAt(); 
+            InventoryUiItem.Instance. inventoryItem = InventoryUiItem.Instance. GetItemAt();
         }
         public virtual void AddActionPanelConfirm()
         {
            
             InventoryPage.Instance.textConfirm.text = "Are you sure you want to drop this item?";
-
             InventoryPage.Instance.textConfirm.gameObject.SetActive(true);
             InventoryUiItem.Instance.panelConfirm.Toggle(true);
             InventoryUiItem.Instance.panelConfirm.AddButon("Yes", () => InventoryController.Instance.RemoveItem(InventoryUiItem.Instance.index, InventoryUiItem.Instance.inventoryItem.quantity),()=>InventoryPage.Instance.panel.Toggle(false) );
-            InventoryUiItem.Instance.panelConfirm.AddButon("No", () => InventoryUiItem.Instance.panelConfirm.Toggle(false), () => InventoryPage.Instance.textConfirm.text="");
+            InventoryUiItem.Instance.panelConfirm.AddButon("No", () => SetActivePanel(), () => InventoryPage.Instance.textConfirm.text="");
 
+        }
+        public void SetActivePanel()
+        {
+            InventoryUiItem.Instance.panelConfirm.Toggle(false);
         }
         public virtual void AddButon(string name, Action onClickAction)
         {
@@ -149,7 +152,6 @@ namespace Inventory.UI
         public void SetInddexItem(InventoryItem inventoryItem,int i,int index)
         {
             InventoryPageUsingItem.Instance.InventorySO.inventoryItems[index] = InventoryPageUsingItem.Instance.inventoryUiItems[i].inventoryItem;
-            //InventoryPageUsingItem.Instance.InventorySO.inventoryItems.Add(inventoryItem);
             foreach (var item in InventoryPageUsingItem.Instance.InventorySO.GetCurrentInventoryState())
             {
                 InventoryPageUsingItem.Instance.UpdateData(item.Key,

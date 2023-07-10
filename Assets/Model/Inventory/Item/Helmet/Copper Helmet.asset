@@ -18,9 +18,10 @@ MonoBehaviour:
   <Description>k__BackingField: Defense +2
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 37c4a0218c09cd242abe511b0b876c59, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: f1191f8d2b2b9784fa6ed9188da4a79e, type: 3}
-  DropChange: 0
+  DropChange: 40
   index: 0
   Price: 500
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: c4776f7c9605c5048a530134a103ff60, type: 2}

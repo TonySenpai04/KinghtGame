@@ -18,9 +18,10 @@ MonoBehaviour:
   <Description>k__BackingField: Health +300
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 4849ec8655a39f845ac9bf00a3cdc724, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: f51787da7231e434c9f318683e9d5011, type: 3}
-  DropChange: 0
+  DropChange: 20
   index: 1
   Price: 8000
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 6b1908dfa7076424b9f7d61e0c87337d, type: 2}

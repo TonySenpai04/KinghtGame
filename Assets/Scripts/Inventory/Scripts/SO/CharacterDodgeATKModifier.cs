@@ -6,6 +6,6 @@ public class CharacterDodgeATKModifier : CharacterStatModifierSO
 {
     public override void AffectCharacter(GameObject character, float val)
     {
-        HPController.instance.dodgeAttack += (int)val;
+        HPController.Instance.dodgeAttack += (int)val;
     }
 }

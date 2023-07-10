@@ -14,6 +14,7 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] public AudioClip jumpClip;
     [SerializeField] public AudioClip deathClip;
     public AudioClip levelUpSound;
+    public AudioClip ActionSound;
     void Start()
     {
         instance = this;

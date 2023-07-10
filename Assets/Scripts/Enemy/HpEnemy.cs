@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -16,8 +17,6 @@ public class HpEnemy : Healthsystem
     protected Transform player;
     [SerializeField] private float respawnTime;
     [SerializeField] private float currentTime;
-
-
     private void Awake()
     {
         Maxhp = Enemy.MaxHp;
@@ -33,12 +32,13 @@ public class HpEnemy : Healthsystem
         healthbar.setmaxh(Maxhp);
         healthbar.sethp(currenthp);
         player = GameObject.Find("player").transform;
-       
+
     }
     void Update()
     {
-        UpdateUI();
-        Flip();
+            player = GameObject.Find("player").transform;
+            UpdateUI();
+            Flip();
     } 
     public void TakeDamageEnemy(int Dmg)
     {
@@ -101,6 +101,8 @@ public class HpEnemy : Healthsystem
     }
     IEnumerator Enemydie()
     {
+        PickUpSystem.Instance.GoldDrop =(int) Random.Range(Maxhp*2,Maxhp*3);
+        PickUpSystem.Instance.DiamondDrop = (int)Random.Range(Maxhp *0.04f, Maxhp * 0.06f);
         GetComponent<DropItem>().CreateItem(transform.position);
         animator.SetTrigger("isdead");
         healthbar.gameObject.SetActive(false);

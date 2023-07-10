@@ -15,12 +15,13 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Warrior  Gloves
-  <Description>k__BackingField: ATk +28
+  <Description>k__BackingField: Damage +28
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 4534d6bc204de2e499d251a94190c25d, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: 6d62ab0bd6240c040bb125b47eee0ec9, type: 3}
   DropChange: 0
   index: 3
   Price: 30000
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 8d01e9bb7f78c8447bf03244c558a576, type: 2}

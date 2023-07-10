@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Kinght Gloves
-  <Description>k__BackingField: 'ATK +55
+  <Description>k__BackingField: 'Damage +55
 
 '
   <ItemImage>k__BackingField: {fileID: 21300000, guid: abd035fb6332ca349b38f5a611127c07, type: 3}
@@ -23,6 +23,7 @@ MonoBehaviour:
   DropChange: 0
   index: 3
   Price: 60000
+  type: 0
   <DefaultParametersList>k__BackingField: []
   modifiersData:
   - statModifier: {fileID: 11400000, guid: 8d01e9bb7f78c8447bf03244c558a576, type: 2}

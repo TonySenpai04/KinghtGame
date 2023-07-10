@@ -15,12 +15,39 @@ public class ActionbarPage : MonoBehaviour
             OnItemActionRequested,
             OnStartDragging;
     public event Action<int, int> OnSwapItems;
-    
-   
-   
+    public Transform Player;
+
+
     private void Start()
     {
+        AddSkill();
+        Player = GameObject.Find("player").transform;
+        actionList[0].Skill = Player.GetComponent<AttackFunction>().skillS0[0];
+        actionList[1].Skill = Player.GetComponent<AttackFunction>().skillS0[1];
+        actionList[2].Skill = Player.GetComponent<AttackFunction>().skillS0[2];
         IntializeInventory();
+        foreach (GameObject character in Skill.Instance. skill)
+        {
+            character.SetActive(false);
+        }
+        if (Skill.Instance.skill[0])
+        {
+            Skill.Instance. skill[0].SetActive(true);
+            Skill.Instance.textIndex[0].text = "1";
+        }
+    }
+    private void Update()
+    {
+        Player = GameObject.Find("player").transform;
+        actionList[0].Skill = Player.GetComponent<AttackFunction>().skillS0[0];
+        actionList[1].Skill = Player.GetComponent<AttackFunction>().skillS0[1];
+        actionList[2].Skill = Player.GetComponent<AttackFunction>().skillS0[2];
+        IntializeInventory();
+    }
+    public void AddSkill()
+    {
+        ActionbarUi[] skill = GetComponentsInChildren<ActionbarUi>();
+        this.actionList.AddRange(skill);
     }
     public void Componets()
     {
@@ -31,10 +58,9 @@ public class ActionbarPage : MonoBehaviour
  
     public void IntializeInventory()
     {
-        ActionbarUi[] skill = GetComponentsInChildren<ActionbarUi>();
-        this.actionList.AddRange(skill);
         foreach (var item in actionList)
-        {   
+        {
+            item.SetData();
             item.transform.SetParent(contentPanel);
             item.OnItemClicked += HandleItemSelection;
             item.OnItemBeginDrap += HandleBeginDrag;
