@@ -12,7 +12,7 @@ public class SkillPage : MonoBehaviour
     public static SkillPage Instance;
     [SerializeField] private DescriptionSkillUI inventoryUiItem;
     [SerializeField] private RectTransform contentPanel;
-    public List<DescriptionSkillUI> inventoryUiItems = new List<DescriptionSkillUI>();
+    public List<DescriptionSkillUI> UiSkills = new List<DescriptionSkillUI>();
     public int currentlyDraggedItemIndex = -1;
     public event Action<int> OnDescriptionRequested,
             OnItemActionRequested,
@@ -24,35 +24,30 @@ public class SkillPage : MonoBehaviour
     private void Awake()
     {
         Instance = this;
- 
-    }
-    private void Update()
-    {
-        Player = GameObject.Find("player").transform;
-        inventoryUiItems[0].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[0];
-        inventoryUiItems[1].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[1];
-        inventoryUiItems[2].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[2];
-        IntializeInventory();
     }
     private void Start()
-    { 
-        AddItem();
+    {
+        SetSkill();
+    }
+    public void SetSkill()
+    {
         Player = GameObject.Find("player").transform;
-        inventoryUiItems[0].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[0];
-        inventoryUiItems[1].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[1];
-        inventoryUiItems[2].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[2];
+        for (int i = 0; i < UiSkills.Count; i++)
+        {
+            UiSkills[i].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[i];
+        }
         IntializeInventory();
     }
     internal void UpdateDescription(int itemIndex)
     {
 
         DeselectAllItems();
-        inventoryUiItems[itemIndex].Select();
+        UiSkills[itemIndex].Select();
     }
 
     internal void ResetAllItems()
     {
-        foreach (var item in inventoryUiItems)
+        foreach (var item in UiSkills)
         {
             item.ResetData();
             item.Deselect();
@@ -67,11 +62,11 @@ public class SkillPage : MonoBehaviour
     {
 
         actionPanel.Toggle(true);
-        actionPanel.transform.position = inventoryUiItems[index].transform.position;
+        actionPanel.transform.position = UiSkills[index].transform.position;
     }
     private void DeselectAllItems()
     {
-        foreach (DescriptionSkillUI item in inventoryUiItems)
+        foreach (DescriptionSkillUI item in UiSkills)
         {
             item.Deselect();
         }
@@ -81,9 +76,9 @@ public class SkillPage : MonoBehaviour
     public void UpdateData(int itemIndex,
         Sprite itemImage, Sprite background, string description)
     {
-        if (inventoryUiItems.Count > itemIndex)
+        if (UiSkills.Count > itemIndex)
         {
-            inventoryUiItems[itemIndex].SetDescription(inventoryUiItems[itemIndex].SkillPlayer);
+            UiSkills[itemIndex].SetDescription(UiSkills[itemIndex].SkillPlayer);
         }
 
     }
@@ -91,13 +86,13 @@ public class SkillPage : MonoBehaviour
     public void AddItem()
     {
         DescriptionSkillUI[] items = GetComponentsInChildren<DescriptionSkillUI>();
-        inventoryUiItems.AddRange(items);
+        UiSkills.AddRange(items);
     }
     public void IntializeInventory()
     {
 
         
-        foreach (var item in inventoryUiItems)
+        foreach (var item in UiSkills)
         {
             item.SetDescription(item.SkillPlayer);
             item.transform.SetParent(contentPanel);
@@ -118,7 +113,7 @@ public class SkillPage : MonoBehaviour
 
     private void HandleShowItemActions(DescriptionSkillUI inventoryItemUI)
     {
-        int index = inventoryUiItems.IndexOf(inventoryItemUI);
+        int index = UiSkills.IndexOf(inventoryItemUI);
 
         if (index == -1)
         {
@@ -138,7 +133,7 @@ public class SkillPage : MonoBehaviour
 
     private void HandleSwap(DescriptionSkillUI inventoryItemUI)
     {
-        int index = inventoryUiItems.IndexOf(inventoryItemUI);
+        int index = UiSkills.IndexOf(inventoryItemUI);
         if (index == -1)
         {
             return;
@@ -150,9 +145,9 @@ public class SkillPage : MonoBehaviour
 
     public void HandleItemSelection(DescriptionSkillUI inventoryItemUI)
     {
-        int index = inventoryUiItems.IndexOf(inventoryItemUI);
+        int index = UiSkills.IndexOf(inventoryItemUI);
         DescriptionSkillUI.Instance.index = index;
-        UpgradeSkill.Instance.Skill = inventoryUiItems[index].SkillPlayer;
+        UpgradeSkill.Instance.Skill = UiSkills[index].SkillPlayer;
         UpdateDescription(index);
         if (index == -1)
             return;
@@ -163,7 +158,7 @@ public class SkillPage : MonoBehaviour
 
     private void HandleBeginDrag(DescriptionSkillUI inventoryItemUI)
     {
-        int index = inventoryUiItems.IndexOf(inventoryItemUI);
+        int index = UiSkills.IndexOf(inventoryItemUI);
 
         if (index == -1)
             return;

@@ -25,6 +25,7 @@ public class Skill : MonoBehaviour
         {
             time[i] = skill[i].GetComponent<TimeSkill>();
         }
+        
     }
     private void FixedUpdate()
     {
@@ -40,8 +41,11 @@ public class Skill : MonoBehaviour
         CooldownSkill1(0);
         CooldownSkill2(1);
         CooldownSkill3(2);
+        CooldownSkill4(3);
         SetSkill(3, 1, "2");
         SetSkill(5, 2, "3");
+        SetSkill(10, 3, "4");
+
     }
     public void SetSkill(int level,int index,string description)
     {
@@ -91,6 +95,20 @@ public class Skill : MonoBehaviour
         else if (time[index].Isuse1 == true)
         {
             AnimationPlayer.instance.isSkill3 = true;
+        }
+    }
+    public void CooldownSkill4(int index)
+    {
+
+        if (time[index].Isuse1 == false)
+        {
+            AnimationPlayer.instance.isSkill4 = false;
+            time[index].Cooldown();
+
+        }
+        else if (time[index].Isuse1 == true)
+        {
+            AnimationPlayer.instance.isSkill4 = true;
         }
     }
 

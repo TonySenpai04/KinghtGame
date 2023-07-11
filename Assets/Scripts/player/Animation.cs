@@ -16,6 +16,7 @@ public class AnimationPlayer : MonoBehaviour
     [SerializeField] public int Count=0;
     public bool isSkill2;
     public bool isSkill3;
+    public bool isSkill4;
     public bool IsDead { get => isDead; set => isDead = value; }
     public Animator Animator { get => animator; set => animator = value; }
     public bool IsSkill1 { get => isSkill1; set => isSkill1 = value; }
@@ -53,7 +54,7 @@ public class AnimationPlayer : MonoBehaviour
             Skill1();
             Skill2();
             Skill3();
-            
+            Skill4();
         }
 
     }
@@ -100,7 +101,8 @@ public class AnimationPlayer : MonoBehaviour
     public void Skill1()
     {
         
-        if (InputManager.Instance.IsSkill1 && MPController.Instance.Currentmp >= 1f && isSkill1 == true )
+        if (InputManager.Instance.IsSkill1 && MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[0].ManaConsumption 
+            && isSkill1 == true )
         {  
             AudioSource.PlayClipAtPoint(AudioPlayer.instance.AtkClip, transform.position);
             Animator.SetTrigger("Skill1");
@@ -128,7 +130,8 @@ public class AnimationPlayer : MonoBehaviour
     }
     public void Skill2()
     {
-        if (InputManager.Instance.IsSkill2 && MPController.Instance.Currentmp >= 2 && LevelSystem.Instance.level >= 3
+        if (InputManager.Instance.IsSkill2 && MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[1].ManaConsumption 
+            && LevelSystem.Instance.level >= 3
             && isSkill2==true)
         {
             Animator.SetTrigger("Skill2");
@@ -141,7 +144,8 @@ public class AnimationPlayer : MonoBehaviour
     }
     public void Skill3()
     {
-        if (InputManager.Instance.IsSkill3 && MPController.Instance.Currentmp >= 12 && LevelSystem.Instance.level >= 5
+        if (InputManager.Instance.IsSkill3 && MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[2].ManaConsumption 
+            && LevelSystem.Instance.level >= 5
             && isSkill3 == true)
         {
             Animator.SetTrigger("Skill3");
@@ -149,6 +153,21 @@ public class AnimationPlayer : MonoBehaviour
             {
                 Skill.Instance.time[2].Currenttime += Skill.Instance.time[2].timeskill;
                 Skill.Instance.time[2].Isuse1 = false;
+            }
+        }
+    }
+    public void Skill4()
+    {
+
+        if (InputManager.Instance.IsSkill4 && MPController.Instance.Currentmp >=AttackFunction.Instance. skillS0[0].ManaConsumption &&
+            isSkill4 == true)
+        {
+            AudioSource.PlayClipAtPoint(AudioPlayer.instance.AtkClip, transform.position);
+            Animator.SetTrigger("Skill4");
+            if (Skill.Instance.time[3].Isuse1 == true)
+            {
+                Skill.Instance.time[3].Currenttime += Skill.Instance.time[0].timeskill;
+                Skill.Instance.time[3].Isuse1 = false;
             }
         }
     }

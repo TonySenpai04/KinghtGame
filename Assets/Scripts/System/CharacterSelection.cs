@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,63 +7,69 @@ using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
 {
-    [SerializeField] private GameObject[] CharacterList;
+    [SerializeField] private GameObject[] characterList;
     [SerializeField] private int index;
     [SerializeField] private GameObject loadingScene;
     [SerializeField] private Slider loadingBarFill;
+    public string characterName;
 
     void Start()
     {
      
         index = 0;
-        CharacterList =new GameObject[transform.childCount];
+        characterList =new GameObject[transform.childCount];
         for(int i = 0; i < transform.childCount; i++)
         {
-            CharacterList[i]=transform.GetChild(i).gameObject;
+            characterList[i]=transform.GetChild(i).gameObject;
         }
-        foreach(GameObject character in CharacterList)
+        foreach(GameObject character in characterList)
         {
             character.SetActive(false);
         }
-        if (CharacterList[0])
+        if (characterList[0])
         {
-            CharacterList[0].SetActive(true);
+            characterList[0].SetActive(true);
         }
        
     }
 
     public void toggleleft()
     {
-        CharacterList[index].SetActive(false);
+        characterList[index].SetActive(false);
         index --;
         if (index < 0)
         {
-            index = CharacterList.Length-1;
+            index = characterList.Length-1;
         }
        
-        CharacterList[index].SetActive(true);     
+        characterList[index].SetActive(true);     
     }
     public void toggleright()
     {
-        CharacterList[index].SetActive(false);
+        characterList[index].SetActive(false);
         index++;
-        if (index == CharacterList.Length)
+        if (index == characterList.Length)
         {
             index = 0;
         }
-        CharacterList[index].SetActive(true);
+        characterList[index].SetActive(true);
     }
     public void Confirm()
     {
         if (index == 0)
         {
-            CharacterList[index].SetActive(false);
-           StartCoroutine(loadSceneAsync(1));
+            characterList[index].SetActive(false);
+            StartCoroutine(loadSceneAsync(1));
+            PlayerPrefs.SetString("SelectedCharacter", characterList[index].name);
+            SceneManager.LoadScene("Main");
+
         }
         if (index == 1)
         {
-            CharacterList[index].SetActive(false);
-            StartCoroutine (loadSceneAsync(2));
+            characterList[index].SetActive(false);
+            StartCoroutine (loadSceneAsync(1));
+            PlayerPrefs.SetString("SelectedCharacter", characterList[index].name);
+            SceneManager.LoadScene("Main");
         }
     }
     IEnumerator loadSceneAsync(int index)

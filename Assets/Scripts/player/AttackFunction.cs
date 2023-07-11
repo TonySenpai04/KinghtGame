@@ -33,15 +33,7 @@ public class AttackFunction : MonoBehaviour
     {
         return damageAdd;
     }
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.U) && skillS0[0].LevelSkill <= skillS0[0].MaxLevelSkill)
-        {
-            skillS0[0].LevelSkill++;
-            skillS0[0].DmgAdd += skillS0[0].IncreasesWithLevel;
-            SkillPage.Instance.IntializeInventory();
-        }
-    }
+   
     public void UpdateDamage()
     {
         dmg += damageAdd;
@@ -120,6 +112,22 @@ public class AttackFunction : MonoBehaviour
         }
 
     }
+    public void Skill4()
+    {
+        int TyLeChimang = Random.Range(1, 101);
+        if (Crit >= TyLeChimang)
+        {
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            Attack((int)(Dmg * skillS0[2].DmgAdd) * 2, skillS0[3].ManaConsumption);
+        }
+        else
+        {
+            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            Attack((int)(Dmg * skillS0[2].DmgAdd), skillS0[3].ManaConsumption);
+
+        }
+
+    }
     public void Attack(int Dmg,int Mp)
     {
             Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
@@ -132,14 +140,5 @@ public class AttackFunction : MonoBehaviour
             }
           }
     }
-    //protected void UpdateUI()
-    //{
-    //    if (DmgClone > info.MaxDmg)
-    //    {
-    //        DmgClone = info.MaxDmg;
-    //    }
-    //    textdmg.text = "DMG:" + dmg.ToString("#,##").Replace(',', '.');
-    //    CritText.text = "Crit:" + Crit + "%";
-    //}
     
 }

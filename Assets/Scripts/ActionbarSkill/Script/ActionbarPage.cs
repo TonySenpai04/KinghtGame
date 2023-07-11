@@ -18,14 +18,14 @@ public class ActionbarPage : MonoBehaviour
     public Transform Player;
 
 
-    private void Start()
+    private void Awake()
     {
         AddSkill();
-        Player = GameObject.Find("player").transform;
-        actionList[0].Skill = Player.GetComponent<AttackFunction>().skillS0[0];
-        actionList[1].Skill = Player.GetComponent<AttackFunction>().skillS0[1];
-        actionList[2].Skill = Player.GetComponent<AttackFunction>().skillS0[2];
-        IntializeInventory();
+        SetSkill();
+    }
+    private void Start()
+    {
+       
         foreach (GameObject character in Skill.Instance. skill)
         {
             character.SetActive(false);
@@ -36,12 +36,13 @@ public class ActionbarPage : MonoBehaviour
             Skill.Instance.textIndex[0].text = "1";
         }
     }
-    private void Update()
+    public void SetSkill()
     {
         Player = GameObject.Find("player").transform;
-        actionList[0].Skill = Player.GetComponent<AttackFunction>().skillS0[0];
-        actionList[1].Skill = Player.GetComponent<AttackFunction>().skillS0[1];
-        actionList[2].Skill = Player.GetComponent<AttackFunction>().skillS0[2];
+        for (int i = 0; i < actionList.Count; i++)
+        {
+            actionList[i].Skill = Player.GetComponent<AttackFunction>().skillS0[i];
+        }
         IntializeInventory();
     }
     public void AddSkill()

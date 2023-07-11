@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Selectioncharacter.unity
     guid: ba229bce6ee15e64089741659286a2d4
   - enabled: 1
-    path: Assets/Scenes/MainWater.unity
+    path: Assets/Scenes/Main.unity
     guid: 6b8049e05d253aa4eac540d14cf05c13
   - enabled: 1
     path: Assets/Scenes/MainFire.unity

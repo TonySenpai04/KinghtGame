@@ -10,15 +10,23 @@ public class Revival : MonoBehaviour
     [SerializeField] private Transform PointStart;
     private void FixedUpdate()
     {
-        Ondead();
         Player = GameObject.Find("player").transform;
+        if (Player != null)
+        {
+            Ondead();
+        }
     }
     public void Ondead()
     {
-        if (HPController.Instance.currenthp == 0)
+        if (HPController.Instance.currenthp == 0 )
         {
             PanleRevival.gameObject.SetActive(true);
             SkillUi.SetActive(false);
+        }
+        else
+        {
+            PanleRevival.gameObject.SetActive(false);
+            SkillUi.SetActive(true);
         }
     }
     public void RevivalPlayer()

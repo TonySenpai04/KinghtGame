@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1824b1a14fa853c408acd325e98ea70f, type: 3}
   m_Name: Skill3Water
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 2bccd332882fcd14b9e4c377e432c587, type: 3}
+  Icon: {fileID: 21300000, guid: f5ab3f534c1138f4786f23cd74103223, type: 3}
   Name: 
   CooldownTime: 10
   Level: 5

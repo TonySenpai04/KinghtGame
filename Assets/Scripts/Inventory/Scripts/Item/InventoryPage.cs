@@ -150,14 +150,12 @@ namespace Inventory.UI
             if (index == -1) 
                 return;
             OnDescriptionRequested?.Invoke(index);
-
         }
 
 
         private void HandleBeginDrag(InventoryUiItem inventoryItemUI)
         {
             int index = inventoryUiItems.IndexOf(inventoryItemUI);
-           
             if (index == -1)
                 return;
             currentlyDraggedItemIndex = index;

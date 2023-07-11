@@ -18,6 +18,7 @@ public class DescriptionSkillUI : MonoBehaviour,IPointerClickHandler, IBeginDrag
     public float CooldownTime;
     public int Level;
     public int LevelSkill;
+    public int ManaConsumption;
     public float DmgAdd;
     public event Action<DescriptionSkillUI> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
     [SerializeField] protected bool empty = false;
@@ -59,8 +60,9 @@ public class DescriptionSkillUI : MonoBehaviour,IPointerClickHandler, IBeginDrag
         CooldownTime = skill.CooldownTime;
         Level= skill.Level;
         LevelSkill = skill.LevelSkill;
-        TxtDescription.text = " Inflict damage " +DmgAdd*100+"%"+ "\n Required level:" +
-        Level + "\n Level:"+ LevelSkill + "\n Cooldown Time:" + CooldownTime;
+        ManaConsumption= skill.ManaConsumption;
+        TxtDescription.text = " Inflict damage " +DmgAdd*100+"%"+ "\n Required level: " +
+        Level + "\n Level: "+ LevelSkill+ "\nMana Consumption: "+ ManaConsumption + "\n Cooldown Time: " + CooldownTime;
     }
 
     public void Deselect()
@@ -79,7 +81,7 @@ public class DescriptionSkillUI : MonoBehaviour,IPointerClickHandler, IBeginDrag
         {
             OnItemClicked?.Invoke(this);
         }
-        Debug.Log(index);
+  
     }
 
     public void OnBeginDrag(PointerEventData eventData)

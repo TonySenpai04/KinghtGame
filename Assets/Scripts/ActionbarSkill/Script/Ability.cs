@@ -28,6 +28,13 @@ public class Ability : MonoBehaviour
     public float ability3Cooldown = 12;
     private bool isAbility3Cooldown = false;
     public float currentAbility3Cooldown;
+    [Header("Skill4")]
+    public Image abilityImage4;
+    public TextMeshProUGUI abilityText4;
+    //public KeyCode ability1Key;
+    public float ability4Cooldown = 12;
+    private bool isAbility4Cooldown = false;
+    public float currentAbility4Cooldown;
 
     void Start()
     {
@@ -35,18 +42,22 @@ public class Ability : MonoBehaviour
         abilityImage1.fillAmount = 0;
         abilityImage2.fillAmount = 0;
         abilityImage3.fillAmount = 0;
+        abilityImage4.fillAmount = 0;
     }
     void Update()
     {
         Ability1Input();
         Ability2Input();
         Ability3Input();
+        Ability4Input();
         ability1Cooldown = Skill.Instance.time[0].timeskill;
         ability2Cooldown = Skill.Instance.time[1].timeskill;
         ability3Cooldown = Skill.Instance.time[2].timeskill;
+        ability4Cooldown = Skill.Instance.time[3].timeskill;
         AbilityCooldown(ref currentAbility1Cooldown, ability1Cooldown, ref isAbility1Cooldown, abilityImage1, abilityText1);
         AbilityCooldown(ref currentAbility2Cooldown, ability2Cooldown, ref isAbility2Cooldown, abilityImage2, abilityText2);
         AbilityCooldown(ref currentAbility3Cooldown, ability3Cooldown, ref isAbility3Cooldown, abilityImage3, abilityText3);
+        AbilityCooldown(ref currentAbility4Cooldown, ability4Cooldown, ref isAbility4Cooldown, abilityImage4, abilityText4);
     }
     private void Ability1Input()
     {
@@ -70,6 +81,14 @@ public class Ability : MonoBehaviour
         {
             isAbility3Cooldown = true;
             currentAbility3Cooldown = ability3Cooldown;
+        }
+    }
+    private void Ability4Input()
+    {
+        if (InputManager.Instance.IsSkill4 && !isAbility4Cooldown)
+        {
+            isAbility4Cooldown = true;
+            currentAbility4Cooldown = ability4Cooldown;
         }
     }
     private void AbilityCooldown(ref float currentCooldown, float maxCooldown, ref bool isCooldown, Image skillImage, TextMeshProUGUI skillText)
