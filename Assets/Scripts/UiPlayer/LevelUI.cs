@@ -64,7 +64,7 @@ public class LevelUI : MonoBehaviour
             TextTime.text = time.ToString("0");
             TextTime.gameObject.SetActive(true);
             LevelSystem.Instance.CanX2 = true;
-            LevelSystem.Instance.Isuse = false;
+            LevelSystem.Instance.IsTonic = false;
             IsUse = false;
             Destroy(itemTonic.gameObject);
         }

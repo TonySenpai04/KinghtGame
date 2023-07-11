@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5052861942011008788}
   - component: {fileID: 3565680112135898892}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9150943, g: 0.8173932, b: 0.21064433, a: 1}
+  m_Color: {r: 0.9245283, g: 0.85387534, b: 0.099430345, a: 0.7294118}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -218,6 +218,7 @@ MonoBehaviour:
   CooldownTime: 0
   Level: 0
   LevelSkill: 0
+  ManaConsumption: 0
   DmgAdd: 0
   empty: 0
   index: 0

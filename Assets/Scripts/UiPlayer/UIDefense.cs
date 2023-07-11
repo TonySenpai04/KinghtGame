@@ -19,6 +19,7 @@ public class UIDefense : MonoBehaviour
     }
     private void Update()
     {
+        UpdateUI();
         if (time > 0 && TextTime != null)
         {
             IsUse = true;
@@ -48,7 +49,7 @@ public class UIDefense : MonoBehaviour
             TextTime.gameObject.SetActive(true);
             DefencePlayer.Instance.Defense = DefencePlayer.Instance.DefenseClone;
             DefencePlayer.Instance.CanX2 = true;
-            DefencePlayer.Instance.Isuse = false;
+            DefencePlayer.Instance.IsTonic = false;
             IsUse = false;
             Destroy(itemTonic.gameObject);
         }

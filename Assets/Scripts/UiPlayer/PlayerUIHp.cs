@@ -72,9 +72,9 @@ public class UiHpPlayer : MonoBehaviour
             time = 0;
             TextTime.text =  time.ToString("0");
             TextTime.gameObject.SetActive(true);
-            HPController.Instance.maxhp = HPController.Instance.CloneHP + HPController.Instance.AddHp;
+            HPController.Instance.maxhp = HPController.Instance.OriginalHP + HPController.Instance.AddHp;
             HPController.Instance.CanX2 = true;
-            HPController.Instance.Isuse = false;
+            HPController.Instance.IsTonic = false;
             UiItemTonicPage.Instance.inventoryUiItems.Remove(itemTonic);
             IsUse = false;
             Destroy(itemTonic.gameObject); 

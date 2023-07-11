@@ -14,15 +14,14 @@ public class MPController : MonoBehaviour
     [SerializeField] protected float MPRecuperate;
     [SerializeField] private int currentBottle;
     [SerializeField] private int maxbottle = 99;
-    [SerializeField] public int CloneMp;
+    [SerializeField] public int OriginalMp;
     [SerializeField] public int addMp;
     public int Currentmp { get => CurrentMp; set => CurrentMp = value; }
     public int Maxmp { get => MaxMp; set => MaxMp = value; }
     public int CurrentBottle { get => currentBottle; set => currentBottle = value; }
     [Header("TimeItem")]
-    [SerializeField] public bool Isuse;
+    [SerializeField] public bool IsTonic;
     [SerializeField] public bool CanX2;
-    [SerializeField] private bool Levelup;
 
 
   
@@ -31,17 +30,15 @@ public class MPController : MonoBehaviour
         Instance = this;
         MaxMp = info.MpStart; 
         CurrentBottle = 10;
-        CloneMp = MaxMp;
-        Levelup = false;
+        OriginalMp = MaxMp;
     }
   
-        // Start is called before the first frame update
     void Start()
     {
         Instance= this;
         CurrentMp = MaxMp;
         CanX2 = true;
-        Isuse = false;
+        IsTonic = false;
         
      }
 
@@ -49,7 +46,7 @@ public class MPController : MonoBehaviour
     {
             if(UiMpPlayer.Instance.time>0)
             {
-            Isuse = true;
+            IsTonic = true;
             if (CanX2 == true )
             {
                 Maxmp *= 2;
@@ -61,25 +58,20 @@ public class MPController : MonoBehaviour
     {
         CurrentMp -= mpAttack;
     }
-    public int AddMP()
-    {
-        
-        return addMp;
-    }
+
     public void  UpdateMp()
     {
         MaxMp += addMp;
     }
     public void IncreaseMP(int level)
     {
-        CloneMp += Mathf.RoundToInt((CloneMp * 0.037f) * ((100 - level) * 0.1f));
-        Levelup = true;
+        OriginalMp += Mathf.RoundToInt((OriginalMp * 0.037f) * ((100 - level) * 0.1f));
         if (LevelSystem.Instance.level == 30)
         {
-                CloneMp = info.MaxMp;
-                MaxMp = CloneMp + addMp;   
+                OriginalMp = info.MaxMp;
+                MaxMp = OriginalMp + addMp;   
         }
-        MaxMp = CloneMp+ addMp;
+        MaxMp = OriginalMp+ addMp;
         CurrentMp = MaxMp;
         MPRecuperate = MaxMp / 5;
     }

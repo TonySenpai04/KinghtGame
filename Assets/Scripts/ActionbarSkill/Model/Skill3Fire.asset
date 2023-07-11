@@ -15,7 +15,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: c890dd06d4a350946ab11e4778bf47d8, type: 3}
   Name: 
   CooldownTime: 8
-  Level: 5
+  RequiredLevel: 6
   DmgAdd: 2.75
   ManaConsumption: 10
   <LevelSkill>k__BackingField: 1

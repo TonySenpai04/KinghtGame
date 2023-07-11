@@ -19,7 +19,8 @@ public class SkillPage : MonoBehaviour
             OnStartDragging;
     public event Action<int, int> OnSwapItems;
     public ItemActionPanel actionPanel;
-    public int PointSkill = 0;
+    public int SkillPoint = 0;
+    public TextMeshProUGUI TxtSkillsPoint;
     public Transform Player;
     private void Awake()
     {
@@ -28,6 +29,11 @@ public class SkillPage : MonoBehaviour
     private void Start()
     {
         SetSkill();
+        SkillsPointUI();
+    }
+    public void SkillsPointUI()
+    {
+        TxtSkillsPoint.text = "Skill Point: " + SkillPoint;
     }
     public void SetSkill()
     {

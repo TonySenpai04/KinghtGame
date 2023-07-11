@@ -69,9 +69,9 @@ public class UiMpPlayer: MonoBehaviour
             time = 0;
             TextTime.text = time.ToString("0");
             TextTime.gameObject.SetActive(true);
-            MPController.Instance.Maxmp = MPController.Instance.CloneMp + MPController.Instance.addMp;
+            MPController.Instance.Maxmp = MPController.Instance.OriginalMp + MPController.Instance.addMp;
             MPController.Instance.CanX2 = true;
-            MPController.Instance.Isuse = false;
+            MPController.Instance.IsTonic = false;
             IsUse = false;
             Destroy(itemTonic.gameObject);
         }

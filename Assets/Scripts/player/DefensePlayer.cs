@@ -8,7 +8,7 @@ public class DefencePlayer : MonoBehaviour
     
     public int Defense;
     public int DefenseClone;
-    public bool Isuse;
+    public bool IsTonic;
     public bool CanX2;
 
     void Start()
@@ -17,13 +17,13 @@ public class DefencePlayer : MonoBehaviour
         Defense = 0;
         DefenseClone = 0;
         CanX2 = true;
-        Isuse = false;
+        IsTonic = false;
     }
     public void ItemDef()
     {
         if (UIDefense.Instance.time > 0)
         {
-            Isuse = true;
+            IsTonic = true;
             if (CanX2 == true)
             {
                 Defense *= 2;

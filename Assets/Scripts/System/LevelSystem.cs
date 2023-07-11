@@ -26,12 +26,12 @@ public class LevelSystem : MonoBehaviour
    
     [Header("Item")]
     [SerializeField] public bool CanX2;
-    [SerializeField] public bool Isuse;
+    [SerializeField] public bool IsTonic;
     //Timers
     private float lerpTimer;
     private float delayTimer;
 
-    public bool IsUse { get => Isuse; set => Isuse = value; }
+    public bool IsUse { get => IsTonic; set => IsTonic = value; }
 
     private void Awake()
     {
@@ -44,9 +44,7 @@ public class LevelSystem : MonoBehaviour
     void Start()
     {
         currentXp=0;
-       // levelText.text = "Level: " + level;
         level = 1;
-       // XpText.text = Mathf.Round(currentXp) + "/" + Mathf.Round(nextLevelXp);
         nextLevelXp = CalculateNextLevelXp();
     }
     void Update()
@@ -66,7 +64,6 @@ public class LevelSystem : MonoBehaviour
     }
     public void ItemExp()
     {
-        //CurrentTime += 600;
         if (LevelUI.Instance.time > 0)
         {
             IsUse = true;
@@ -123,7 +120,20 @@ public class LevelSystem : MonoBehaviour
         GetComponent<HPController>().IncreaseHealth(level);
         GetComponent<MPController>().IncreaseMP(level);
         AudioSource.PlayClipAtPoint(AudioPlayer.instance.levelUpSound, transform.position);
-
+        SkillPage.Instance.SkillPoint+=1;
+        SkillPage.Instance.SkillsPointUI();
+        if (HPController.Instance.IsTonic == true)
+        {
+            HPController.Instance.maxhp=(HPController.Instance.OriginalHP+ HPController.Instance.AddHp)*2;
+        }
+        if (MPController.Instance.IsTonic == true)
+        {
+            MPController.Instance.Maxmp = (MPController.Instance.OriginalMp + MPController.Instance.addMp) * 2;
+        }
+        if (AttackFunction.Instance.IsTonic == true)
+        {
+            AttackFunction.Instance.dmg = (AttackFunction.Instance.OriginalDmg + AttackFunction.Instance.damageAdd) * 2;
+        }
     }
     private void DisplayAccrueAmount() 
     {

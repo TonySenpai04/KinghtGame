@@ -16,22 +16,18 @@ public class AttackFunction : MonoBehaviour
     [SerializeField] public InfoCharacter info;
     [SerializeField] public int dmg = 10;
     [SerializeField] public int Dmg { get => dmg; set => dmg = value; }
-    public int DmgClone;
+    public int OriginalDmg;
     [SerializeField] public int Crit;
     public int damageAdd;
-    public bool Isuse;
+    public bool IsTonic;
     public bool CanX2;
     void Start()
     {
         Instance = this;
         dmg = info.DmgStart;
-        DmgClone = dmg;
+        OriginalDmg = dmg;
         CanX2 = true;
-        Isuse = false;
-    }
-    public int AddDamge()
-    {
-        return damageAdd;
+        IsTonic = false;
     }
    
     public void UpdateDamage()
@@ -43,7 +39,7 @@ public class AttackFunction : MonoBehaviour
     {
         if (UiDamagePlayer.Instance.time > 0)
         {
-            Isuse = true;
+            IsTonic = true;
             if (CanX2 == true)
             {
                 dmg *= 2;
@@ -72,12 +68,12 @@ public class AttackFunction : MonoBehaviour
     }
     public void IncreaseAtk(int level)
     {
-        DmgClone += Mathf.RoundToInt((DmgClone * 0.037f) * ((100 - level) * 0.1f));
-        if (DmgClone > info.MaxDmg)
+        OriginalDmg += Mathf.RoundToInt((OriginalDmg * 0.037f) * ((100 - level) * 0.1f));
+        if (OriginalDmg > info.MaxDmg)
         {
-            DmgClone = info.MaxDmg;
+            OriginalDmg = info.MaxDmg;
         }
-        dmg = DmgClone + damageAdd;
+        dmg = OriginalDmg + damageAdd;
 
     }
     public void Skill2()

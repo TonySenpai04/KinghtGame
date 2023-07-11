@@ -24,25 +24,23 @@ public class HPController : MonoBehaviour
     protected int maxbottle = 99;
     [SerializeField] private InventorySO inventoryData;
     public int dodgeAttack;
-    [SerializeField] public int CloneHP;
+    [SerializeField] public int OriginalHP;
     [Header("Item")]
     [SerializeField] public bool CanX2;
-    [SerializeField] public bool Isuse;
-    [SerializeField] private bool Levelup;
+    [SerializeField] public bool IsTonic;
     private void Awake()
     {
         Instance = this;
         Maxhp = info.HpStart;
         CurrentBottle = 10;
-        CloneHP=Maxhp;
-        Levelup = false;
+        OriginalHP=Maxhp;
         dodgeAttack = 0;
     }
     void Start()
     {
         Currenthp = Maxhp;  
         CanX2 = true;
-        Isuse = false;
+        IsTonic = false;
         AddHp = 0;
     }
     public void UpdateHP()
@@ -71,10 +69,10 @@ public class HPController : MonoBehaviour
     {
         if (UiHpPlayer.Instance.time > 0 )
         {
-            Isuse = true;
+            IsTonic = true;
             if (CanX2 == true)
             {
-                Maxhp = CloneHP + AddHp;
+                Maxhp = OriginalHP + AddHp;
                 Maxhp*= 2;
             }
             CanX2 = false;
@@ -82,14 +80,13 @@ public class HPController : MonoBehaviour
     }  
     public void IncreaseHealth(int level)
     {
-        CloneHP += Mathf.RoundToInt((CloneHP  * 0.037f) * ((100 - level) * 0.1f));
-        Levelup = true;
+        OriginalHP += Mathf.RoundToInt((OriginalHP  * 0.037f) * ((100 - level) * 0.1f));
         if (LevelSystem.Instance.level == 30)
         {
-            CloneHP = info.HpMax;
-            Maxhp = CloneHP + AddHp;
+            OriginalHP = info.HpMax;
+            Maxhp = OriginalHP + AddHp;
         }
-        Maxhp = CloneHP + AddHp;
+        Maxhp = OriginalHP + AddHp;
         Currenthp =Maxhp;
         HpRecuperate = Maxhp / 5;
     }

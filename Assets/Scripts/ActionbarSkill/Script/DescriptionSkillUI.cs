@@ -47,22 +47,25 @@ public class DescriptionSkillUI : MonoBehaviour,IPointerClickHandler, IBeginDrag
     }
     public virtual void Select()
     {
-        borderImage.enabled = true;
-        transformPannelAction.Toggle(true);
-        transformPannelAction.transform.SetParent(transform);
-        transformPannelAction.transform.position = transform.position + new Vector3(6f, 0, 0);
-        UpgradeSkill.Instance.AddAction();
+        if (LevelSystem.Instance.level > SkillPlayer.RequiredLevel)
+        {
+            borderImage.enabled = true;
+            transformPannelAction.Toggle(true);
+            transformPannelAction.transform.SetParent(transform);
+            transformPannelAction.transform.position = transform.position + new Vector3(7f, 0, 0);
+            UpgradeSkill.Instance.AddAction();
+        }
     }
     public void SetDescription(SkillS0 skill)
     {
         ICon.sprite = skill.Icon;
         DmgAdd = skill.DmgAdd;
         CooldownTime = skill.CooldownTime;
-        Level= skill.Level;
+        Level= skill.RequiredLevel;
         LevelSkill = skill.LevelSkill;
         ManaConsumption= skill.ManaConsumption;
         TxtDescription.text = " Inflict damage " +DmgAdd*100+"%"+ "\n Required level: " +
-        Level + "\n Level: "+ LevelSkill+ "\nMana Consumption: "+ ManaConsumption + "\n Cooldown Time: " + CooldownTime;
+        Level + "\n Level: "+ LevelSkill+ "\n Mana Consumption: "+ ManaConsumption + "\n Cooldown Time: " + CooldownTime;
     }
 
     public void Deselect()

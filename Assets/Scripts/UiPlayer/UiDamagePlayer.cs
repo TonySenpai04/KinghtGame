@@ -32,9 +32,9 @@ public class UiDamagePlayer : MonoBehaviour
     }
     protected void UpdateUI()
     {
-        if (AttackFunction.Instance.DmgClone > AttackFunction.Instance.info.MaxDmg)
+        if (AttackFunction.Instance.OriginalDmg > AttackFunction.Instance.info.MaxDmg)
         {
-            AttackFunction.Instance.DmgClone = AttackFunction.Instance.info.MaxDmg;
+            AttackFunction.Instance.OriginalDmg = AttackFunction.Instance.info.MaxDmg;
         }
         textdmg.text = "DMG:" + AttackFunction.Instance.dmg.ToString("#,##").Replace(',', '.');
         CritText.text = "Crit:" + AttackFunction.Instance.Crit + "%";
@@ -55,9 +55,9 @@ public class UiDamagePlayer : MonoBehaviour
             time = 0;
             TextTime.text = time.ToString("0");
             TextTime.gameObject.SetActive(true);
-            AttackFunction.Instance.dmg = AttackFunction.Instance.DmgClone + AttackFunction.Instance.damageAdd;
+            AttackFunction.Instance.dmg = AttackFunction.Instance.OriginalDmg + AttackFunction.Instance.damageAdd;
             AttackFunction.Instance.CanX2 = true;
-            AttackFunction.Instance.Isuse = false;
+            AttackFunction.Instance.IsTonic = false;
             IsUse = false;
             Destroy(itemTonic.gameObject);
         }

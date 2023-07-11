@@ -40,11 +40,11 @@ public class UpgradeSkill : ItemAction
 
     public void Upgrade(SkillS0 skill)
     {
-        if (skill.LevelSkill <= skill.MaxLevelSkill && SkillPage.Instance.PointSkill >= 1)
+        if (skill.LevelSkill <= skill.MaxLevelSkill && SkillPage.Instance.SkillPoint >= 1)
         {
             skill.LevelSkill++;
             skill.DmgAdd += skill.IncreasesWithLevel;
-            SkillPage.Instance.PointSkill -= 1;
+            SkillPage.Instance.SkillPoint -= 1;
             SkillPage.Instance.IntializeInventory();
         }
     }
