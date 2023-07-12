@@ -13,7 +13,7 @@ public class LevelSystem : MonoBehaviour
     public static LevelSystem Instance;
     [SerializeField]  public int level;
     [SerializeField] protected float maxLevel=30;
-    [SerializeField] public float currentXp;
+    [SerializeField] public float currentXp=0;
     [SerializeField] public int nextLevelXp = 100;
     public int Exp;
     [Header("Multipliers")]
@@ -27,9 +27,8 @@ public class LevelSystem : MonoBehaviour
     [Header("Item")]
     [SerializeField] public bool CanX2;
     [SerializeField] public bool IsTonic;
-    //Timers
-    private float lerpTimer;
-    private float delayTimer;
+    public SkillPage skillPage;
+
 
     public bool IsUse { get => IsTonic; set => IsTonic = value; }
 
@@ -81,8 +80,6 @@ public class LevelSystem : MonoBehaviour
     {
        
             currentXp += xpGained;
-            lerpTimer = 0f;
-            delayTimer = 0f;
     }
     
     public void GainExperienceScalable(float xpGained, int passedLevel)
@@ -103,8 +100,6 @@ public class LevelSystem : MonoBehaviour
             currentXp += 0;
         }
 
-        lerpTimer = 0f;
-        delayTimer = 0f;
 
     }
     public void LevelUp() 
@@ -120,8 +115,8 @@ public class LevelSystem : MonoBehaviour
         GetComponent<HPController>().IncreaseHealth(level);
         GetComponent<MPController>().IncreaseMP(level);
         AudioSource.PlayClipAtPoint(AudioPlayer.instance.levelUpSound, transform.position);
-        SkillPage.Instance.SkillPoint+=1;
-        SkillPage.Instance.SkillsPointUI();
+        skillPage.SkillPoint+=1;
+        skillPage.SkillsPointUI();
         if (HPController.Instance.IsTonic == true)
         {
             HPController.Instance.maxhp=(HPController.Instance.OriginalHP+ HPController.Instance.AddHp)*2;

@@ -28,4 +28,6 @@ public class floatingtextenemy : MonoBehaviour
             anim.SetBool("isright", true);
         }
     }
+ 
+
 }

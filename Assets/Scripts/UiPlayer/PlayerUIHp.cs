@@ -88,11 +88,11 @@ public class UiHpPlayer : MonoBehaviour
     public void ShowFloatingText(int Dmg)
     {
         var Text = Instantiate(FloatingText, transform.parent.position, Quaternion.identity, transform);
-        Text.GetComponent<TextMesh>().text = "-" + Dmg.ToString();
+        Text.GetComponent<TextMeshPro>().text = "-" + Dmg.ToString();
     }
     public void ShowFloatingTextMiss()
     {
         var Text = Instantiate(FloatingText, transform.parent.position, Quaternion.identity, transform);
-        Text.GetComponent<TextMesh>().text = "Miss" ;
+        Text.GetComponent<TextMeshPro>().text = "Miss" ;
     }
 }

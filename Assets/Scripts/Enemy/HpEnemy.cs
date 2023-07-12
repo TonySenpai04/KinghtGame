@@ -2,6 +2,7 @@ using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 
 
@@ -97,7 +98,8 @@ public class HpEnemy : Healthsystem
     public void Showfloatingtext(int Dmg)
     {
             var Text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-            Text.GetComponent<TextMesh>().text = "-" + Dmg.ToString();
+            Text.GetComponent<TextMeshPro>().text = "-" + Dmg.ToString();
+
     }
     IEnumerator Enemydie()
     {
@@ -119,26 +121,28 @@ public class HpEnemy : Healthsystem
        
         healthText.text = currenthp + "/" + Maxhp;
     }
+
+    [System.Obsolete]
     public void Flip()
     {
         Vector3 localScale = transform.localScale;
         Vector3 hpbarscale = healthbar.transform.localScale;
         if (localScale.x < 0)
         {
-            
+
             hpbarscale.x = -ScaleX;
-            healthbar.transform.localScale=hpbarscale;
+            healthbar.transform.localScale = hpbarscale;
         }
-        else if(localScale.x>0)
+        else if (localScale.x > 0)
         {
-            
+
             hpbarscale.x = ScaleX;
             healthbar.transform.localScale = hpbarscale;
         }
     }
     void ShowfloatingExp(int Exp)
     {
-        var Text = Instantiate(FloatingTextExp,player. transform.position, Quaternion.identity,player. transform);
-        Text.GetComponent<TextMesh>().text = "+" + Exp.ToString();
+        var Text = Instantiate(FloatingTextExp, player. transform.position, Quaternion.identity,player. transform);
+        Text.GetComponent<TextMeshPro>().text = "+" + Exp.ToString();
     }
 }

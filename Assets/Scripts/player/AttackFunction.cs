@@ -52,12 +52,12 @@ public class AttackFunction : MonoBehaviour
         int TyLeChimang = Random.Range(1, 101);
         if (Crit >= TyLeChimang)
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.yellow;
             Attack((int)(Dmg * skillS0[0].DmgAdd) * 2, skillS0[0].ManaConsumption);
         }
         else
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.red;
             Attack((int)(Dmg * skillS0[0].DmgAdd), skillS0[0].ManaConsumption);
             
         }
@@ -81,12 +81,12 @@ public class AttackFunction : MonoBehaviour
         int TyLeChimang = Random.Range(1, 101);
         if (Crit >= TyLeChimang)
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.yellow;
             Attack((int)(Dmg * skillS0[1].DmgAdd) * 2, skillS0[1].ManaConsumption);
         }
         else
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.red;
             Attack((int)(Dmg * skillS0[1].DmgAdd), skillS0[1].ManaConsumption);
 
         }
@@ -97,12 +97,12 @@ public class AttackFunction : MonoBehaviour
         int TyLeChimang = Random.Range(1, 101);
         if (Crit >= TyLeChimang)
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.yellow;
             Attack((int)(Dmg * skillS0[2].DmgAdd) * 2, skillS0[2].ManaConsumption);
         }
         else
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.red;
             Attack((int)(Dmg * skillS0[2].DmgAdd), skillS0[2].ManaConsumption);
 
         }
@@ -113,12 +113,12 @@ public class AttackFunction : MonoBehaviour
         int TyLeChimang = Random.Range(1, 101);
         if (Crit >= TyLeChimang)
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.yellow;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.yellow;
             Attack((int)(Dmg * skillS0[2].DmgAdd) * 2, skillS0[3].ManaConsumption);
         }
         else
         {
-            HpEnemy.Instance.FloatingText.GetComponent<TextMesh>().color = Color.red;
+            HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.red;
             Attack((int)(Dmg * skillS0[2].DmgAdd), skillS0[3].ManaConsumption);
 
         }
