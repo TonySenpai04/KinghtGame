@@ -135,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 234
+        y: 238
         width: 356
         height: 198
       alignment: 0
@@ -172,6 +172,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Free-Horizontal-2D-Game-Backgrounds-2_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 234
+        width: 356
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7168e303ee6ff4c488c69208e2cf0278
+      internalID: 430246491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Horizontal-2D-Game-Backgrounds-2_4
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 240
+        width: 356
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8025dd464ab6d0842879d6d7d339e424
+      internalID: -427015813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Horizontal-2D-Game-Backgrounds-2_5
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 38
+        width: 356
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e7f3255a381b4478d2312d635eb058
+      internalID: -1615451322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -184,8 +247,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Free-Horizontal-2D-Game-Backgrounds-2_1: 825849537
+      Free-Horizontal-2D-Game-Backgrounds-2_3: 430246491
+      Free-Horizontal-2D-Game-Backgrounds-2_5: -1615451322
       Free-Horizontal-2D-Game-Backgrounds-2_0: -33460634209142640
       Free-Horizontal-2D-Game-Backgrounds-2_2: -1248887576
+      Free-Horizontal-2D-Game-Backgrounds-2_4: -427015813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
