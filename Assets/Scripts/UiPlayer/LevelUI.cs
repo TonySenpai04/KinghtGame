@@ -21,6 +21,7 @@ public class LevelUI : MonoBehaviour
         levelText.text = "Level: " + LevelSystem.Instance.level;
         XpText.text = Mathf.Round(LevelSystem.Instance.currentXp) + "/" + Mathf.Round(LevelSystem.Instance.nextLevelXp);
         XpText.text = LevelSystem.Instance.currentXp + "/" + LevelSystem.Instance.nextLevelXp;
+        UPdateUI();
     }
     private void Update()
     {

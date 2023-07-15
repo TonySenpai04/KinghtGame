@@ -1,5 +1,6 @@
 using Inventory.Model;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,13 +22,8 @@ namespace Inventory.UI
             Instance = this;
             PanelNotification=shop.PanelNotification;
             TxtNotification=shop.TxtNotification;
-           // item = GetComponent<UiItemShop>().item;
         }
       
-        public override void AddActionPanelConfirm()
-        {
-
-        }
         public override void AddButon(string name, Action onClickAction)
         {
             GameObject button = Instantiate(buttonPrefab, transform);
@@ -69,10 +65,10 @@ namespace Inventory.UI
                     else
                     {
                         InventoryController.Instance.inventoryData.AddItem(item, quatity);
-                        Gold_Diamond.instance.Gold -=       shop.inventoryUiItems[UiItemShop.Instance.index].Price;
+                        Gold_Diamond.instance.Gold -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
                         shop.TxtNotification.color = Color.black;
-                            shop.TxtNotification.text = "successfully purchase " + item.Name;
-                            shop.PanelNotification.SetActive(true);
+                        shop.TxtNotification.text = "successfully purchase " + item.Name;
+                         shop.PanelNotification.SetActive(true);
                         StartCoroutine(SetEnabled());
                     }
                 }

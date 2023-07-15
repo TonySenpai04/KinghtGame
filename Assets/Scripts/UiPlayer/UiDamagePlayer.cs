@@ -32,9 +32,9 @@ public class UiDamagePlayer : MonoBehaviour
     }
     protected void UpdateUI()
     {
-        if (AttackFunction.Instance.OriginalDmg > AttackFunction.Instance.info.MaxDmg)
+        if (AttackFunction.Instance.OriginalDmg > PlayerData.Intance.characterData.MaxDmg)
         {
-            AttackFunction.Instance.OriginalDmg = AttackFunction.Instance.info.MaxDmg;
+            AttackFunction.Instance.OriginalDmg = PlayerData.Intance.characterData.MaxDmg;
         }
         textdmg.text = "DMG:" + AttackFunction.Instance.dmg.ToString("#,##").Replace(',', '.');
         CritText.text = "Crit:" + AttackFunction.Instance.Crit + "%";

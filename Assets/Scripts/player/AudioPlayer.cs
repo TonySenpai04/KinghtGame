@@ -24,7 +24,7 @@ public class AudioPlayer : MonoBehaviour
     }
     void Update()
     {
-        AudioWalk.Pause();
+
         Audiowalk();
     }
 
@@ -34,11 +34,11 @@ public class AudioPlayer : MonoBehaviour
         var move = Input.GetAxis("Horizontal");
         if ((move == 1 || move == -1)&&isground && AnimationPlayer.instance.IsDead==false)
         {
-            AudioWalk.Play();
+            AudioWalk.enabled = true;
         }
         else
         {
-            AudioWalk.Pause();
+            AudioWalk.enabled = false;
         }
     }
    

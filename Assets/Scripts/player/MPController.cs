@@ -8,7 +8,6 @@ public class MPController : MonoBehaviour
 {
     public static MPController Instance;
     [Header("Info")]
-    [SerializeField] InfoCharacter info;
     [SerializeField] private int MaxMp;
     [SerializeField] private int CurrentMp;
     [SerializeField] protected float MPRecuperate;
@@ -27,21 +26,19 @@ public class MPController : MonoBehaviour
   
     private void Awake()
     {
-        Instance = this;
-        MaxMp = info.MpStart; 
-        CurrentBottle = 10;
-        OriginalMp = MaxMp;
+        Instance = this;  
     }
   
     void Start()
     {
-        Instance= this;
-        CurrentMp = MaxMp;
+        MaxMp = PlayerData.Intance.characterData.MpStart;
+        CurrentBottle = 10;
+        OriginalMp = MaxMp;
+        CurrentMp = PlayerData.Intance.characterData.CurrentMP;
         CanX2 = true;
         IsTonic = false;
         
      }
-
     public void ItemMP()
     {
             if(UiMpPlayer.Instance.time>0)
@@ -57,6 +54,7 @@ public class MPController : MonoBehaviour
     public void MpAttack(int mpAttack)
     {
         CurrentMp -= mpAttack;
+        PlayerData.Intance.characterData.CurrentMP = Currentmp;
     }
 
     public void  UpdateMp()
@@ -68,12 +66,13 @@ public class MPController : MonoBehaviour
         OriginalMp += Mathf.RoundToInt((OriginalMp * 0.037f) * ((100 - level) * 0.1f));
         if (LevelSystem.Instance.level == 30)
         {
-                OriginalMp = info.MaxMp;
+                OriginalMp = PlayerData.Intance.characterData.MaxMp;
                 MaxMp = OriginalMp + addMp;   
         }
         MaxMp = OriginalMp+ addMp;
         CurrentMp = MaxMp;
         MPRecuperate = MaxMp / 5;
+        PlayerData.Intance.characterData .MpStart = MaxMp;
     }
     protected void RecuperateMp()
     {

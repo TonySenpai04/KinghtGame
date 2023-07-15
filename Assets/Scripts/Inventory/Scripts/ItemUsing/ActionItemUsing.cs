@@ -30,7 +30,8 @@ namespace Inventory.UI
             InventoryPageUsingItem.Instance.ResetSelection();
             AddActionPanelConfirm();
             InventoryItemUsing.Instance.inventoryItem = InventoryItemUsing.Instance.GetItemAt();
-           
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
+
         }
         public override void AddActionPanelConfirm()
         {
@@ -45,17 +46,19 @@ namespace Inventory.UI
         public void SetActivePannel()
         {
             InventoryItemUsing.Instance.panelConfirm.Toggle(false);
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
         }
         public override void AddAction()
         {
             InventoryItemUsing.Instance.Transformbtn.AddButon("Remove", () => RemoveItem(), () => InventoryPageUsingItem.Instance.actionPanel.Toggle(false));
             InventoryItemUsing.Instance.Transformbtn.AddButon("Drop", () => DropItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity), () => InventoryPageUsingItem.Instance.actionPanel.Toggle(false));
         }
-        public void RemoveItem()
+        public override void RemoveItem()
         {
             InventoryPageUsingItem.Instance.ResetSelection();
             InventoryItem inventoryItem = UsingItemController.Instance.inventoryData.GetItemAt(InventoryItemUsing.Instance.index);
             IItemAction itemAction = inventoryItem.item as IItemAction;
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
             itemAction.PerformActionRemove(gameObject, null);
             InventoryItemUsing.Instance.inventoryItem = InventoryItemUsing.Instance.GetItemAt();
             UsingItemController.Instance.RemoveItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity);
@@ -69,7 +72,7 @@ namespace Inventory.UI
             itemAction.PerformActionRemove(gameObject, null);
             UsingItemController.Instance.RemoveItem(index, mount);
             InventoryPage.Instance.textConfirm.gameObject.SetActive(false);
-           // AudioSource.PlayClipAtPoint(AudioPlayer.instance.ActionSound, transform.position);
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
 
 
         }

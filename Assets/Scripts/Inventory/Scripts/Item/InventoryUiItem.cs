@@ -22,7 +22,6 @@ namespace Inventory.UI
         [SerializeField] protected bool empty = true;
         [SerializeField] public int index;
         [SerializeField] public ItemActionPanel panelConfirm;
-       // public int a;
         [SerializeField] protected Image BackGround;
 
         public InventoryItem inventoryItem;

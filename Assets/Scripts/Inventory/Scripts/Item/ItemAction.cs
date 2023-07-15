@@ -14,6 +14,7 @@ namespace Inventory.UI
     {
         public static ItemAction Instance;
         [SerializeField] protected GameObject buttonPrefab;
+        public AudioSource Audio;
         public  void Start()
         {
             Instance = this;
@@ -25,6 +26,7 @@ namespace Inventory.UI
             InventoryPage.Instance.ResetSelection();
             AddActionPanelConfirm();
             InventoryUiItem.Instance. inventoryItem = InventoryUiItem.Instance. GetItemAt();
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
         }
         public virtual void AddActionPanelConfirm()
         {
@@ -32,13 +34,19 @@ namespace Inventory.UI
             InventoryPage.Instance.textConfirm.text = "Are you sure you want to drop this item?";
             InventoryPage.Instance.textConfirm.gameObject.SetActive(true);
             InventoryUiItem.Instance.panelConfirm.Toggle(true);
-            InventoryUiItem.Instance.panelConfirm.AddButon("Yes", () => InventoryController.Instance.RemoveItem(InventoryUiItem.Instance.index, InventoryUiItem.Instance.inventoryItem.quantity),()=>InventoryPage.Instance.panel.Toggle(false) );
+            InventoryUiItem.Instance.panelConfirm.AddButon("Yes", () => RemoveItem(),()=>InventoryPage.Instance.panel.Toggle(false) );
             InventoryUiItem.Instance.panelConfirm.AddButon("No", () => SetActivePanel(), () => InventoryPage.Instance.textConfirm.text="");
 
+        }
+        public virtual void RemoveItem()
+        {
+            InventoryController.Instance.RemoveItem(InventoryUiItem.Instance.index, InventoryUiItem.Instance.inventoryItem.quantity);
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
         }
         public void SetActivePanel()
         {
             InventoryUiItem.Instance.panelConfirm.Toggle(false);
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
         }
         public virtual void AddButon(string name, Action onClickAction)
         {
@@ -58,10 +66,12 @@ namespace Inventory.UI
             InventoryPage.Instance.ResetSelection();
             InventoryItem inventoryItem = InventoryController.Instance.inventoryData.GetItemAt(InventoryUiItem.Instance.index);
             IItemAction itemAction =  inventoryItem.item as IItemAction;
-            itemAction.PerformAction(gameObject, null);
+            Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
+            itemAction.PerformAction(gameObject, inventoryItem.itemState);
             InventoryUiItem.Instance.inventoryItem = InventoryUiItem.Instance.GetItemAt();
             InventoryController.Instance.inventoryUI.ShowItemAction(InventoryUiItem.Instance.index);
             InventoryController.Instance.inventoryData.RemoveItem(InventoryUiItem.Instance.index, 1);
+          
             for (int i = 0; i < 6; i++)
             {
                 

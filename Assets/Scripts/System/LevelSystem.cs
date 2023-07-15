@@ -35,16 +35,16 @@ public class LevelSystem : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        level = 1;
         CanX2 = true;
         IsUse = false;
     }
     
     void Start()
     {
-        currentXp=0;
-        level = 1;
-        nextLevelXp = CalculateNextLevelXp();
+        currentXp = PlayerData.Intance.characterData.currentXp;
+        level = PlayerData.Intance.characterData.Level;
+        nextLevelXp = PlayerData.Intance.characterData.nextLevelXp;
+        maxLevel = PlayerData.Intance.characterData.MaxLevel;
     }
     void Update()
     {
@@ -79,7 +79,8 @@ public class LevelSystem : MonoBehaviour
     public void GainExperienceFlatRate(int xpGained)
     {
        
-            currentXp += xpGained;
+       currentXp += xpGained;
+        PlayerData.Intance.characterData.currentXp = currentXp;
     }
     
     public void GainExperienceScalable(float xpGained, int passedLevel)
@@ -112,14 +113,26 @@ public class LevelSystem : MonoBehaviour
         level = Mathf.Clamp(level,0, 50);
         LevelUI.Instance.SetExp(currentXp);
         LevelUI.Instance. levelText.text = "Level:" + level;
+        LevelUI.Instance.UPdateUI();
         GetComponent<HPController>().IncreaseHealth(level);
         GetComponent<MPController>().IncreaseMP(level);
         AudioSource.PlayClipAtPoint(AudioPlayer.instance.levelUpSound, transform.position);
         skillPage.SkillPoint+=1;
         skillPage.SkillsPointUI();
+        UpdateWhenX2();
+        UpdateCharacter();
+    }
+    public void UpdateCharacter()
+    {
+        PlayerData.Intance.characterData.Level = level;
+        PlayerData.Intance.characterData.currentXp = currentXp;
+         PlayerData.Intance.characterData.nextLevelXp = CalculateNextLevelXp();
+    }
+    public void UpdateWhenX2()
+    {
         if (HPController.Instance.IsTonic == true)
         {
-            HPController.Instance.maxhp=(HPController.Instance.OriginalHP+ HPController.Instance.AddHp)*2;
+            HPController.Instance.maxhp = (HPController.Instance.OriginalHP + HPController.Instance.AddHp) * 2;
         }
         if (MPController.Instance.IsTonic == true)
         {
@@ -129,10 +142,7 @@ public class LevelSystem : MonoBehaviour
         {
             AttackFunction.Instance.dmg = (AttackFunction.Instance.OriginalDmg + AttackFunction.Instance.damageAdd) * 2;
         }
-    }
-    private void DisplayAccrueAmount() 
-    {
-        
+
     }
     private int CalculateNextLevelXp() 
     {

@@ -1,32 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class OnCickBtn : MonoBehaviour
 {
-    [SerializeField] private Button[] actionsButton;
-    private KeyCode action1,action2,action3;
-    void Start()
+    public AudioClip clickSound;
+    public AudioSource clickSoundSource;
+    public void OnButtonClick()
     {
-        action1 = KeyCode.Alpha1;
-        action2 = KeyCode.Alpha2;
+        Debug.Log(clickSoundSource.enabled);
+        clickSoundSource.enabled = true;
+        clickSoundSource.Play();
+        StartCoroutine(PlayClickSound());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator PlayClickSound()
     {
-        if (Input.GetKeyDown(action1))
-        {
-            ActionButtonOnclick(0);
-        }
-        if (InputManager.Instance.IsSkill2)
-        {
-            ActionButtonOnclick(1);
-        }
-    }
-    private  void ActionButtonOnclick(int index)
-    {
-        actionsButton[index].onClick.Invoke();
+        clickSoundSource.PlayOneShot(clickSound);
+        yield return new WaitForSeconds(clickSound.length);
+        clickSoundSource.enabled = true;
     }
 }

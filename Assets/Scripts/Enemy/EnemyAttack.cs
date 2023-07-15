@@ -21,12 +21,11 @@ public class EnemyAttack : MonoBehaviour
     
 
 
-    // Start is called before the first frame update
     void Start()
     {
         Instance = this;
         Dmg=Enemydamage.Damage;
-       // player = GameObject.Find("player").transform;
+        player = GameObject.Find("player").transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         movespeed = 2;

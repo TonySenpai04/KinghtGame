@@ -13,7 +13,6 @@ public class AttackFunction : MonoBehaviour
     [SerializeField] protected float radius=1.5f;
     [SerializeField] protected LayerMask mask;
     public AudioClip AttackSound;
-    [SerializeField] public InfoCharacter info;
     [SerializeField] public int dmg = 10;
     [SerializeField] public int Dmg { get => dmg; set => dmg = value; }
     public int OriginalDmg;
@@ -24,7 +23,7 @@ public class AttackFunction : MonoBehaviour
     void Start()
     {
         Instance = this;
-        dmg = info.DmgStart;
+        dmg = PlayerData.Intance.characterData.DmgStart;
         OriginalDmg = dmg;
         CanX2 = true;
         IsTonic = false;
@@ -69,11 +68,12 @@ public class AttackFunction : MonoBehaviour
     public void IncreaseAtk(int level)
     {
         OriginalDmg += Mathf.RoundToInt((OriginalDmg * 0.037f) * ((100 - level) * 0.1f));
-        if (OriginalDmg > info.MaxDmg)
+        if (OriginalDmg > PlayerData.Intance.characterData.MaxDmg)
         {
-            OriginalDmg = info.MaxDmg;
+            OriginalDmg = PlayerData.Intance.characterData.MaxDmg;
         }
         dmg = OriginalDmg + damageAdd;
+        PlayerData.Intance.characterData.DmgStart = dmg;
 
     }
     public void Skill2()

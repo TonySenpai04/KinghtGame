@@ -35,6 +35,8 @@ public class HpEnemy : Healthsystem
         player = GameObject.Find("player").transform;
 
     }
+
+    [System.Obsolete]
     void Update()
     {
             player = GameObject.Find("player").transform;
@@ -61,7 +63,8 @@ public class HpEnemy : Healthsystem
         }
         if (currenthp == 0)
         {
-            StartCoroutine(Enemydie());
+            Disappear();
+            Invoke(nameof(Reappear), respawnTime);
         }
         UpdateUI();
     }
@@ -101,20 +104,27 @@ public class HpEnemy : Healthsystem
             Text.GetComponent<TextMeshPro>().text = "-" + Dmg.ToString();
 
     }
-    IEnumerator Enemydie()
+    public void Disappear()
     {
-        PickUpSystem.Instance.GoldDrop =(int) Random.Range(Maxhp*2,Maxhp*3);
-        PickUpSystem.Instance.DiamondDrop = (int)Random.Range(Maxhp *0.04f, Maxhp * 0.06f);
+        PickUpSystem.Instance.GoldDrop = (int)Random.Range(Maxhp * 2, Maxhp * 3);
+        PickUpSystem.Instance.DiamondDrop = (int)Random.Range(Maxhp * 0.04f, Maxhp * 0.06f);
         GetComponent<DropItem>().CreateItem(transform.position);
         animator.SetTrigger("isdead");
         healthbar.gameObject.SetActive(false);
-        yield return new WaitForSeconds(respawnTime);
+        StartCoroutine(Enemydie());
+
+    }
+    IEnumerator Enemydie()
+    {
+        yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
+    }
+    private void Reappear()
+    {
         Currenthp += Maxhp;
         healthbar.sethp(Maxhp);
         healthbar.gameObject.SetActive(true);
-        gameObject.SetActive(true);
-
+        this.gameObject.SetActive(true);
     }
     protected new void UpdateUI()
     {

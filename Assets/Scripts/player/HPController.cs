@@ -12,7 +12,6 @@ public class HPController : MonoBehaviour
 {
     public static HPController Instance;
     [Header("Info")]
-    [SerializeField]protected InfoCharacter info;
     [SerializeField] private int Maxhp;
     [SerializeField] protected float Currenthp;
     public float currenthp { get => Currenthp; set => Currenthp = value; }
@@ -31,17 +30,18 @@ public class HPController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Maxhp = info.HpStart;
-        CurrentBottle = 10;
-        OriginalHP=Maxhp;
-        dodgeAttack = 0;
+        
     }
     void Start()
     {
-        Currenthp = Maxhp;  
         CanX2 = true;
         IsTonic = false;
         AddHp = 0;
+        currenthp = PlayerData.Intance.characterData.CurrentHP;
+        Maxhp = PlayerData.Intance.characterData.HpStart;
+        CurrentBottle = 10;
+        OriginalHP = Maxhp;
+        dodgeAttack = 0;
     }
     public void UpdateHP()
     {
@@ -62,7 +62,9 @@ public class HPController : MonoBehaviour
         if (UiHpPlayer.Instance.FloatingText != null)
         {
           UiHpPlayer.Instance.ShowFloatingText(Bleed);
+            
         }
+        PlayerData.Intance.characterData.CurrentHP = (int)currenthp;
     }
 
     public void ItemHP()
@@ -83,12 +85,13 @@ public class HPController : MonoBehaviour
         OriginalHP += Mathf.RoundToInt((OriginalHP  * 0.037f) * ((100 - level) * 0.1f));
         if (LevelSystem.Instance.level == 30)
         {
-            OriginalHP = info.HpMax;
+            OriginalHP = PlayerData.Intance.characterData.HpMax;
             Maxhp = OriginalHP + AddHp;
         }
         Maxhp = OriginalHP + AddHp;
         Currenthp =Maxhp;
         HpRecuperate = Maxhp / 5;
+        PlayerData.Intance.characterData.HpStart = maxhp;
     }
     
     public void RecuperateHp()
