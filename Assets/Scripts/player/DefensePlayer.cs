@@ -5,7 +5,6 @@ using UnityEngine;
 public class DefencePlayer : MonoBehaviour
 {
     public static DefencePlayer Instance;
-    
     public int Defense;
     public int DefenseClone;
     public bool IsTonic;
@@ -14,7 +13,7 @@ public class DefencePlayer : MonoBehaviour
     void Start()
     {
         Instance = this;
-        Defense = 0;
+        Defense = PlayerData.Intance.characterData.Defense;
         DefenseClone = 0;
         CanX2 = true;
         IsTonic = false;

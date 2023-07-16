@@ -7,26 +7,21 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace Inventory.UI
 {
-    public class InventoryPage : MonoBehaviour
+    public class InventoryPage : Page
     {
         public static InventoryPage Instance;
         [SerializeField] private InventoryUiItem inventoryUiItem;
-        [SerializeField] private RectTransform contentPanel;
-        [SerializeField] InventoryDescription inventoryDescription;
-        public InventorySO InventorySO;
         public List<InventoryUiItem> inventoryUiItems = new List<InventoryUiItem>();
-        public MouseFollower mouseFollower;
-        [SerializeField]
-        public ItemActionPanel actionPanel;
         [SerializeField]
         public ItemActionPanel panel;
         public TextMeshProUGUI textConfirm;
-        public int currentlyDraggedItemIndex = -1;
-        public event Action<int> OnDescriptionRequested,
-                OnItemActionRequested,
-                OnStartDragging;
-        public event Action<int, int> OnSwapItems;
         public GameObject BtnClose;
+        public event Action<int> OnDescriptionRequested,
+         OnItemActionRequested,
+         OnStartDragging;
+        public event Action<int, int> OnSwapItems;
+        public GameObject Player;
+
         private void Awake()
         {
             Instance = this;
@@ -36,7 +31,11 @@ namespace Inventory.UI
             panel.Toggle(false);
             BtnClose.SetActive(false);
         }
-        
+        public void SetInventoryData()
+        {
+            Player = GameObject.Find("player");
+            InventorySO=Player.GetComponent<InventoryController>().inventoryData;
+        }
         internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
         {
             inventoryDescription.SetDescription(itemImage, name, description,background);

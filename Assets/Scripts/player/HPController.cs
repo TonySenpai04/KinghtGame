@@ -12,10 +12,10 @@ public class HPController : MonoBehaviour
 {
     public static HPController Instance;
     [Header("Info")]
-    [SerializeField] private int Maxhp;
+    [SerializeField] private int MaxHP;
     [SerializeField] protected float Currenthp;
     public float currenthp { get => Currenthp; set => Currenthp = value; }
-    public int maxhp { get => Maxhp; set => Maxhp = value; }
+    public int maxHp { get => MaxHP; set => MaxHP = value; }
     public int CurrentBottle { get => currentBottle; set => currentBottle = value; }
     [SerializeField]public int AddHp;
     [SerializeField] private float HpRecuperate ;
@@ -38,14 +38,15 @@ public class HPController : MonoBehaviour
         IsTonic = false;
         AddHp = 0;
         currenthp = PlayerData.Intance.characterData.CurrentHP;
-        Maxhp = PlayerData.Intance.characterData.HpStart;
+        MaxHP = PlayerData.Intance.characterData.HpStart;
         CurrentBottle = 10;
-        OriginalHP = Maxhp;
-        dodgeAttack = 0;
+        OriginalHP = MaxHP;
+        dodgeAttack = PlayerData.Intance.characterData.DogdeAtk;
     }
     public void UpdateHP()
     {
-         Maxhp+=AddHp;
+         MaxHP+=AddHp;
+       
     }
     public  void TakeDamage(int Dmg)
     {
@@ -74,8 +75,8 @@ public class HPController : MonoBehaviour
             IsTonic = true;
             if (CanX2 == true)
             {
-                Maxhp = OriginalHP + AddHp;
-                Maxhp*= 2;
+                MaxHP = OriginalHP + AddHp;
+                MaxHP*= 2;
             }
             CanX2 = false;
         }
@@ -86,27 +87,27 @@ public class HPController : MonoBehaviour
         if (LevelSystem.Instance.level == 30)
         {
             OriginalHP = PlayerData.Intance.characterData.HpMax;
-            Maxhp = OriginalHP + AddHp;
+            MaxHP = OriginalHP + AddHp;
         }
-        Maxhp = OriginalHP + AddHp;
-        Currenthp =Maxhp;
-        HpRecuperate = Maxhp / 5;
-        PlayerData.Intance.characterData.HpStart = maxhp;
+        MaxHP = OriginalHP + AddHp;
+        Currenthp =MaxHP;
+        HpRecuperate = MaxHP / 5;
+        PlayerData.Intance.characterData.HpStart = maxHp;
     }
     
     public void RecuperateHp()
     {
         if (CurrentBottle > 0)
         {
-            HpRecuperate = Maxhp / 5;
+            HpRecuperate = MaxHP / 5;
             if (HpRecuperate > 500000)
             {
                 HpRecuperate = 500000;
             }
             currenthp += HpRecuperate;
-            if (currenthp > Maxhp)
+            if (currenthp > MaxHP)
             {
-                currenthp = Maxhp;
+                currenthp = MaxHP;
             }
             CurrentBottle--;
         }

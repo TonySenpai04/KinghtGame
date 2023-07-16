@@ -11,16 +11,11 @@ using UnityEngine.UI;
 
 namespace Inventory.UI
 {
-    public class UiItemShop : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
+    public class UiItemShop : UiItem, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
     {
         public static UiItemShop Instance;
         public event Action<UiItemShop> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
-        [SerializeField] protected Image Image;
-        [SerializeField] public Image borderImage;
         [SerializeField] public ItemActionPanel transformPannelAction;
-        [SerializeField] protected bool empty = true;
-        [SerializeField] public int index;
-        [SerializeField] protected Image BackGround;
         [SerializeField]
         protected TextMeshProUGUI Description;
         public float Price;

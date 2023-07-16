@@ -23,7 +23,7 @@ public class UiHpPlayer : MonoBehaviour
     {
         
         Instance = this;
-        healthbar.SetMaxHp(HPController.Instance.maxhp);
+        healthbar.SetMaxHp(HPController.Instance.maxHp);
         healthbar.SetHp(HPController.Instance.currenthp); 
 
     }
@@ -42,17 +42,17 @@ public class UiHpPlayer : MonoBehaviour
     }
     public void UpdateUi()
     {
-        if (HPController.Instance.currenthp >= HPController.Instance.maxhp)
+        if (HPController.Instance.currenthp >= HPController.Instance.maxHp)
         {
-            HPController.Instance.currenthp = HPController.Instance.maxhp;
+            HPController.Instance.currenthp = HPController.Instance.maxHp;
         }
         if (HPController.Instance.currenthp <= 0)
         {
             HPController.Instance.currenthp = 0;
         }
         bottletext.text =HPController.Instance. CurrentBottle.ToString();
-        healthText.text = "HP:" + HPController.Instance.currenthp.ToString("#,##").Replace(',','.') + "/" + HPController.Instance.maxhp.ToString("#,##").Replace(',', '.');
-        healthbar.SetMaxHp(HPController.Instance.maxhp);
+        healthText.text = "HP:" + HPController.Instance.currenthp.ToString("#,##").Replace(',','.') + "/" + HPController.Instance.maxHp.ToString("#,##").Replace(',', '.');
+        healthbar.SetMaxHp(HPController.Instance.maxHp);
         healthbar.SetHp(HPController.Instance.currenthp);
       
     }
@@ -72,7 +72,7 @@ public class UiHpPlayer : MonoBehaviour
             time = 0;
             TextTime.text =  time.ToString("0");
             TextTime.gameObject.SetActive(true);
-            HPController.Instance.maxhp = HPController.Instance.OriginalHP + HPController.Instance.AddHp;
+            HPController.Instance.maxHp = HPController.Instance.OriginalHP + HPController.Instance.AddHp;
             HPController.Instance.CanX2 = true;
             HPController.Instance.IsTonic = false;
             UiItemTonicPage.Instance.inventoryUiItems.Remove(itemTonic);

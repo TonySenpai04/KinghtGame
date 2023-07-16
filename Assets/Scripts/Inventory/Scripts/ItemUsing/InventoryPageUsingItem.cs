@@ -8,18 +8,16 @@ using UnityEngine.UI;
 
 namespace Inventory.UI
 {
-    public class InventoryPageUsingItem : MonoBehaviour
+    public class InventoryPageUsingItem : Page
     {
-            public static InventoryPageUsingItem Instance;
-            [SerializeField] private InventoryItemUsing inventoryUiItem;
-            [SerializeField] private RectTransform contentPanel;
-            [SerializeField] InventoryDescription inventoryDescription;
-            public InventorySO InventorySO;
-            public List<InventoryItemUsing> inventoryUiItems = new List<InventoryItemUsing>();
-            public MouseFollower mouseFollower;
-            [SerializeField]
-            public ItemActionPanel actionPanel;
-
+         public static InventoryPageUsingItem Instance;
+         [SerializeField] private InventoryItemUsing inventoryUiItem;
+         public List<InventoryItemUsing> inventoryUiItems = new List<InventoryItemUsing>();
+         public event Action<int> OnDescriptionRequested,
+         OnItemActionRequested,
+         OnStartDragging;
+        public event Action<int, int> OnSwapItems;
+        public GameObject Player;
 
         private void Awake()
         {
@@ -27,27 +25,25 @@ namespace Inventory.UI
             inventoryDescription.ResetDescription();
             mouseFollower.Toggle(false);
         }
-         public int currentlyDraggedItemIndex = -1;
-         public event Action<int> OnDescriptionRequested,
-          OnItemActionRequested,
-           OnStartDragging;
-          public event Action<int, int> OnSwapItems;
-
-
-            internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
-            {
+        public void SetInventoryData()
+        {
+            Player = GameObject.Find("player");
+            InventorySO = Player.GetComponent<UsingItemController>().inventoryData;
+        }
+        internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description,Sprite background)
+        {
                 inventoryDescription.SetDescription(itemImage, name, description, background);
                 DeselectAllItems();
                 inventoryUiItems[itemIndex].Select();
-            }
-            internal void ResetAllItems()
-            {
+        }
+       internal void ResetAllItems()
+       {
                 foreach (var item in inventoryUiItems)
                 {
                     item.ResetData();
                     item.Deselect();
                 }
-            }
+       }
        
 
         public void AddAction(string name, Action performAction,Action end)
@@ -93,7 +89,7 @@ namespace Inventory.UI
             {
                 for (int i = 0; i < inventorysize; i++)
                 {
-                   InventoryItemUsing item = Instantiate(inventoryUiItem, Vector3.zero, Quaternion.identity, transform);
+                    InventoryItemUsing item = Instantiate(inventoryUiItem, Vector3.zero, Quaternion.identity, transform);
                     item.transform.SetParent(contentPanel);
                     inventoryUiItems.Add(item);
                     item.OnItemClicked += HandleItemSelection;
@@ -141,7 +137,6 @@ namespace Inventory.UI
             public void HandleItemSelection(InventoryItemUsing inventoryItemUI)
             {
                 int index = inventoryUiItems.IndexOf(inventoryItemUI);
-            InventoryItemUsing.Instance.index=index;
                 InventoryItemUsing.Instance.index=index;
                 if (index == -1)
                     return;
@@ -164,8 +159,14 @@ namespace Inventory.UI
             {
                 gameObject.SetActive(true);
                 ResetSelection();
-             
-             }
+            foreach (var item in InventorySO.GetCurrentInventoryState())
+            {
+                UpdateData(item.Key,
+                    item.Value.item.ItemImage,
+                    item.Value.quantity, item.Value.item.BackGround);
+            }
+
+        }
             public void Hide()
             {
                 gameObject.SetActive(false);

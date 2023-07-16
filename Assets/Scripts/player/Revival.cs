@@ -31,7 +31,7 @@ public class Revival : MonoBehaviour
     }
     public void RevivalPlayer()
     {
-        HPController.Instance. currenthp += HPController.Instance. maxhp;
+        HPController.Instance. currenthp += HPController.Instance. maxHp;
         MPController.Instance.Currentmp += MPController.Instance.Maxmp;
         PanleRevival.gameObject.SetActive(false);
         AnimationPlayer.instance.Animator.SetBool("Idle", true);
@@ -43,7 +43,7 @@ public class Revival : MonoBehaviour
     public void BackHome()
     {
         Player.transform.position = PointStart.transform.position;
-        HPController.Instance.currenthp += HPController.Instance.maxhp;
+        HPController.Instance.currenthp += HPController.Instance.maxHp;
         MPController.Instance.Currentmp += MPController.Instance.Maxmp;
         PanleRevival.gameObject.SetActive(false);
         AnimationPlayer.instance.Animator.SetBool("Idle", true);

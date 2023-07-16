@@ -7,21 +7,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillPage : MonoBehaviour
+public class SkillPage : Page
 {
     public static SkillPage Instance;
     [SerializeField] private DescriptionSkillUI inventoryUiItem;
-    [SerializeField] private RectTransform contentPanel;
     public List<DescriptionSkillUI> UiSkills = new List<DescriptionSkillUI>();
-    public int currentlyDraggedItemIndex = -1;
-    public event Action<int> OnDescriptionRequested,
-            OnItemActionRequested,
-            OnStartDragging;
-    public event Action<int, int> OnSwapItems;
-    public ItemActionPanel actionPanel;
     public int SkillPoint = 0;
     public TextMeshProUGUI TxtSkillsPoint;
     public Transform Player;
+    public event Action<int> OnDescriptionRequested,
+         OnItemActionRequested,
+         OnStartDragging;
+    public event Action<int, int> OnSwapItems;
     private void Awake()
     {
         Instance = this;

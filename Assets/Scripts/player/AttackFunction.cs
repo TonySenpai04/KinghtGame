@@ -24,6 +24,7 @@ public class AttackFunction : MonoBehaviour
     {
         Instance = this;
         dmg = PlayerData.Intance.characterData.DmgStart;
+        Crit = PlayerData.Intance.characterData.Crit;
         OriginalDmg = dmg;
         CanX2 = true;
         IsTonic = false;

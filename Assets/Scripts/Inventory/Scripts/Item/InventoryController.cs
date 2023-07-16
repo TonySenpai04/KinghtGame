@@ -15,25 +15,26 @@ namespace Inventory
         public InventoryPage inventoryUI;
         [SerializeField]
         public InventorySO inventoryData;
+
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
-
+ 
         private void Start()
         {
             Instance = this;
+            inventoryData = inventoryUI.InventorySO;
             PrepareUI();
-            PrepareInventoryData();
         }
+  
         private void PrepareInventoryData()
         {
-            inventoryData.Initialize();
-            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            foreach (InventoryItem item in initialItems)
-            {
-                if (item.IsEmpty)
-                    continue;
-                inventoryData.AddItem(item);
-            }
+                inventoryData.Initialize();
+                foreach (InventoryItem item in initialItems)
+                {
+                    if (item.IsEmpty)
+                        continue;
+                    inventoryData.AddItem(item);
+                }
         }
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
@@ -48,6 +49,7 @@ namespace Inventory
 
         private void PrepareUI()
         {
+            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
             inventoryUI.IntializeInventory(inventoryData.Size);
             inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             inventoryUI.OnSwapItems += HandleSwapItems;

@@ -9,9 +9,10 @@ public class ChacracterHealthModifie : CharacterStatModifierSO
     public override void AffectCharacter(GameObject character, float val)
     {
         HPController.Instance.AddHp +=(int) val;
+        PlayerData.Intance.characterData.HpStart = HPController.Instance.OriginalHP + HPController.Instance.AddHp;
         if (HPController.Instance.IsTonic == true)
         {
-            HPController.Instance.maxhp = (HPController.Instance.OriginalHP + HPController.Instance.AddHp) * 2;
+            HPController.Instance.maxHp = (HPController.Instance.OriginalHP + HPController.Instance.AddHp) * 2;
         }
         else
         {

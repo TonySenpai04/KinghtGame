@@ -10,20 +10,13 @@ using Inventory.Model;
 
 namespace Inventory.UI
 {
-    public class InventoryUiItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
+    public class InventoryUiItem : UiItem, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
     {
         public  static InventoryUiItem Instance;
-        [SerializeField] protected Image Image;
         [SerializeField] protected TextMeshProUGUI quantitytext;
-        [SerializeField] public Image borderImage;
         [SerializeField] public GameObject buttonPrefab;
-        [SerializeField] public ItemActionPanel Transformbtn;
         public event Action<InventoryUiItem> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
-        [SerializeField] protected bool empty = true;
-        [SerializeField] public int index;
         [SerializeField] public ItemActionPanel panelConfirm;
-        [SerializeField] protected Image BackGround;
-
         public InventoryItem inventoryItem;
         private void Awake()
         {

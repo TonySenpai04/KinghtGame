@@ -588,14 +588,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 3733115523317666684}
-  quantitytext: {fileID: 6169241981193419065}
-  borderImage: {fileID: 7147595188719782004}
-  buttonPrefab: {fileID: 2661231167868479814, guid: 0d77649e82b23694f8af00482cbb20da, type: 3}
   Transformbtn: {fileID: 0}
-  empty: 1
+  empty: 0
   index: 0
-  panelConfirm: {fileID: 0}
   BackGround: {fileID: 2515078063606540581}
+  borderImage: {fileID: 7147595188719782004}
+  quantitytext: {fileID: 6169241981193419065}
+  buttonPrefab: {fileID: 2661231167868479814, guid: 0d77649e82b23694f8af00482cbb20da, type: 3}
+  panelConfirm: {fileID: 0}
   inventoryItem:
     quantity: 0
     item: {fileID: 0}

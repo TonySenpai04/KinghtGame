@@ -9,30 +9,20 @@ using UnityEngine.UI;
 
 namespace Inventory.UI
 {
-    public class InventoryItemUsing : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
+    public class InventoryItemUsing : UiItem, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
     {
         public static InventoryItemUsing Instance;
         public event Action<InventoryItemUsing> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
-        
-        [SerializeField] protected Image Image;
         [SerializeField] protected TextMeshProUGUI quantitytext;
-        [SerializeField] public Image borderImage;
         [SerializeField] public GameObject buttonPrefab;
-        [SerializeField] public ItemActionPanel Transformbtn;
-        [SerializeField] protected bool empty = true;
-        [SerializeField] public int index;
         [SerializeField]
         public ItemActionPanel panelConfirm;
-        [SerializeField] protected Image BackGround;
-
         public InventoryItem inventoryItem;
         private void Awake()
         {
-           Instance = this;
+            Instance = this;
             ResetData();
             Deselect();
-            //Transformbtn = InventoryPage.Instance.actionPanel;
-            //panelConfirm = InventoryPage.Instance.panel;
 
         }
         private void Start()

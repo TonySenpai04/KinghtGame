@@ -7,20 +7,10 @@ using UnityEngine.UI;
 
 public class OnCickBtn : MonoBehaviour
 {
-    public AudioClip clickSound;
-    public AudioSource clickSoundSource;
+    public AudioSource audioSource;
     public void OnButtonClick()
     {
-        Debug.Log(clickSoundSource.enabled);
-        clickSoundSource.enabled = true;
-        clickSoundSource.Play();
-        StartCoroutine(PlayClickSound());
+        audioSource.PlayOneShot(AudioPlayer.instance.ClickBtnSound); 
     }
 
-    private IEnumerator PlayClickSound()
-    {
-        clickSoundSource.PlayOneShot(clickSound);
-        yield return new WaitForSeconds(clickSound.length);
-        clickSoundSource.enabled = true;
-    }
 }

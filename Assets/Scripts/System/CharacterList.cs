@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Inventory;
+using Inventory.UI;
+using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +14,13 @@ public class CharacterList : MonoBehaviour
     public GameObject PannelSkillDescription;
     public List<Sprite> Avata;
     public Image AvataCharacter;
+    public InventoryPage InventoryPage;
+    public GameObject pannelRevival;
+    public InventoryPageUsingItem InventoryPageUsingItem;
+    private void Awake()
+    {
+        pannelRevival.SetActive(false);
+    }
     private void Start()
     {
         string selectedCharacter = PlayerPrefs.GetString("SelectedCharacter");
@@ -28,7 +38,10 @@ public class CharacterList : MonoBehaviour
         }
         PannelSkillAction.GetComponent<ActionbarPage>().SetSkill();
         PannelSkillDescription.GetComponent<SkillPage>().SetSkill();
-        
+        InventoryPage.SetInventoryData();
+        InventoryPageUsingItem.SetInventoryData();
+
+
 
     }
 

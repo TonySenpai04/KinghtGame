@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HpStart: 250
   CurrentHP: 250
+  HpMax: 600000
   MaxDmg: 30000
   DmgStart: 12
-  HpMax: 600000
   MpStart: 250
   CurrentMP: 250
   MaxMp: 600000
@@ -26,3 +26,9 @@ MonoBehaviour:
   MaxLevel: 0
   Gold: 0
   Diamond: 0
+  HpReset: 250
+  MpReset: 250
+  DmgReset: 12
+  Defense: 0
+  Crit: 0
+  DogdeAtk: 0

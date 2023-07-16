@@ -6,18 +6,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ActionbarPage : MonoBehaviour
+public class ActionbarPage : Page
 {
-    [SerializeField] private RectTransform contentPanel;
     public List<ActionbarUi> actionList=new List<ActionbarUi>();
-    private int currentlyDraggedItemIndex = -1;
-    public event Action<int> OnDescriptionRequested,
-            OnItemActionRequested,
-            OnStartDragging;
-    public event Action<int, int> OnSwapItems;
     public Transform Player;
-
-
+    public event Action<int> OnDescriptionRequested,
+         OnItemActionRequested,
+         OnStartDragging;
+    public event Action<int, int> OnSwapItems;
     private void Awake()
     {
         AddSkill();
