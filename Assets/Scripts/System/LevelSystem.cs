@@ -80,7 +80,7 @@ public class LevelSystem : MonoBehaviour
     {
        
        currentXp += xpGained;
-        PlayerData.Intance.characterData.currentXp = currentXp;
+        PlayerData.Intance.characterData.currentXp =(int) currentXp;
     }
     
     public void GainExperienceScalable(float xpGained, int passedLevel)
@@ -125,8 +125,8 @@ public class LevelSystem : MonoBehaviour
     public void UpdateCharacter()
     {
         PlayerData.Intance.characterData.Level = level;
-        PlayerData.Intance.characterData.currentXp = currentXp;
-         PlayerData.Intance.characterData.nextLevelXp = CalculateNextLevelXp();
+        PlayerData.Intance.characterData.currentXp = (int)currentXp;
+        PlayerData.Intance.characterData.nextLevelXp = CalculateNextLevelXp();
     }
     public void UpdateWhenX2()
     {

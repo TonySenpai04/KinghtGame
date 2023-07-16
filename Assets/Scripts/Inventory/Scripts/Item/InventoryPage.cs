@@ -63,9 +63,8 @@ namespace Inventory.UI
         public void ShowItemAction(int index)
         {
             actionPanel.Toggle(true);
-            actionPanel.transform.position= inventoryUiItems[index].transform.position;
         }
-        private void DeselectAllItems()
+        public void DeselectAllItems()
         {
             foreach (InventoryUiItem item in inventoryUiItems)
             {
@@ -75,7 +74,6 @@ namespace Inventory.UI
             panel.Toggle(false );
             textConfirm.gameObject.SetActive(false);
         }
-       
         public void UpdateData(int itemIndex,
             Sprite itemImage, int itemQuantity, Sprite background)
         {
@@ -106,8 +104,6 @@ namespace Inventory.UI
             }
 
         }
-
-
         private void HandleShowItemActions(InventoryUiItem inventoryItemUI)
         {
            int  index = inventoryUiItems.IndexOf(inventoryItemUI);
@@ -118,7 +114,6 @@ namespace Inventory.UI
             }
             OnItemActionRequested?.Invoke(index);
         }
-
         private void HandleEndDrag(InventoryUiItem inventoryItemUI)
         {
 
@@ -140,8 +135,6 @@ namespace Inventory.UI
             OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
             HandleItemSelection(inventoryItemUI);
         }
-       
-
         public void HandleItemSelection(InventoryUiItem inventoryItemUI)
         {
             int index = inventoryUiItems.IndexOf(inventoryItemUI);
@@ -150,8 +143,6 @@ namespace Inventory.UI
                 return;
             OnDescriptionRequested?.Invoke(index);
         }
-
-
         private void HandleBeginDrag(InventoryUiItem inventoryItemUI)
         {
             int index = inventoryUiItems.IndexOf(inventoryItemUI);
@@ -161,7 +152,19 @@ namespace Inventory.UI
             HandleItemSelection(inventoryItemUI);
             OnStartDragging?.Invoke(index);
         }
-
+        public void SortItem()
+        {
+            for (int i = 0; i < InventorySO.inventoryItems.Count - 1; i++)
+            {
+                for (int j = 0; j < InventorySO.inventoryItems.Count; j++)
+                {
+                    if (InventorySO.inventoryItems[i].item != null && InventorySO.inventoryItems[j].item == null)
+                    {
+                        InventorySO.SwapItems(i, j);
+                    }
+                }
+            }
+        }
         public void Show()
         {
             gameObject.SetActive(true);

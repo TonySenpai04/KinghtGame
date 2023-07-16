@@ -17,7 +17,7 @@ public class ChacracterData : ScriptableObject
     public int MaxMp;
     [Header("Level")]
     public int Level;
-    public float currentXp;
+    public int currentXp;
     public int nextLevelXp;
     public int MaxLevel;
     [Header("Gold_Diamond")]
@@ -41,5 +41,15 @@ public class ChacracterData : ScriptableObject
         HpStart = HpReset;
         MpStart = MpReset;
         DmgStart = DmgReset;
+    }
+    public void loadData(int hp,int mp,int level,int dmg,int currenthp,int currentmp,int currentexp)
+    {
+        HpStart=hp;
+        MpStart=mp;
+        DmgStart= dmg;
+        Level = level;
+        currentXp = currentexp;
+        CurrentHP = currenthp;
+        CurrentMP = currentmp;
     }
 }

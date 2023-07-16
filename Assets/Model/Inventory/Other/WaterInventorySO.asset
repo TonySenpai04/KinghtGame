@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: WaterInventorySO
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 20
-    item: {fileID: 11400000, guid: d3b175ec0b9d3e94d932f25decc65949, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
     itemState: []
-  - quantity: 5
-    item: {fileID: 11400000, guid: 1c9d2b6a20e29f548baf82af54f30621, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
     itemState: []
-  - quantity: 5
-    item: {fileID: 11400000, guid: 91997a7af33852b4eac6959adf0a425d, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
     itemState: []
   - quantity: 0
     item: {fileID: 0}

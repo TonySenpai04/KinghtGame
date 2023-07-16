@@ -59,9 +59,8 @@ namespace Inventory.UI
          public void ShowItemAction(int index)
          {
                 actionPanel.Toggle(true);
-                actionPanel.transform.position = inventoryUiItems[index].transform.position;
          }
-         private void DeselectAllItems()
+         public void DeselectAllItems()
           {
                 foreach (InventoryItemUsing item in inventoryUiItems)
                 {

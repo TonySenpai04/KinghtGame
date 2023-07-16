@@ -13,14 +13,13 @@ public class TimeSkill : MonoBehaviour
     [SerializeField]
     private SkillS0 skillS0;
     public float Currenttime { get => CurrentTime; set => CurrentTime = value; }
-    public bool Isuse1 { get => Isuse; set => Isuse = value; }
+    public bool IsUseSkill { get => Isuse; set => Isuse = value; }
     public float timeskill { get => Timeskill; set => Timeskill = value; }
 
     private void Start()
     {
-        Isuse1 = true;
+        IsUseSkill = true;
         Instance = this;
-        //skillS0 = AttackFunction.instance.skillS0[0];
         Timeskill = skillS0.CooldownTime;
     }
 
@@ -31,11 +30,11 @@ public class TimeSkill : MonoBehaviour
         {
             
             CurrentTime = 0;
-            Isuse1 = true;
+            IsUseSkill = true;
         }
         else if (CurrentTime > 0)
         {
-            Isuse1 = false;
+            IsUseSkill = false;
         }
 
     }

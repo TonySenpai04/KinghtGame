@@ -5,7 +5,6 @@ using UnityEngine;
 public class Gold_Diamond : MonoBehaviour
 {
     public static Gold_Diamond instance;
-    // Start is called before the first frame update
     [SerializeField]
     private float gold;
     [SerializeField]  private float diamond;
@@ -17,8 +16,8 @@ public class Gold_Diamond : MonoBehaviour
     private void Start()
     {
         instance = this;
-        Gold = 2000;
-        diamond = 100;
+        Gold = PlayerData.Intance.characterData.Gold;
+        diamond = PlayerData.Intance.characterData.Diamond;
     }
    
 

@@ -43,8 +43,10 @@ namespace Inventory.UI
             borderImage.enabled = true;
             transform.gameObject.SetActive(true);
             InventoryPage.Instance.actionPanel.Toggle(true);
-            InventoryPage.Instance.actionPanel.transform.SetParent(transform);
-            InventoryPage.Instance.actionPanel.transform.position = transform.position;
+            foreach (InventoryItemUsing item in InventoryPageUsingItem.Instance. inventoryUiItems)
+            {
+                item.Deselect();
+            }
             ItemAction.Instance.AddAction();
            
         }      

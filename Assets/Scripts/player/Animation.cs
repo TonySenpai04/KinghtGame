@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -20,8 +21,7 @@ public class AnimationPlayer : MonoBehaviour
     public bool IsDead { get => isDead; set => isDead = value; }
     public Animator Animator { get => animator; set => animator = value; }
     public bool IsSkill1 { get => isSkill1; set => isSkill1 = value; }
-
-   
+    public AudioSource audioSource;
     void Start()
     {
         Vector3 localScale = transform.localScale;
@@ -42,7 +42,7 @@ public class AnimationPlayer : MonoBehaviour
         if (IsDead == false)
         {
             Isfactright();
-            Run();
+            Walk();
         }
             Isdeadth();
     }
@@ -58,19 +58,19 @@ public class AnimationPlayer : MonoBehaviour
         }
 
     }
-    protected void Run()
+    protected void Walk()
     {
         isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         var move = InputManager.Instance.Move;
-
         if ((move == 1 || move == -1) && isground)
         {
             Animator.SetBool("runing", true);
-
+            AudioPlayer.instance.Audio.enabled = true;
         }
         else
         {
             Animator.SetBool("runing", false);
+            AudioPlayer.instance.Audio.enabled = false;
         }
         if (move > 0)
             isright = true;
@@ -78,7 +78,6 @@ public class AnimationPlayer : MonoBehaviour
             isright = false;
 
     }
-
     protected void Isfactright()
     {
         if (isright == true)
@@ -91,26 +90,23 @@ public class AnimationPlayer : MonoBehaviour
         isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         if (InputManager.Instance.IsJump && isground)
         {
-            AudioSource.PlayClipAtPoint(AudioPlayer.instance.jumpClip, transform.position);
+            audioSource.PlayOneShot(AudioPlayer.instance.jumpClip);
             Animator.SetTrigger("jumping");
         }
 
     }
-
-
+    public bool IsAtk(int index)
+    {
+        return MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[index].ManaConsumption &&
+             LevelSystem.Instance.level >= AttackFunction.Instance.skillS0[index].RequiredLevel;
+    }
     public void Skill1()
     {
-        
-        if (InputManager.Instance.IsSkill1 && MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[0].ManaConsumption 
-            && isSkill1 == true )
-        {  
-            AudioSource.PlayClipAtPoint(AudioPlayer.instance.AtkClip, transform.position);
+        if (InputManager.Instance.IsSkill1 && IsAtk(0) && isSkill1 == true )
+        {
+            audioSource.PlayOneShot( AudioPlayer.instance.AtkClip);
             Animator.SetTrigger("Skill1");
-            if (Skill.Instance.time[0].Isuse1 == true)
-            {
-                Skill.Instance.time[0].Currenttime += Skill.Instance.time[0].timeskill;
-                Skill.Instance.time[0].Isuse1 = false;
-            }
+            CooldownSkill(0);
         }
     }
     protected void Isdeadth()
@@ -120,7 +116,7 @@ public class AnimationPlayer : MonoBehaviour
             Animator.SetTrigger("isdeath");
             if (Count <= 1)
             {
-                AudioSource.PlayClipAtPoint(AudioPlayer.instance.deathClip, transform.position, 1);
+                audioSource.PlayOneShot(AudioPlayer.instance.deathClip);
                 Count++;
             }
             IsDead = true;
@@ -129,46 +125,38 @@ public class AnimationPlayer : MonoBehaviour
         
     }
     public void Skill2()
-    {
-        if (InputManager.Instance.IsSkill2 && MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[1].ManaConsumption 
-            && LevelSystem.Instance.level >= 3
-            && isSkill2==true)
+    {  
+        if (InputManager.Instance.IsSkill2 && IsAtk(1) && isSkill2==true)
         {
+            audioSource.PlayOneShot(AudioPlayer.instance.AtkClip);
             Animator.SetTrigger("Skill2");
-            if (Skill.Instance.time[1].Isuse1 == true)
-            {
-                Skill.Instance.time[1].Currenttime += Skill.Instance.time[1].timeskill;
-                Skill.Instance.time[1].Isuse1 = false;
-            }
+            CooldownSkill(1);
         }
     }
     public void Skill3()
     {
-        if (InputManager.Instance.IsSkill3 && MPController.Instance.Currentmp >= AttackFunction.Instance.skillS0[2].ManaConsumption 
-            && LevelSystem.Instance.level >= 5
-            && isSkill3 == true)
+        if (InputManager.Instance.IsSkill3 && IsAtk(2) && isSkill3 == true)
         {
+            audioSource.PlayOneShot(AudioPlayer.instance.AtkClip);
             Animator.SetTrigger("Skill3");
-            if (Skill.Instance.time[2].Isuse1 == true)
-            {
-                Skill.Instance.time[2].Currenttime += Skill.Instance.time[2].timeskill;
-                Skill.Instance.time[2].Isuse1 = false;
-            }
+            CooldownSkill(2);
         }
     }
     public void Skill4()
     {
-
-        if (InputManager.Instance.IsSkill4 && MPController.Instance.Currentmp >=AttackFunction.Instance. skillS0[0].ManaConsumption &&
-            isSkill4 == true)
+        if (InputManager.Instance.IsSkill4 && IsAtk(3) && isSkill4 == true)
         {
-            AudioSource.PlayClipAtPoint(AudioPlayer.instance.AtkClip, transform.position);
+            audioSource.PlayOneShot(AudioPlayer.instance.AtkClip);
             Animator.SetTrigger("Skill4");
-            if (Skill.Instance.time[3].Isuse1 == true)
-            {
-                Skill.Instance.time[3].Currenttime += Skill.Instance.time[0].timeskill;
-                Skill.Instance.time[3].Isuse1 = false;
-            }
+            CooldownSkill(3);
+        }
+    }
+    public void CooldownSkill(int index)
+    {
+        if (Skill.Instance.time[index].IsUseSkill == true)
+        {
+            Skill.Instance.time[index].Currenttime += Skill.Instance.time[index].timeskill;
+            Skill.Instance.time[index].IsUseSkill = false;
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
     public static AudioPlayer instance;
-    public AudioSource AudioWalk;
+    public AudioSource Audio;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask layer;
     bool isground;
@@ -19,29 +19,7 @@ public class AudioPlayer : MonoBehaviour
     void Start()
     {
         instance = this;
-        AudioWalk = GetComponent<AudioSource>();
+        Audio = GetComponent<AudioSource>();
         groundCheck = GameObject.Find("CheckGround").transform;
-
     }
-    void Update()
-    {
-
-        Audiowalk();
-    }
-
-    public void Audiowalk()
-    {
-        isground = Physics2D.OverlapCircle(groundCheck.position, 0.2f, layer);
-        var move = Input.GetAxis("Horizontal");
-        if ((move == 1 || move == -1)&&isground && AnimationPlayer.instance.IsDead==false)
-        {
-            AudioWalk.enabled = true;
-        }
-        else
-        {
-            AudioWalk.enabled = false;
-        }
-    }
-   
-    
 }

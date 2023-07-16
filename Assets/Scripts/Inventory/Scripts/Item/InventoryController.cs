@@ -118,19 +118,7 @@ namespace Inventory
             }
             return sb.ToString();
         }
-      public void SortItem()
-        {
-            for (int i = 0; i < inventoryData.inventoryItems.Count - 1; i++)
-            {
-                for (int j = 0; j < inventoryData.inventoryItems.Count; j++)
-                {
-                    if (inventoryData.inventoryItems[i].quantity > inventoryData.inventoryItems[j].quantity)
-                    {
-                        inventoryData.SwapItems(i, j);
-                    }
-                }
-            }
-        }
+      
 
     }
 }

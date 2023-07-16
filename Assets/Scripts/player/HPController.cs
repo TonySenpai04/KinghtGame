@@ -34,6 +34,14 @@ public class HPController : MonoBehaviour
     }
     void Start()
     {
+        //int hp = PlayerPrefs.GetInt("Hp");
+        //int mp = PlayerPrefs.GetInt("Mana");
+        //int level = PlayerPrefs.GetInt("Level");
+        //int Currenthp = PlayerPrefs.GetInt("Curenthealth");
+        //int currenthpmp = PlayerPrefs.GetInt("CurrenyMana");
+        //int Currentexp = PlayerPrefs.GetInt("CurrentExp");
+        //int dmg = PlayerPrefs.GetInt("Dmg");
+        //PlayerData.Intance.characterData.loadData(hp, mp, level, dmg, Currenthp, currenthpmp, Currentexp);
         CanX2 = true;
         IsTonic = false;
         AddHp = 0;
@@ -112,6 +120,5 @@ public class HPController : MonoBehaviour
             CurrentBottle--;
         }
     }
-    
-    
+
 }

@@ -42,10 +42,12 @@ namespace Inventory.UI
             if (item.type ==Type.Gold)
             {
                 BuyGold(item, quantity);
+                PlayerData.Intance.characterData.Gold = (int)Gold_Diamond.instance.Gold;
             }
             else
             {
                 BuyDiamond(item, quantity);
+                PlayerData.Intance.characterData.Diamond = (int)Gold_Diamond.instance.Diamond;
             }
         }
         public IEnumerator SetEnabled()

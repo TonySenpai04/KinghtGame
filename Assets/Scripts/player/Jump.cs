@@ -15,7 +15,6 @@ public class Jump : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    //  [SerializeField] private Animator animator;
     private void Awake()
     {
         
@@ -51,10 +50,6 @@ public class Jump : MonoBehaviour
         Flip();
     }
 
-    //private void FixedUpdate()
-    //{
-    //    rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-    //}
 
     private bool IsGrounded()
     {

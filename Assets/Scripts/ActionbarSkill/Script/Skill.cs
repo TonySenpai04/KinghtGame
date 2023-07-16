@@ -58,13 +58,13 @@ public class Skill : MonoBehaviour
     public void CooldownSkill1(int index)
     {
        
-        if (time[index].Isuse1 == false)
+        if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.IsSkill1 = false;
             time[index].Cooldown();
 
         }
-        else if (time[index].Isuse1 == true)
+        else if (time[index].IsUseSkill == true)
         {
             AnimationPlayer.instance.IsSkill1 = true;
         }
@@ -72,13 +72,13 @@ public class Skill : MonoBehaviour
     public void CooldownSkill2(int index)
     {
 
-        if (time[index].Isuse1 == false)
+        if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.isSkill2 = false;
             time[index].Cooldown();
 
         }
-        else if (time[index].Isuse1 == true)
+        else if (time[index].IsUseSkill == true)
         {
             AnimationPlayer.instance.isSkill2 = true;
         }
@@ -86,13 +86,13 @@ public class Skill : MonoBehaviour
     public void CooldownSkill3(int index)
     {
 
-        if (time[index].Isuse1 == false)
+        if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.isSkill3 = false;
             time[index].Cooldown();
 
         }
-        else if (time[index].Isuse1 == true)
+        else if (time[index].IsUseSkill == true)
         {
             AnimationPlayer.instance.isSkill3 = true;
         }
@@ -100,13 +100,13 @@ public class Skill : MonoBehaviour
     public void CooldownSkill4(int index)
     {
 
-        if (time[index].Isuse1 == false)
+        if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.isSkill4 = false;
             time[index].Cooldown();
 
         }
-        else if (time[index].Isuse1 == true)
+        else if (time[index].IsUseSkill == true)
         {
             AnimationPlayer.instance.isSkill4 = true;
         }

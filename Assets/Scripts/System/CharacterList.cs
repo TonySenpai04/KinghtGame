@@ -24,7 +24,8 @@ public class CharacterList : MonoBehaviour
     private void Start()
     {
         string selectedCharacter = PlayerPrefs.GetString("SelectedCharacter");
-        for(int i=0; i<Character.Count; i++)
+        string Hp = PlayerPrefs.GetString("health");
+        for (int i=0; i<Character.Count; i++)
         {
             if (Character[i].name == selectedCharacter)
             {
