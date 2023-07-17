@@ -20,7 +20,6 @@ public class HPController : MonoBehaviour
     [SerializeField]public int AddHp;
     [SerializeField] private float HpRecuperate ;
     public int currentBottle;
-    protected int maxbottle = 99;
     [SerializeField] private InventorySO inventoryData;
     public int dodgeAttack;
     [SerializeField] public int OriginalHP;
@@ -34,20 +33,12 @@ public class HPController : MonoBehaviour
     }
     void Start()
     {
-        //int hp = PlayerPrefs.GetInt("Hp");
-        //int mp = PlayerPrefs.GetInt("Mana");
-        //int level = PlayerPrefs.GetInt("Level");
-        //int Currenthp = PlayerPrefs.GetInt("Curenthealth");
-        //int currenthpmp = PlayerPrefs.GetInt("CurrenyMana");
-        //int Currentexp = PlayerPrefs.GetInt("CurrentExp");
-        //int dmg = PlayerPrefs.GetInt("Dmg");
-        //PlayerData.Intance.characterData.loadData(hp, mp, level, dmg, Currenthp, currenthpmp, Currentexp);
         CanX2 = true;
         IsTonic = false;
         AddHp = 0;
         currenthp = PlayerData.Intance.characterData.CurrentHP;
         MaxHP = PlayerData.Intance.characterData.HpStart;
-        CurrentBottle = 10;
+        CurrentBottle = PlayerData.Intance.characterData.QuantityHpBotte;
         OriginalHP = MaxHP;
         dodgeAttack = PlayerData.Intance.characterData.DogdeAtk;
     }
@@ -118,6 +109,7 @@ public class HPController : MonoBehaviour
                 currenthp = MaxHP;
             }
             CurrentBottle--;
+            PlayerData.Intance.characterData.QuantityHpBotte = CurrentBottle;
         }
     }
 

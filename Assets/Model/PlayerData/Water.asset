@@ -23,7 +23,7 @@ MonoBehaviour:
   Level: 1
   currentXp: 0
   nextLevelXp: 100
-  MaxLevel: 0
+  MaxLevel: 30
   Gold: 2000
   Diamond: 100
   HpReset: 160
@@ -32,3 +32,5 @@ MonoBehaviour:
   Defense: 0
   Crit: 0
   DogdeAtk: 0
+  QuantityHpBotte: 10
+  QuantityMPBotte: 10

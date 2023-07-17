@@ -12,7 +12,6 @@ public class MPController : MonoBehaviour
     [SerializeField] private int CurrentMp;
     [SerializeField] protected float MPRecuperate;
     [SerializeField] private int currentBottle;
-    [SerializeField] private int maxbottle = 99;
     [SerializeField] public int OriginalMp;
     [SerializeField] public int addMp;
     public int Currentmp { get => CurrentMp; set => CurrentMp = value; }
@@ -32,7 +31,7 @@ public class MPController : MonoBehaviour
     void Start()
     {
         MaxMp = PlayerData.Intance.characterData.MpStart;
-        CurrentBottle = 10;
+        CurrentBottle = PlayerData.Intance.characterData.QuantityMPBotte;
         OriginalMp = MaxMp;
         CurrentMp = PlayerData.Intance.characterData.CurrentMP;
         CanX2 = true;
@@ -90,6 +89,7 @@ public class MPController : MonoBehaviour
                 CurrentMp = MaxMp;
             }
             CurrentBottle--;
+            PlayerData.Intance.characterData.QuantityMPBotte = CurrentBottle;
         }
     }
 }

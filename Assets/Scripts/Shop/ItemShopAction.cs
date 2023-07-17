@@ -73,15 +73,19 @@ namespace Inventory.UI
                     shop.TxtNotification.text = "successfully purchase " + item.Name;
                     shop.PanelNotification.SetActive(true);
                     StartCoroutine(SetEnabled());
+                    PlayerData.Intance.characterData.QuantityHpBotte = HPController.Instance.currentBottle;
                 }
                 else if (item.Name == "Bottle Mp")
                 {
-                    MPController.Instance.CurrentBottle += 1;
-                    Gold_Diamond.instance.Gold -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
-                    shop.TxtNotification.color = Color.black;
-                    shop.TxtNotification.text = "successfully purchase " + item.Name;
-                    shop.PanelNotification.SetActive(true);
-                    StartCoroutine(SetEnabled());
+                    
+                        MPController.Instance.CurrentBottle += 1;
+                        Gold_Diamond.instance.Gold -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
+                        shop.TxtNotification.color = Color.black;
+                        shop.TxtNotification.text = "successfully purchase " + item.Name;
+                        shop.PanelNotification.SetActive(true);
+                        StartCoroutine(SetEnabled());
+                        PlayerData.Intance.characterData.QuantityMPBotte = MPController.Instance.CurrentBottle;
+                    
                 }
                 else
                 {

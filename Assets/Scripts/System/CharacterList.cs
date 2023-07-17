@@ -20,11 +20,11 @@ public class CharacterList : MonoBehaviour
     private void Awake()
     {
         pannelRevival.SetActive(false);
+        
     }
     private void Start()
     {
         string selectedCharacter = PlayerPrefs.GetString("SelectedCharacter");
-        string Hp = PlayerPrefs.GetString("health");
         for (int i=0; i<Character.Count; i++)
         {
             if (Character[i].name == selectedCharacter)
@@ -41,9 +41,6 @@ public class CharacterList : MonoBehaviour
         PannelSkillDescription.GetComponent<SkillPage>().SetSkill();
         InventoryPage.SetInventoryData();
         InventoryPageUsingItem.SetInventoryData();
-
-
-
     }
 
 

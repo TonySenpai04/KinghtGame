@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Player", menuName = "player/Player")]
+[System.Serializable]
 public class ChacracterData : ScriptableObject
-{
+{  
+    
     [Header("HP")]
     public int HpStart;
     public int CurrentHP;
@@ -33,23 +36,28 @@ public class ChacracterData : ScriptableObject
     public int Crit;
     [Header("DogdeAtk")]
     public int DogdeAtk;
-    public void ResetData()
-    {
-        Level = 1;
-        currentXp = 0;
-        nextLevelXp = 100;
-        HpStart = HpReset;
-        MpStart = MpReset;
-        DmgStart = DmgReset;
-    }
-    public void loadData(int hp,int mp,int level,int dmg,int currenthp,int currentmp,int currentexp)
-    {
-        HpStart=hp;
-        MpStart=mp;
-        DmgStart= dmg;
-        Level = level;
-        currentXp = currentexp;
-        CurrentHP = currenthp;
-        CurrentMP = currentmp;
-    }
+    [Header("Bottle")]
+    public int QuantityHpBotte=10;
+    public int QuantityMPBotte=10;
+
+    public ChacracterData() { }
+    //public void ResetData()
+    //{
+    //    Level = 1;
+    //    currentXp = 0;
+    //    nextLevelXp = 100;
+    //    HpStart = HpReset;
+    //    MpStart = MpReset;
+    //    DmgStart = DmgReset;
+    //}
+    //public void loadData(int hp, int mp, int level, int dmg, int currenthp, int currentmp, int currentexp)
+    //{
+    //    HpStart = hp;
+    //    MpStart = mp;
+    //    DmgStart = dmg;
+    //    Level = level;
+    //    currentXp = currentexp;
+    //    CurrentHP = currenthp;
+    //    CurrentMP = currentmp;
+    //}
 }
