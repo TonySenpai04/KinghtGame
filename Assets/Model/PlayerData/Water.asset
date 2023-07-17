@@ -34,3 +34,5 @@ MonoBehaviour:
   DogdeAtk: 0
   QuantityHpBotte: 10
   QuantityMPBotte: 10
+  inventory: {fileID: 11400000, guid: 9d28ad4d053dbe444b3c31641ac3707e, type: 2}
+  inventoryUsingItem: {fileID: 11400000, guid: 70ba0d3ec964f2b4fbb0149fe81bfc5d, type: 2}

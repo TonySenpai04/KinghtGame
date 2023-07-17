@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ public class ChacracterData : ScriptableObject
     public int nextLevelXp;
     public int MaxLevel;
     [Header("Gold_Diamond")]
-    public int Gold;
+    public float Gold;
     public float Diamond;
     [Header("Reset")]
     public int HpReset;
@@ -39,25 +40,7 @@ public class ChacracterData : ScriptableObject
     [Header("Bottle")]
     public int QuantityHpBotte=10;
     public int QuantityMPBotte=10;
-
+  
     public ChacracterData() { }
-    //public void ResetData()
-    //{
-    //    Level = 1;
-    //    currentXp = 0;
-    //    nextLevelXp = 100;
-    //    HpStart = HpReset;
-    //    MpStart = MpReset;
-    //    DmgStart = DmgReset;
-    //}
-    //public void loadData(int hp, int mp, int level, int dmg, int currenthp, int currentmp, int currentexp)
-    //{
-    //    HpStart = hp;
-    //    MpStart = mp;
-    //    DmgStart = dmg;
-    //    Level = level;
-    //    currentXp = currentexp;
-    //    CurrentHP = currenthp;
-    //    CurrentMP = currentmp;
-    //}
+
 }

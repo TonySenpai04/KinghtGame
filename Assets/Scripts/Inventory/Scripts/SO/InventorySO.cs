@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 namespace Inventory.Model
 {
+    [System.Serializable]
     [CreateAssetMenu]
     public class InventorySO : ScriptableObject
     {
@@ -16,7 +17,10 @@ namespace Inventory.Model
         public int Size { get; private set; } = 10;
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
-        
+        public InventorySO()
+        {
+
+        }
         public void Initialize()
         {
             inventoryItems = new List<InventoryItem>();

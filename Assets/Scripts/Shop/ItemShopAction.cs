@@ -42,12 +42,12 @@ namespace Inventory.UI
             if (item.type ==Type.Gold)
             {
                 BuyGold(item, quantity);
-                PlayerData.Intance.characterData.Gold = (int)Gold_Diamond.instance.Gold;
+                
             }
             else
             {
                 BuyDiamond(item, quantity);
-                PlayerData.Intance.characterData.Diamond = (int)Gold_Diamond.instance.Diamond;
+               
             }
         }
         public IEnumerator SetEnabled()
@@ -64,6 +64,7 @@ namespace Inventory.UI
         {
             if (Gold_Diamond.instance.Gold >= shop.inventoryUiItems[UiItemShop.Instance.index].Price)
             {
+                PlayerData.Intance.characterData.Gold -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
                 if (item.Name == "Bottle Hp")
                 {
 
@@ -85,7 +86,6 @@ namespace Inventory.UI
                         shop.PanelNotification.SetActive(true);
                         StartCoroutine(SetEnabled());
                         PlayerData.Intance.characterData.QuantityMPBotte = MPController.Instance.CurrentBottle;
-                    
                 }
                 else
                 {
@@ -109,6 +109,7 @@ namespace Inventory.UI
         {
             if (Gold_Diamond.instance.Diamond >= shop.inventoryUiItems[UiItemShop.Instance.index].Price)
             {
+                PlayerData.Intance.characterData.Diamond -= shop.inventoryUiItems[UiItemShop.Instance.index].Price; 
                 InventoryController.Instance.inventoryData.AddItem(item, quantity);
                 Gold_Diamond.instance.Diamond -= shop.inventoryUiItems[UiItemShop.Instance.index].Price;
                 shop.TxtNotification.color = Color.black;

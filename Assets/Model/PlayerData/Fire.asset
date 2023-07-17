@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   HpStart: 250
-  CurrentHP: 250
+  CurrentHP: 200
   HpMax: 600000
   MaxDmg: 30000
   DmgStart: 12
@@ -24,7 +24,7 @@ MonoBehaviour:
   currentXp: 0
   nextLevelXp: 100
   MaxLevel: 30
-  Gold: 2000
+  Gold: 1800
   Diamond: 100
   HpReset: 250
   MpReset: 250
@@ -34,3 +34,5 @@ MonoBehaviour:
   DogdeAtk: 0
   QuantityHpBotte: 10
   QuantityMPBotte: 10
+  inventory: {fileID: 11400000, guid: 264036cc4375c00449a1bd1fb05e30cd, type: 2}
+  inventoryUsingItem: {fileID: 11400000, guid: c558d3ad688bf254ba089a8a53f30f5c, type: 2}

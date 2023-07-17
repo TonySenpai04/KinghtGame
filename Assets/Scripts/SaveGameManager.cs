@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Inventory.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,8 +17,10 @@ public class SaveGameManager : MonoBehaviour
     public ChacracterData gameData;
     public bool hasSaveData = false;
     public GameObject Player;
-   
-
+    public List<InventorySO> listInventory;
+    public InventorySO Inventory;
+    public List<InventorySO> listInventoryUsingItem;
+    public InventorySO InventoryUsingItem;
     private void Awake()
     {
         instance = this;
@@ -30,6 +33,8 @@ public class SaveGameManager : MonoBehaviour
             if (GameData[i].name == selectedCharacter)
             {
                 gameData = GameData[i];
+                Inventory = listInventory[i];
+                InventoryUsingItem = listInventoryUsingItem[i];
             }
 
         }
@@ -40,23 +45,12 @@ public class SaveGameManager : MonoBehaviour
     {
         if (gameData == GameData[0])
         {
-            string filePath = Path.Combine(Application.persistentDataPath, "gameData.json");
-            string jsonData = JsonUtility.ToJson(gameData);
-            File.WriteAllText(filePath, jsonData);
-            Debug.Log("Game data saved.");
-            PlayerPrefs.SetInt("HasSaveData", 1);
-            PlayerPrefs.Save();
-            hasSaveData = true;
+            SaveDataPlayer("gameData.json", "gameDataInventory.json", "gameDataInventoryUsingItem.json");
         }
         else
         {
-            string filePath = Path.Combine(Application.persistentDataPath, "gameData2.json");
-            string jsonData = JsonUtility.ToJson(gameData);
-            File.WriteAllText(filePath, jsonData);
-            Debug.Log("Game data saved.");
-            PlayerPrefs.SetInt("HasSaveData", 1);
-            PlayerPrefs.Save();
-            hasSaveData = true;
+            SaveDataPlayer("gameData2.json", "gameDataInventory2.json", "gameDataInventoryUsingItem2.json");
+
         }
     }
     public void LoadData()
@@ -67,29 +61,53 @@ public class SaveGameManager : MonoBehaviour
         }
         if (gameData == GameData[0])
         {
-            string filePath = Path.Combine(Application.persistentDataPath, "gameData.json");
-            SaveDataPlayer(filePath);
+            LoadDataPlayer("gameData.json", "gameDataInventory.json", "gameDataInventoryUsingItem.json");
         }
         else
         {
-            string filePath = Path.Combine(Application.persistentDataPath, "gameData2.json");
-            SaveDataPlayer(filePath);
+            LoadDataPlayer("gameData2.json", "gameDataInventory2.json", "gameDataInventoryUsingItem2.json");
         }
 
-        
     }
     private void OnApplicationQuit()
     {
         SaveData();
 
     }
-    public void SaveDataPlayer(string filePath)
+    public void SaveDataPlayer(string jsonDataName, string jsonDatainventoryName, string jsonDatainventoryUsingItemName)
     {
+        string filePath = Path.Combine(Application.persistentDataPath, jsonDataName);
+        string jsonData = JsonUtility.ToJson(gameData);
+        File.WriteAllText(filePath, jsonData);
+        //Data Inventory
+        string filePathInentory = Path.Combine(Application.persistentDataPath, jsonDatainventoryName);
+        string jsonDatainventory = JsonUtility.ToJson(Inventory);
+        File.WriteAllText(filePathInentory, jsonDatainventory);
+        //Data Inventory Using Item
+        string filePathInentoryUsingItem = Path.Combine(Application.persistentDataPath, jsonDatainventoryUsingItemName);
+        string jsonDatainventoryUsingItem = JsonUtility.ToJson(InventoryUsingItem);
+        File.WriteAllText(filePathInentoryUsingItem, jsonDatainventoryUsingItem);
+        Debug.Log("Game data saved.");
+        PlayerPrefs.SetInt("HasSaveData", 1);
+        PlayerPrefs.Save();
+        hasSaveData = true;
+    }
+    public void LoadDataPlayer(string jsonDataName, string jsonDatainventoryName, string jsonDatainventoryUsingItemName)
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, jsonDataName);
+        string filePathInentory = Path.Combine(Application.persistentDataPath, jsonDatainventoryName);
+        string filePathInentoryUsingItem = Path.Combine(Application.persistentDataPath, jsonDatainventoryUsingItemName);
         if (File.Exists(filePath) && hasSaveData)
         {
             string jsonData = File.ReadAllText(filePath);
             JsonUtility.FromJsonOverwrite(jsonData, gameData);
+            string jsonDatainventory = File.ReadAllText(filePathInentory);
+            JsonUtility.FromJsonOverwrite(jsonDatainventory, Inventory);
+            string jsonDatainventoryUsingItem = File.ReadAllText(filePathInentoryUsingItem);
+            JsonUtility.FromJsonOverwrite(jsonDatainventoryUsingItem, InventoryUsingItem);
             Debug.Log(filePath);
+            Debug.Log(filePathInentory);
+            Debug.Log(filePathInentoryUsingItem);
             Debug.Log("Game data loaded.");
         }
         else
