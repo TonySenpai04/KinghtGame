@@ -11,7 +11,7 @@ namespace Inventory.Model
         public static PickUpSystem Instance;    
         [SerializeField] private GameObject PanelPickUp;
         [SerializeField]
-        private InventorySO inventoryData;
+   
         public TextMeshProUGUI TxtPickUp;
         public int GoldDrop;
         public int DiamondDrop;
@@ -45,7 +45,7 @@ namespace Inventory.Model
                 {
                     item.Quantity = 1;
                     ShowItemDrop(Color.black, "You picked up " + item.Quantity + " " + item.InventoryItem.Name);
-                    int reminder = inventoryData.AddItem(item.InventoryItem, item.Quantity); 
+                    int reminder =SaveGameManager.instance.Inventory.AddItem(item.InventoryItem, item.Quantity); 
                     if (reminder == 0)
                         item.DestroyItem();
                     else
