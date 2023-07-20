@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour
     }
     public void Skill1()
     {
-        isSkill1 = Input.GetKey(KeyCode.Alpha1);
+        isSkill1 = Input.GetKey(KeyCode.Alpha1)||ActionbarPage.Instance.IsSkill1Click;
     }
     public void Jump()
     {
@@ -48,14 +48,14 @@ public class InputManager : MonoBehaviour
     }
     public void Skill2()
     {
-        isSkill2 = Input.GetKey(KeyCode.Alpha2);
+        isSkill2 = Input.GetKey(KeyCode.Alpha2) || ActionbarPage.Instance.IsSkill2Click;
     }
     public void Skill3()
     {
-        isSkill3 = Input.GetKey(KeyCode.Alpha3);
+        isSkill3 = Input.GetKey(KeyCode.Alpha3) || ActionbarPage.Instance.IsSkill3Click;
     }
     public void Skill4()
     {
-        isSkill4 = Input.GetKey(KeyCode.Alpha4);
+        isSkill4 = Input.GetKey(KeyCode.Alpha4) || ActionbarPage.Instance.IsSkill4Click;
     }
 }

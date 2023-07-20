@@ -169,7 +169,6 @@ namespace Inventory.UI
         {
             gameObject.SetActive(true);
             ResetSelection();
-            AnimationPlayer.instance.IsSkill1 = false;
             foreach (var item in InventorySO.GetCurrentInventoryState())
             {
                 UpdateData(item.Key,

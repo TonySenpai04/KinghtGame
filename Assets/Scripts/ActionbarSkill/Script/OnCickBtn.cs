@@ -8,9 +8,17 @@ using UnityEngine.UI;
 public class OnCickBtn : MonoBehaviour
 {
     public AudioSource audioSource;
+    public AudioClip ClickClip;
     public void OnButtonClick()
     {
-        audioSource.PlayOneShot(AudioPlayer.instance.ClickBtnSound); 
+        if (ClickClip == null)
+        {
+            audioSource.PlayOneShot(AudioPlayer.instance.ClickBtnSound);
+        }
+        else
+        {
+            audioSource.PlayOneShot(ClickClip);
+        }
     }
 
 }

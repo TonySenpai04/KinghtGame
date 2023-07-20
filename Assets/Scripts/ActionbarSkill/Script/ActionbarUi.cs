@@ -7,18 +7,26 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ActionbarUi : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
-
 {
         public Image Image;
+        public Image borderImage;
         public SkillS0 Skill;
         public event Action<ActionbarUi> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
         public bool empty = true;
         
-        public void SetData()
-        {
-          Image.sprite = Skill.Icon;
-        }
+    public void SetData()
+    {
+        Image.sprite = Skill.Icon;
+    }
+    public virtual void Select()
+    {
+        borderImage.enabled = true;
 
+    }
+    public void Deselect()
+    {
+        borderImage.enabled = false;
+    }
     public void OnPointerClick(PointerEventData pointerdata)
     {
 

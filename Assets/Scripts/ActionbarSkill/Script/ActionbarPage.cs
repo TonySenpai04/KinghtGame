@@ -1,27 +1,29 @@
-using Inventory.Model;
-using Inventory.UI;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ActionbarPage : Page
 {
+    public static ActionbarPage Instance ;
     public List<ActionbarUi> actionList=new List<ActionbarUi>();
     public Transform Player;
     public event Action<int> OnDescriptionRequested,
          OnItemActionRequested,
          OnStartDragging;
     public event Action<int, int> OnSwapItems;
+    public bool IsSkill1Click;
+    public bool IsSkill2Click;
+    public bool IsSkill3Click;
+    public bool IsSkill4Click;
     private void Awake()
     {
+        Instance=this;
         AddSkill();
         SetSkill();
     }
     private void Start()
     {
-       
+        DeselectAllItems(); 
         foreach (GameObject character in Skill.Instance. skill)
         {
             character.SetActive(false);
@@ -67,6 +69,16 @@ public class ActionbarPage : Page
         }
 
     }
+    internal void UpdateDescription(int itemIndex)
+    {
+        DeselectAllItems();
+        actionList[itemIndex].Select();
+    }
+    public void ResetSelection()
+    {
+        DeselectAllItems();
+
+    }
     private void HandleShowItemActions(ActionbarUi inventoryItemUI)
     {
         int index = actionList.IndexOf(inventoryItemUI);
@@ -75,6 +87,13 @@ public class ActionbarPage : Page
             return;
         }
         OnItemActionRequested?.Invoke(index);
+    }
+    public void DeselectAllItems()
+    {
+        foreach (ActionbarUi item in actionList)
+        {
+            item.Deselect();
+        }
     }
 
     private void HandleEndDrag(ActionbarUi inventoryItemUI)
@@ -101,8 +120,26 @@ public class ActionbarPage : Page
     public void HandleItemSelection(ActionbarUi inventoryItemUI)
     {
         int index = actionList.IndexOf(inventoryItemUI);
+        UpdateDescription(index);
+        switch (index)
+        {
+            case 0:
+                IsSkill1Click = true;
+                break;
+            case 1:
+                IsSkill2Click = true;
 
-  
+                break;
+            case 2:
+                IsSkill3Click = true;
+                break;
+            case 3:
+                IsSkill4Click = true;
+                break;
+            default:
+                break;
+        }
+   
         if (index == -1)
             return;
         OnDescriptionRequested?.Invoke(index);

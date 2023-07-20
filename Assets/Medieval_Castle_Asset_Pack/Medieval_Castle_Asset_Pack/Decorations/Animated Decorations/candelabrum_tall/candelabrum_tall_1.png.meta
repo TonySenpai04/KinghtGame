@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      candelabrum_tall_1_0: 3652134835658151318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

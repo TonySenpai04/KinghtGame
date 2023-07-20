@@ -61,34 +61,38 @@ public class Ability : MonoBehaviour
     }
     private void Ability1Input()
     {
-        if (InputManager.Instance.IsSkill1 && !isAbility1Cooldown)
+        if ((InputManager.Instance.IsSkill1) && !isAbility1Cooldown)
         {
             isAbility1Cooldown = true;
             currentAbility1Cooldown = ability1Cooldown;
+            ActionbarPage.Instance.UpdateDescription(0);
         }
     }
     private void Ability2Input()
     {
-        if (InputManager.Instance.IsSkill2 && !isAbility2Cooldown)
+        if ((InputManager.Instance.IsSkill2) && !isAbility2Cooldown)
         {
             isAbility2Cooldown = true;
             currentAbility2Cooldown = ability2Cooldown;
+            ActionbarPage.Instance.UpdateDescription(1);
         }
     }
     private void Ability3Input()
     {
-        if (InputManager.Instance.IsSkill3 && !isAbility3Cooldown)
+        if ((InputManager.Instance.IsSkill3 || ActionbarPage.Instance.IsSkill3Click) && !isAbility3Cooldown)
         {
             isAbility3Cooldown = true;
             currentAbility3Cooldown = ability3Cooldown;
+            ActionbarPage.Instance.UpdateDescription(2);
         }
     }
     private void Ability4Input()
     {
-        if (InputManager.Instance.IsSkill4 && !isAbility4Cooldown)
+        if ((InputManager.Instance.IsSkill4 || ActionbarPage.Instance.IsSkill4Click) && !isAbility4Cooldown)
         {
             isAbility4Cooldown = true;
             currentAbility4Cooldown = ability4Cooldown;
+            ActionbarPage.Instance.UpdateDescription(3);
         }
     }
     private void AbilityCooldown(ref float currentCooldown, float maxCooldown, ref bool isCooldown, Image skillImage, TextMeshProUGUI skillText)

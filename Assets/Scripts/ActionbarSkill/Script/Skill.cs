@@ -61,6 +61,7 @@ public class Skill : MonoBehaviour
         if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.IsSkill1 = false;
+            ActionbarPage.Instance.IsSkill1Click=false;
             time[index].Cooldown();
 
         }
@@ -75,6 +76,7 @@ public class Skill : MonoBehaviour
         if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.isSkill2 = false;
+            ActionbarPage.Instance.IsSkill2Click = false;
             time[index].Cooldown();
 
         }
@@ -89,6 +91,7 @@ public class Skill : MonoBehaviour
         if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.isSkill3 = false;
+            ActionbarPage.Instance.IsSkill3Click = false;
             time[index].Cooldown();
 
         }
@@ -103,6 +106,7 @@ public class Skill : MonoBehaviour
         if (time[index].IsUseSkill == false)
         {
             AnimationPlayer.instance.isSkill4 = false;
+            ActionbarPage.Instance.IsSkill4Click = false;
             time[index].Cooldown();
 
         }

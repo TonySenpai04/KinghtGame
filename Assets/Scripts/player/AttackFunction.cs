@@ -127,15 +127,15 @@ public class AttackFunction : MonoBehaviour
     }
     public void Attack(int Dmg,int Mp)
     {
-            Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
-            foreach (Collider2D var in enemy)
-            {
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(pointatk.transform.position, radius, mask);
+        foreach (Collider2D var in enemy)
+        {
             if (var != null)
             {
                 var.GetComponent<HpEnemy>().TakeDamageEnemy(Dmg);
                 MPController.Instance.MpAttack(Mp);
             }
-          }
+        }
     }
     
 }

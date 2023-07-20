@@ -67,7 +67,7 @@ public class AnimationPlayer : OldAnimation
     {
         isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         var move = InputManager.Instance.Move;
-        if (isground /*&& (IsSkill1==false || isSkill2==false||isSkill3==false||isSkill4==false)*/)
+        if (isground )
         {
             if (move !=0)
             {
@@ -136,8 +136,9 @@ public class AnimationPlayer : OldAnimation
         
     }
     public override void Skill2()
-    {  
-        if (InputManager.Instance.IsSkill2 && IsAtk(1) && isSkill2==true)
+    {
+        var Skill2 = InputManager.Instance.IsSkill2;
+        if (Skill2 && IsAtk(1) && isSkill2)
         {
             audioSource.PlayOneShot(AudioPlayer.instance.AtkClip);
             ChangeAnimationState(Player_Skill2);
@@ -147,7 +148,9 @@ public class AnimationPlayer : OldAnimation
     }
     public override void Skill3()
     {
-        if (InputManager.Instance.IsSkill3 && IsAtk(2) && isSkill3 == true)
+
+        var Skill3 = InputManager.Instance.IsSkill3;
+        if (Skill3  && IsAtk(2) && isSkill3 )
         {
             audioSource.PlayOneShot(AudioPlayer.instance.AtkClip);
             ChangeAnimationState(Player_Skill3);
@@ -156,7 +159,8 @@ public class AnimationPlayer : OldAnimation
     }
     public override void Skill4()
     {
-        if (InputManager.Instance.IsSkill4 && IsAtk(3) && isSkill4 == true)
+        var Skill4 = InputManager.Instance.IsSkill4;
+        if (Skill4 && IsAtk(3) && isSkill4 == true)
         {
             audioSource.PlayOneShot(AudioPlayer.instance.AtkClip);
             ChangeAnimationState(Player_Skill4);
