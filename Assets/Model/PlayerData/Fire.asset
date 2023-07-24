@@ -12,19 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f5174c8fba6dd4e8b17b70d5b43077, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
-  HpStart: 250
-  CurrentHP: 200
+  HpStart: 341
+  OriginalHp: 341
+  CurrentHP: 235
   HpMax: 600000
-  MaxDmg: 30000
-  DmgStart: 12
-  MpStart: 250
-  CurrentMP: 250
+  HpAdd: 0
+  MaxDmg: 16
+  OriginalDmg: 16
+  DmgStart: 116
+  DmgAdd: 100
+  MpStart: 351
+  OriginalMp: 341
+  CurrentMP: 247
   MaxMp: 600000
-  Level: 1
-  currentXp: 0
-  nextLevelXp: 100
+  MpAdd: 0
+  Level: 2
+  currentXp: 7
+  nextLevelXp: 223
   MaxLevel: 30
-  Gold: 1800
+  Gold: 2707
   Diamond: 100
   HpReset: 250
   MpReset: 250
@@ -34,5 +40,3 @@ MonoBehaviour:
   DogdeAtk: 0
   QuantityHpBotte: 10
   QuantityMPBotte: 10
-  inventory: {fileID: 11400000, guid: 264036cc4375c00449a1bd1fb05e30cd, type: 2}
-  inventoryUsingItem: {fileID: 11400000, guid: c558d3ad688bf254ba089a8a53f30f5c, type: 2}

@@ -30,6 +30,7 @@ public class Jump : MonoBehaviour
         if (IsGrounded() && !Input.GetButton("Jump") )
         {
             doubleJump = false;
+            AnimationPlayer.instance.IsDown = true;
         }
 
         if (Input.GetButtonDown("Jump") || Input.GetKey(KeyCode.UpArrow))
@@ -39,12 +40,14 @@ public class Jump : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 
                 doubleJump = !doubleJump;
+                AnimationPlayer.instance.IsDown = false;
             }
         }
 
         if ((Input.GetButtonUp("Jump")  && rb.velocity.y > 0f) || (Input.GetKey(KeyCode.UpArrow) && rb.velocity.y > 0f))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            AnimationPlayer.instance.IsDown = false;
         }
 
         Flip();

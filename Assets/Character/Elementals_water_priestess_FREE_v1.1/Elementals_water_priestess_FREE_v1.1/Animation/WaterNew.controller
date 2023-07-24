@@ -17,13 +17,13 @@ AnimatorStateMachine:
     m_Position: {x: 690, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1569912682242356451}
-    m_Position: {x: 430, y: 60, z: 0}
+    m_Position: {x: 420, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5988333446885630113}
-    m_Position: {x: 180, y: -150, z: 0}
+    m_Position: {x: 190, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3467580884603515936}
-    m_Position: {x: 420, y: -20, z: 0}
+    m_Position: {x: 420, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4935149265324516012}
     m_Position: {x: 690, y: -90, z: 0}
@@ -33,14 +33,17 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -1526350057848622527}
     m_Position: {x: 700, y: 60, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -2756183834228313478}
+    m_Position: {x: 420, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 230, y: -40, z: 0}
+  m_AnyStatePosition: {x: 200, y: 0, z: 0}
   m_EntryPosition: {x: 440, y: -290, z: 0}
-  m_ExitPosition: {x: 230, y: 60, z: 0}
+  m_ExitPosition: {x: 200, y: 60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -2476569158157489350}
 --- !u!1101 &-6266565980336329576
@@ -135,6 +138,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: bae32d65f25486e458dbb355f8216468, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-2756183834228313478
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Jumpdown
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: a1bbb30aae9174241b29c3487234e92c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

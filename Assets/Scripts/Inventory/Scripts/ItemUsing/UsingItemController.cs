@@ -54,7 +54,7 @@ namespace Inventory
         private void PrepareUI()
         {
             inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            inventoryUI.IntializeInventory(inventoryData.Size);
+            inventoryUI.IntializeInventory();
             inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             inventoryUI.OnSwapItems += HandleSwapItems;
             inventoryUI.OnStartDragging += HandleDragging;

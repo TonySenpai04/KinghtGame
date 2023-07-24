@@ -16,6 +16,7 @@ public class AudioPlayer : MonoBehaviour
     public AudioClip levelUpSound;
     public AudioClip ActionSound;
     public AudioClip ClickBtnSound;
+    public AudioClip JumpDown;
     void Start()
     {
         instance = this;

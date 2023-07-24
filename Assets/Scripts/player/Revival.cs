@@ -35,8 +35,6 @@ public class Revival : MonoBehaviour
         MPController.Instance.Currentmp += MPController.Instance.Maxmp;
         PanleRevival.gameObject.SetActive(false);
         AnimationPlayer.instance.Animator.SetBool("Idle", true);
-        AnimationPlayer.instance.IsDead = false;
-        AnimationPlayer.instance.Count = 0;
         Gold_Diamond.instance.Diamond -= 1;
         SkillUi.SetActive(true);
     }
@@ -47,8 +45,6 @@ public class Revival : MonoBehaviour
         MPController.Instance.Currentmp += MPController.Instance.Maxmp;
         PanleRevival.gameObject.SetActive(false);
         AnimationPlayer.instance.Animator.SetBool("Idle", true);
-        AnimationPlayer.instance.IsDead = false;
-        AnimationPlayer.instance.Count = 0;
         SkillUi.SetActive(true);
     }
 }

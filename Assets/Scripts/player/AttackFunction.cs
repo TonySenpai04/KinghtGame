@@ -20,21 +20,20 @@ public class AttackFunction : MonoBehaviour
     public int damageAdd;
     public bool IsTonic;
     public bool CanX2;
+    public int BloodAbsorb = 0;
+    public int ManaAbsorb = 0;
+
     void Start()
     {
         Instance = this;
         dmg = PlayerData.Intance.characterData.DmgStart;
         Crit = PlayerData.Intance.characterData.Crit;
-        OriginalDmg = dmg;
+        OriginalDmg = PlayerData.Intance.characterData.OriginalDmg;
         CanX2 = true;
         IsTonic = false;
+        damageAdd = PlayerData.Intance.characterData.DmgAdd;
     }
    
-    public void UpdateDamage()
-    {
-        dmg += damageAdd;
-    }
-
     public void ItemDmg()
     {
         if (UiDamagePlayer.Instance.time > 0)
@@ -59,7 +58,9 @@ public class AttackFunction : MonoBehaviour
         {
             HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.red;
             Attack((int)(Dmg * skillS0[0].DmgAdd), skillS0[0].ManaConsumption);
-            
+            HPController.Instance.currenthp += Dmg * skillS0[0].DmgAdd * BloodAbsorb;
+         
+
         }
     }
     protected void OnDrawGizmos()
@@ -69,9 +70,10 @@ public class AttackFunction : MonoBehaviour
     public void IncreaseAtk(int level)
     {
         OriginalDmg += Mathf.RoundToInt((OriginalDmg * 0.037f) * ((100 - level) * 0.1f));
+        PlayerData.Intance.characterData.OriginalDmg = OriginalDmg;
         if (OriginalDmg > PlayerData.Intance.characterData.MaxDmg)
         {
-            OriginalDmg = PlayerData.Intance.characterData.MaxDmg;
+             PlayerData.Intance.characterData.MaxDmg= OriginalDmg;
         }
         dmg = OriginalDmg + damageAdd;
         PlayerData.Intance.characterData.DmgStart = dmg;

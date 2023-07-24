@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: FireInventorySO
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 0a328e6b77093824486f9565821a3d5c, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 0a328e6b77093824486f9565821a3d5c, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 7ed503698ace5cd45801a9558701dffa, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 7ed503698ace5cd45801a9558701dffa, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 397453b89a4a27c4aa0066381a6ae3a8, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 2038cbd87c7c1654688e3f8dea449bc0, type: 2}
     itemState: []
   - quantity: 0
     item: {fileID: 0}

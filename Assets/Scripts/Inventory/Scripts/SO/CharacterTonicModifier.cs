@@ -8,12 +8,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CharacterBloodTonic : CharacterStatModifierSO
 {
-    public TypeBuff TypeBuff;
+    public BuffType TypeBuff;
     public override void AffectCharacter(GameObject character, float val)
     {
         switch (TypeBuff)
         {
-            case TypeBuff.HP:
+            case BuffType.HP:
                 if (UiHpPlayer.Instance.IsUse == false)
                 {
                     UiItemTonicPage.Instance.itemTonic.SetData(UiHpPlayer.Instance.IconItem);
@@ -25,7 +25,7 @@ public class CharacterBloodTonic : CharacterStatModifierSO
                 UiHpPlayer.Instance.time += val;
                 HPController.Instance.ItemHP();
                 break;
-            case TypeBuff.MP:
+            case BuffType.MP:
                 if (UiMpPlayer.Instance.IsUse == false)
                 {
                     UiItemTonicPage.Instance.itemTonic.SetData(UiMpPlayer.Instance.IconItem);
@@ -38,7 +38,7 @@ public class CharacterBloodTonic : CharacterStatModifierSO
                 UiMpPlayer.Instance.time += val;
                 MPController.Instance.ItemMP();
                 break;
-            case TypeBuff.Dmg:
+            case BuffType.Dmg:
                 if (UiDamagePlayer.Instance.IsUse == false)
                 {
                     UiItemTonicPage.Instance.itemTonic.SetData(UiDamagePlayer.Instance.IconItem);
@@ -51,7 +51,7 @@ public class CharacterBloodTonic : CharacterStatModifierSO
                 UiDamagePlayer.Instance.time += val;
                 AttackFunction.Instance.ItemDmg();
                 break;
-            case TypeBuff.Def:
+            case BuffType.Def:
                 if (UIDefense.Instance.IsUse == false)
                 {
                     UiItemTonicPage.Instance.itemTonic.SetData(UIDefense.Instance.IconItem);
@@ -64,7 +64,7 @@ public class CharacterBloodTonic : CharacterStatModifierSO
                 UIDefense.Instance.time += val;
                 DefencePlayer.Instance.ItemDef();
                 break;
-          case TypeBuff.Exp:
+          case BuffType.Exp:
                 if (LevelUI.Instance.IsUse == false)
                 {
                     UiItemTonicPage.Instance.itemTonic.SetData(LevelUI.Instance.IconItem);
@@ -79,38 +79,9 @@ public class CharacterBloodTonic : CharacterStatModifierSO
                 break;
         }
 
-        //if (TypeBuff == TypeBuff.HP)
-        //{
-        //    if (UiHpPlayer.Instance.IsUse == false)
-        //    {
-        //        UiItemTonicPage.Instance.itemTonic.SetData(UiHpPlayer.Instance.IconItem);
-        //        UiItemTonic Item = Instantiate(UiItemTonicPage.Instance.itemTonic, Vector3.zero, Quaternion.identity, UiItemTonicPage.Instance.transform);
-        //        UiHpPlayer.Instance.TextTime = Item.Txt;
-        //        UiHpPlayer.Instance.itemTonic = Item;
-        //        UiItemTonicPage.Instance.inventoryUiItems.Add(Item);
-        //    }
-        //    UiHpPlayer.Instance.time += val;
-        //    HPController.instance.ItemHP();
-        //}
-        //else if(TypeBuff == TypeBuff.MP)
-        //{
-        //    if (UiMpPlayer.Instance.IsUse == false)
-        //    {
-        //        UiItemTonicPage.Instance.itemTonic.SetData(UiMpPlayer.Instance.IconItem);
-        //        UiItemTonic Item = Instantiate(UiItemTonicPage.Instance.itemTonic, Vector3.zero, Quaternion.identity, UiItemTonicPage.Instance.transform);
-        //        UiMpPlayer.Instance.TextTime = Item.Txt;
-        //        UiMpPlayer.Instance.itemTonic = Item;
-        //        UiItemTonicPage.Instance.inventoryUiItems.Add(UiMpPlayer.Instance.itemTonic);
-               
-        //    }
-        //    UiMpPlayer.Instance.time += val;
-        //    MPController.Instance.ItemMP();
-        //}else if ()
-        //{
-
         }
         
     }
      
 
-public enum TypeBuff { HP,MP,Dmg,Def,Exp}
+public enum BuffType { HP,MP,Dmg,Def,Exp}

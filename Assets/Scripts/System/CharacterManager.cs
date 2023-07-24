@@ -35,6 +35,9 @@ public class CharacterData
     public int Crit;
     [Header("DogdeAtk")]
     public int DogdeAtk;
+    [Header("Position")]
+    public int XPos;
+    public int YPos;
 }
 
 public class CharacterManager : MonoBehaviour

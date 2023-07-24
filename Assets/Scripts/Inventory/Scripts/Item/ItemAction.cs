@@ -151,8 +151,19 @@ namespace Inventory.UI
                             SetInddexItem(inventoryItem, i, 5);
                             return;
                         }
-                        
+                    case 6:
 
+                        if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[6].item == null)
+                        {
+                            SetInddexItem(inventoryItem, i, 6);
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItem(inventoryItem, itemAction, 6);
+                            SetInddexItem(inventoryItem, i, 6);
+                            return;
+                        }
 
                 }
             }

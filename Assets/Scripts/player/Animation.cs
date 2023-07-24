@@ -16,6 +16,7 @@ public class AnimationPlayer : OldAnimation
     public string Player_Skill3 = "Skill3";
     public string Player_Skill4 = "Skill4";
     public string Player_Death = "Death";
+    public bool IsDown;
     void Start()
     {
         Animator = GetComponent<Animator>();
@@ -33,11 +34,11 @@ public class AnimationPlayer : OldAnimation
     }
     void Update()
     {
-
+        isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         if (IsDead == false)
         {
             Isfactright();
-            Walk();
+            Walk(); 
 
         }
 
@@ -52,6 +53,7 @@ public class AnimationPlayer : OldAnimation
             Skill2();
             Skill3();
             Skill4();
+            JumpDown();
         }
 
     }
@@ -63,9 +65,24 @@ public class AnimationPlayer : OldAnimation
             animator.Play(State);
             CurrentState = State;
     }
+    public void JumpDown()
+    {
+        if (isground == false && IsDown)
+        {
+            if (CountPlayAudioJumpDown <= 1)
+            {
+                ChangeAnimationState("Jumpdown");
+                audioSource.PlayOneShot(AudioPlayer.instance.JumpDown);
+                CountPlayAudioJumpDown++;
+            }
+        }
+        else 
+        {
+            CountPlayAudioJumpDown =0;
+        }
+    }
     protected override void Walk()
     {
-        isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         var move = InputManager.Instance.Move;
         if (isground )
         {
@@ -79,6 +96,10 @@ public class AnimationPlayer : OldAnimation
                 ChangeAnimationState(Player_idle);
                 AudioPlayer.instance.Audio.enabled = false;
             }
+        }
+        else
+        {
+            AudioPlayer.instance.Audio.enabled = false;
         }
         if (move > 0)
             isright = true;
@@ -95,7 +116,6 @@ public class AnimationPlayer : OldAnimation
     }
     protected override void Jump()
     {
-        isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
         if (InputManager.Instance.IsJump && isground)
         {
             audioSource.PlayOneShot(AudioPlayer.instance.jumpClip);
@@ -124,16 +144,21 @@ public class AnimationPlayer : OldAnimation
     {
         if (HPController.Instance.currenthp == 0)
         {
-            ChangeAnimationState(Player_Death);
-            if (Count <= 1)
+            ChangeAnimationState(Player_Death); 
+            if (CountPlayAudio <= 1)
             {
                 audioSource.PlayOneShot(AudioPlayer.instance.deathClip);
-                Count++;
+                CountPlayAudio++;
             }
             IsDead = true;
-            Animator.SetBool("Idle", false);
+            return;
         }
-        
+        else
+        {
+            IsDead = false;
+            CountPlayAudio = 0;
+        }
+
     }
     public override void Skill2()
     {

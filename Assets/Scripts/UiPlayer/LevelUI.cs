@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class LevelUI : MonoBehaviour
@@ -23,6 +24,7 @@ public class LevelUI : MonoBehaviour
         XpText.text = LevelSystem.Instance.currentXp + "/" + LevelSystem.Instance.nextLevelXp;
         UPdateUI();
     }
+    
     private void Update()
     {
         if (time > 0 && TextTime != null)
@@ -31,6 +33,7 @@ public class LevelUI : MonoBehaviour
             time -= 1 * Time.deltaTime;
             UpdateUiItemTonic();
         }
+        UPdateUI();
     }
     public void UPdateUI()
     {

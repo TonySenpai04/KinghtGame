@@ -59,7 +59,7 @@ namespace Inventory.UI
             InventoryItem inventoryItem = UsingItemController.Instance.inventoryData.GetItemAt(InventoryItemUsing.Instance.index);
             IItemAction itemAction = inventoryItem.item as IItemAction;
             Audio.PlayOneShot(AudioPlayer.instance.ActionSound);
-            itemAction.PerformActionRemove(gameObject, null);
+            itemAction.PerformActionRemove(gameObject, inventoryItem.itemState);
             InventoryItemUsing.Instance.inventoryItem = InventoryItemUsing.Instance.GetItemAt();
             UsingItemController.Instance.RemoveItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity);
             InventoryController.Instance.inventoryData.AddItem(InventoryItemUsing.Instance.inventoryItem);

@@ -14,7 +14,8 @@ public class OldAnimation : MonoBehaviour
     [SerializeField] protected bool isground;
     [SerializeField] protected bool isSkill1;
     [SerializeField] protected bool isDead;
-    [SerializeField] public int Count = 0;
+    [SerializeField] public int CountPlayAudio = 0;
+    public int CountPlayAudioJumpDown = 0;
     public bool isSkill2;
     public bool isSkill3;
     public bool isSkill4;
@@ -35,28 +36,6 @@ public class OldAnimation : MonoBehaviour
         isright = true;
         instance = this;
         isDead = false;
-    }
-    void Update()
-    {
-        isground = Physics2D.OverlapCircle(groundcheck.position, 0.2f, layer);
-        if (IsDead == false)
-        {
-            Isfactright();
-            Walk();
-        }
-        Isdeadth();
-    }
-    private void FixedUpdate()
-    {
-        if (IsDead == false)
-        {
-            Jump();
-            Skill1();
-            Skill2();
-            Skill3();
-            Skill4();
-        }
-
     }
     protected virtual  void Walk()
     {
@@ -113,10 +92,10 @@ public class OldAnimation : MonoBehaviour
         if (HPController.Instance.currenthp == 0)
         {
             Animator.SetTrigger("isdeath");
-            if (Count <= 1)
+            if (CountPlayAudio <= 1)
             {
                 audioSource.PlayOneShot(AudioPlayer.instance.deathClip);
-                Count++;
+                CountPlayAudio++;
             }
             IsDead = true;
             Animator.SetBool("Idle", false);

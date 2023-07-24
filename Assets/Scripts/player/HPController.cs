@@ -39,13 +39,9 @@ public class HPController : MonoBehaviour
         currenthp = PlayerData.Intance.characterData.CurrentHP;
         MaxHP = PlayerData.Intance.characterData.HpStart;
         CurrentBottle = PlayerData.Intance.characterData.QuantityHpBotte;
-        OriginalHP = MaxHP;
+        OriginalHP = PlayerData.Intance.characterData.OriginalHp;
         dodgeAttack = PlayerData.Intance.characterData.DogdeAtk;
-    }
-    public void UpdateHP()
-    {
-         MaxHP+=AddHp;
-       
+        AddHp = PlayerData.Intance.characterData.HpAdd;
     }
     public  void TakeDamage(int Dmg)
     {
@@ -83,10 +79,11 @@ public class HPController : MonoBehaviour
     public void IncreaseHealth(int level)
     {
         OriginalHP += Mathf.RoundToInt((OriginalHP  * 0.037f) * ((100 - level) * 0.1f));
-        if (LevelSystem.Instance.level == 30)
+        PlayerData.Intance.characterData.OriginalHp = OriginalHP;
+        if (OriginalHP > PlayerData.Intance.characterData.HpMax)
         {
+
             OriginalHP = PlayerData.Intance.characterData.HpMax;
-            MaxHP = OriginalHP + AddHp;
         }
         MaxHP = OriginalHP + AddHp;
         Currenthp =MaxHP;

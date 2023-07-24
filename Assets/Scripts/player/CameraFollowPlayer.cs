@@ -13,7 +13,6 @@ public class CameraFollowPlayer : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
     void Update()     
     {
         player = GameObject.Find("player").transform;
@@ -34,8 +33,6 @@ public class CameraFollowPlayer : MonoBehaviour
                 Vector3 pos = transform.position;
                 pos.y = player.position.y;
                 transform.position = pos;
-            
-           
         }
 
     }

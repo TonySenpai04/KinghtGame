@@ -32,11 +32,11 @@ public class MPController : MonoBehaviour
     {
         MaxMp = PlayerData.Intance.characterData.MpStart;
         CurrentBottle = PlayerData.Intance.characterData.QuantityMPBotte;
-        OriginalMp = MaxMp;
+        OriginalMp = PlayerData.Intance.characterData.OriginalMp;
         CurrentMp = PlayerData.Intance.characterData.CurrentMP;
         CanX2 = true;
         IsTonic = false;
-        
+        addMp = PlayerData.Intance.characterData.MpAdd;
      }
     public void ItemMP()
     {
@@ -55,18 +55,13 @@ public class MPController : MonoBehaviour
         CurrentMp -= mpAttack;
         PlayerData.Intance.characterData.CurrentMP = Currentmp;
     }
-
-    public void  UpdateMp()
-    {
-        MaxMp += addMp;
-    }
     public void IncreaseMP(int level)
     {
         OriginalMp += Mathf.RoundToInt((OriginalMp * 0.037f) * ((100 - level) * 0.1f));
-        if (LevelSystem.Instance.level == 30)
+        PlayerData.Intance.characterData.OriginalMp = OriginalMp;
+        if (OriginalMp > PlayerData.Intance.characterData.MaxMp)
         {
-                OriginalMp = PlayerData.Intance.characterData.MaxMp;
-                MaxMp = OriginalMp + addMp;   
+               OriginalMp= PlayerData.Intance.characterData.MaxMp;
         }
         MaxMp = OriginalMp+ addMp;
         CurrentMp = MaxMp;

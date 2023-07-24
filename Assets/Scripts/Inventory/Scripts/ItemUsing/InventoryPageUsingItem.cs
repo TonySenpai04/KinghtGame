@@ -84,13 +84,15 @@ namespace Inventory.UI
                 mouseFollower.Toggle(true);
                 mouseFollower.SetData(sprite, quantity, background);
             }
-            public void IntializeInventory(int inventorysize)
+            public void IntializeInventory()
             {
-                for (int i = 0; i < inventorysize; i++)
-                {
-                    InventoryItemUsing item = Instantiate(inventoryUiItem, Vector3.zero, Quaternion.identity, transform);
+            InventoryItemUsing[] items = GetComponentsInChildren<InventoryItemUsing>();
+            inventoryUiItems.AddRange(items);
+            foreach (var item in inventoryUiItems)
+            {
+                //  InventoryItemUsing item = Instantiate(inventoryUiItem, Vector3.zero, Quaternion.identity, transform);
                     item.transform.SetParent(contentPanel);
-                    inventoryUiItems.Add(item);
+//inventoryUiItems.Add(item);
                     item.OnItemClicked += HandleItemSelection;
                     item.OnItemBeginDrap += HandleBeginDrag;
                     item.OnItemDropOn += HandleSwap;
