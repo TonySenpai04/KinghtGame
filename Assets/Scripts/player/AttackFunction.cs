@@ -136,6 +136,8 @@ public class AttackFunction : MonoBehaviour
             {
                 var.GetComponent<HpEnemy>().TakeDamageEnemy(Dmg);
                 MPController.Instance.MpAttack(Mp);
+                Effect.Instance.HitEffect(var.transform);
+                HPController.Instance.currenthp += BloodAbsorb;
             }
         }
     }

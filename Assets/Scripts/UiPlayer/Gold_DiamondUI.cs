@@ -9,8 +9,6 @@ public class Gold_DiamondUI : MonoBehaviour
     [SerializeField]
     protected TextMeshProUGUI TextGold;
     [SerializeField] protected TextMeshProUGUI TextDiamond;
-    // Start is called before the first frame update
-    // Update is called once per frame
     void Update()
     {
         UpdateUI();

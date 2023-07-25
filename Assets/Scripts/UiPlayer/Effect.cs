@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
+    public static Effect Instance;
     [SerializeField] private Transform Blueeffect;
     [SerializeField] private Transform Violeteffect;
-
     [SerializeField] private Transform Yelloweffect;
     [SerializeField] private Transform Whiteffect;
-
-    // Start is called before the first frame update
+    public GameObject Hiteffct;
     void Start()
     {
-       
+        Instance=this;
+        Hiteffct.gameObject.SetActive(false);
         Blueeffect.gameObject.SetActive(false);
         Violeteffect.gameObject.SetActive(false);
         Yelloweffect.gameObject.SetActive(false);
         Whiteffect.gameObject.SetActive(false);
 
     }
-
-    // Update is called once per frame
     void Update()
     {
         ActiveEffect();
@@ -49,5 +47,15 @@ public class Effect : MonoBehaviour
             Whiteffect.gameObject.SetActive(true);
 
         }
+    }
+    public void HitEffect(Transform Position)
+    {
+        Hiteffct.transform.position = Position.position;
+        Hiteffct.gameObject.SetActive(true);
+        Invoke("EnaableHitEffect", 0.5f);
+    }
+    public void EnaableHitEffect()
+    {
+        Hiteffct.gameObject.SetActive(false);
     }
 }

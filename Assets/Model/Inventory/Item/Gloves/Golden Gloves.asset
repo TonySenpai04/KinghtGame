@@ -15,9 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Golden Gloves
-  <Description>k__BackingField: 'Damage +2200
-
-'
+  <Description>k__BackingField: Damage +2200
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 4fecef46fa8a7894c919ebde06485831, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: 6d62ab0bd6240c040bb125b47eee0ec9, type: 3}
   DropChange: 0

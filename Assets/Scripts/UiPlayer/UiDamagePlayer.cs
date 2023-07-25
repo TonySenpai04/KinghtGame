@@ -13,7 +13,6 @@ public class UiDamagePlayer : MonoBehaviour
     public Sprite IconItem;
     public UiItemTonic itemTonic;
     public bool IsUse = false;
-
     private void Start()
     {
         Instance = this;

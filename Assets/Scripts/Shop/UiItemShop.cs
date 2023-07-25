@@ -1,9 +1,10 @@
-using Inventory;
+﻿using Inventory;
 using Inventory.Model;
 using Inventory.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,12 +17,10 @@ namespace Inventory.UI
         public static UiItemShop Instance;
         public event Action<UiItemShop> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
         [SerializeField] public ItemActionPanel transformPannelAction;
-        [SerializeField]
-        protected TextMeshProUGUI Description;
+        [SerializeField] protected TextMeshProUGUI Description;
         public float Price;
         [SerializeField] public ItemSO item;
         public InventoryItem inventoryItem;
-       
         private void Awake()
         {
             Instance = this;
@@ -29,15 +28,14 @@ namespace Inventory.UI
         }
         private void Start()
         {
-            transformPannelAction = ShopItemPage.Instance.actionPanel;
-            Price = item.Price;
+            
             if (item.type.ToString() == "Gold")
             {
-                SetData(item.ItemImage, item.BackGround, item.Name + "\n" + item.Description + "\nPrice:" + Price.ToString("#,##").Replace(',', '.')+"G");
+                SetData(item.ItemImage, item.BackGround,item.Description + "\nPrice:" + item.Price.ToString("#,##").Replace(',', '.')+"G");
             }
             else
             {
-                SetData(item.ItemImage, item.BackGround, item.Name + "\n" + item.Description + "\nPrice:" + Price.ToString("#,##").Replace(',', '.') + "D");
+                SetData(item.ItemImage, item.BackGround,item.Description + "\nPrice:" + item.Price.ToString("#,##").Replace(',', '.') + "D");
             }
             Deselect();
         }
@@ -69,8 +67,10 @@ namespace Inventory.UI
         {
 
             this.BackGround.gameObject.SetActive(true);
+            this.Price = item.Price;
             this.Image.sprite = sprite;
-            this.Description.text = description;
+            this.Description.text = item.Name + "\n"+ description; 
+            transformPannelAction = ShopItemPage.Instance.actionPanel;
             this.BackGround.sprite = background;
             empty = false;
         }

@@ -72,7 +72,7 @@ namespace Inventory.UI
             InventoryController.Instance.inventoryUI.ShowItemAction(InventoryUiItem.Instance.index);
             InventoryController.Instance.inventoryData.RemoveItem(InventoryUiItem.Instance.index, 1);
           
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < InventoryPageUsingItem.Instance.inventoryUiItems.Count; i++)
             {
                 
                     InventoryPageUsingItem.Instance.inventoryUiItems[i].inventoryItem = inventoryItem;

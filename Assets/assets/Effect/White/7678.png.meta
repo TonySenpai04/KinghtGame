@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -225,10 +225,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      7678_1: 1746854951
-      7678_3: -272761597
       7678_0: -1083494000
+      7678_1: 1746854951
       7678_2: 31397342
+      7678_3: -272761597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
