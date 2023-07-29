@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -96.1, y: -0.3}
+  m_AnchoredPosition: {x: -143.2, y: -0.3}
   m_SizeDelta: {x: 86.9214, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1331903703204608096
@@ -502,7 +502,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -54.2, y: -11.900024}
-  m_SizeDelta: {x: 280, y: 100}
+  m_SizeDelta: {x: 380, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4267888128694861289
 CanvasRenderer:
@@ -562,7 +562,6 @@ MonoBehaviour:
   borderImage: {fileID: 230093821488874579}
   transformPannelAction: {fileID: 0}
   Description: {fileID: 8513895064105117403}
-  Title: {fileID: 0}
   Price: 0
   item: {fileID: 11400000, guid: 0a328e6b77093824486f9565821a3d5c, type: 2}
   inventoryItem:

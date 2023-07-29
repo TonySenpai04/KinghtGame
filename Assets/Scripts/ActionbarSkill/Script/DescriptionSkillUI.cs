@@ -52,7 +52,7 @@ public class DescriptionSkillUI : MonoBehaviour,IPointerClickHandler, IBeginDrag
             borderImage.enabled = true;
             transformPannelAction.Toggle(true);
             transformPannelAction.transform.SetParent(transform);
-            transformPannelAction.transform.position = transform.position + new Vector3(7f, 0, 0);
+            transformPannelAction.transform.position = transform.position + new Vector3(4f, 0, 0);
             UpgradeSkill.Instance.AddAction();
         }
     }

@@ -45,6 +45,7 @@ public class UpgradeSkill : ItemAction
             skill.LevelSkill++;
             skill.DmgAdd += skill.IncreasesWithLevel;
             SkillPage.Instance.SkillPoint -= 1;
+            SkillPage.Instance.SkillsPointUI();
             SkillPage.Instance.IntializeInventory();
         }
     }

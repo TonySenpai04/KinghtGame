@@ -31,10 +31,6 @@ public class Skill : MonoBehaviour
     {
         UpdateSkill();
     }
-    private void Update()
-    {
-        
-    }
     private void UpdateSkill()
     {
 

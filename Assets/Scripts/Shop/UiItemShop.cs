@@ -31,11 +31,11 @@ namespace Inventory.UI
             
             if (item.type.ToString() == "Gold")
             {
-                SetData(item.ItemImage, item.BackGround,item.Description + "\nPrice:" + item.Price.ToString("#,##").Replace(',', '.')+"G");
+                SetData(item.ItemImage, item.BackGround, "<color=green>"+item.Name+ "</color>" + "\n" + item.Description + "\nPrice:" + item.Price.ToString("#,##").Replace(',', '.')+"G");
             }
             else
             {
-                SetData(item.ItemImage, item.BackGround,item.Description + "\nPrice:" + item.Price.ToString("#,##").Replace(',', '.') + "D");
+                SetData(item.ItemImage, item.BackGround, "<color=green>" +item.Name + "</color>" + "\n" + item.Description + "\nPrice:" + item.Price.ToString("#,##").Replace(',', '.') + "D");
             }
             Deselect();
         }
@@ -56,7 +56,7 @@ namespace Inventory.UI
             transform.gameObject.SetActive(true);
             transformPannelAction.Toggle(true);
             transformPannelAction.transform.SetParent(transform);
-            transformPannelAction.transform.position = transform.position + new Vector3(3.2f, 0, 0);
+            transformPannelAction.transform.position = transform.position + new Vector3(1.6f, 0, 0);
             ActionItemShop.Instance.AddAction();
         }
         public void Deselect()
@@ -69,7 +69,7 @@ namespace Inventory.UI
             this.BackGround.gameObject.SetActive(true);
             this.Price = item.Price;
             this.Image.sprite = sprite;
-            this.Description.text = item.Name + "\n"+ description; 
+            this.Description.text = description;
             transformPannelAction = ShopItemPage.Instance.actionPanel;
             this.BackGround.sprite = background;
             empty = false;

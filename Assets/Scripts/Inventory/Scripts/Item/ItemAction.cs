@@ -156,12 +156,33 @@ namespace Inventory.UI
                         if (InventoryPageUsingItem.Instance.InventorySO.inventoryItems[6].item == null)
                         {
                             SetInddexItem(inventoryItem, i, 6);
+                            for (int k = 0; k < PetController.instance.Pets.Count;k++)
+                            {
+                                if (PetController.instance.Pets[k].name == inventoryItem.item.name)
+                                {
+                                    PetController.instance.Pets[k].SetActive(true);
+                                }else
+                                {
+                                    PetController.instance.Pets[k].SetActive(false);
+                                }
+                            }
                             return;
                         }
                         else
                         {
                             ChangeItem(inventoryItem, itemAction, 6);
                             SetInddexItem(inventoryItem, i, 6);
+                            for (int k = 0; k < PetController.instance.Pets.Count; k++)
+                            {
+                                if (PetController.instance.Pets[k].name == inventoryItem.item.name)
+                                {
+                                    PetController.instance.Pets[k].SetActive(true);
+                                }
+                                else
+                                {
+                                    PetController.instance.Pets[k].SetActive(false);
+                                }
+                            }
                             return;
                         }
 

@@ -9,10 +9,6 @@ public class Movement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed = 9;
     [SerializeField] private GameObject player;
-    private void Awake()
-    {
-        
-    }
     private void Start()
     {
         rb =player. GetComponent<Rigidbody2D>();
@@ -57,6 +53,7 @@ public class Movement : MonoBehaviour
         PlayerPrefs.SetFloat("YPosition", player.transform.position.y);
         PlayerData.Intance.characterData.XPos=player.transform.position.x;
         PlayerData.Intance.characterData.YPos = player.transform.position.y;
+
 
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Windows;
 
 public class GitfCodeManager : MonoBehaviour
 {
@@ -31,15 +32,22 @@ public class GitfCodeManager : MonoBehaviour
                 PlayerData.Intance.characterData.Diamond = Gold_Diamond.instance.Diamond;
                 PanelNotification.GetComponentInChildren<TextMeshProUGUI>().text = "Enter the gift code successfully";
                 PanelNotification.gameObject.SetActive(true);
-                StartCoroutine(SetEnabled());
+                Invoke("SetEnabled", 2f);
+
+            }
+            else
+            {
+                PanelNotification.GetComponentInChildren<TextMeshProUGUI>().text = "Wrong gift code";
+                PanelNotification.gameObject.SetActive(true);
+                Invoke("SetEnabled", 2f);
 
             }
         }
     }
-    public IEnumerator SetEnabled()
+    public void SetEnabled()
     {
-        yield return new WaitForSeconds(2);
         PanelNotification.SetActive(false);
+        Input.text = "";
     }
 
 }

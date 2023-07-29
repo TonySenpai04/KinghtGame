@@ -23,10 +23,6 @@ public class TimeItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.T))
-        {
-            Isuse = true;
-        }
         if (Isuse == true)
         {
             CountDown();

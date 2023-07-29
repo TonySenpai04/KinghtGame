@@ -13,19 +13,25 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   HpStart: 160
+  OriginalHp: 160
   CurrentHP: 160
   HpMax: 400000
+  HpAdd: 0
   MaxDmg: 37000
-  DmgStart: 15
+  OriginalDmg: 0
+  DmgStart: 0
+  DmgAdd: 0
   MpStart: 160
+  OriginalMp: 160
   CurrentMP: 160
   MaxMp: 400000
+  MpAdd: 0
   Level: 1
   currentXp: 0
   nextLevelXp: 100
   MaxLevel: 30
   Gold: 2000
-  Diamond: 100
+  Diamond: -1030
   HpReset: 160
   MpReset: 160
   DmgReset: 15
@@ -34,5 +40,5 @@ MonoBehaviour:
   DogdeAtk: 0
   QuantityHpBotte: 10
   QuantityMPBotte: 10
-  inventory: {fileID: 11400000, guid: 9d28ad4d053dbe444b3c31641ac3707e, type: 2}
-  inventoryUsingItem: {fileID: 11400000, guid: 70ba0d3ec964f2b4fbb0149fe81bfc5d, type: 2}
+  XPos: 0.6722627
+  YPos: 83.34295

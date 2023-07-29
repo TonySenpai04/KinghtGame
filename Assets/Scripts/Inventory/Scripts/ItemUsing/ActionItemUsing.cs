@@ -63,7 +63,12 @@ namespace Inventory.UI
             InventoryItemUsing.Instance.inventoryItem = InventoryItemUsing.Instance.GetItemAt();
             UsingItemController.Instance.RemoveItem(InventoryItemUsing.Instance.index, InventoryItemUsing.Instance.inventoryItem.quantity);
             InventoryController.Instance.inventoryData.AddItem(InventoryItemUsing.Instance.inventoryItem);
-           
+            if (inventoryItem.item.index == 6){
+                for (int k = 0; k < PetController.instance.Pets.Count; k++)
+                {
+                    PetController.instance.Pets[k].SetActive(false);
+                }
+            }
         }
         public void RemoveFuncitionItem(int index, int mount)
         {
