@@ -35,10 +35,7 @@ public class Healthsystem : MonoBehaviour
         UpdateUI();
 
     }
-    private void FixedUpdate()
-    {
-      
-    }
+
     protected void TakeDamage(int Dmg)
     {
         currenthp -= Dmg;

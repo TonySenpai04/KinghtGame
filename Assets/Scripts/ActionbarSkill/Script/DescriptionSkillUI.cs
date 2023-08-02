@@ -34,10 +34,6 @@ public class DescriptionSkillUI : MonoBehaviour,IPointerClickHandler, IBeginDrag
       
 
     }
-    private void Update()
-    {
-        
-    }
     public void ResetData()
     {
         this.borderImage.gameObject.SetActive(false);

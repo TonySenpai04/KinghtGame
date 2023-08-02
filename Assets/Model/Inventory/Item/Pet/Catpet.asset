@@ -15,9 +15,10 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Cat pet
-  <Description>k__BackingField: 'Dmg + 100
+  <Description>k__BackingField: 'Dmg + 100,Hp+10000
 
-    Hp+10000'
+    Blood absord,mana absord
+    +20%'
   <ItemImage>k__BackingField: {fileID: 21300000, guid: dfb98bfc1322a8344923f0e7eceb5615, type: 3}
   <BackGround>k__BackingField: {fileID: 21300000, guid: f51787da7231e434c9f318683e9d5011, type: 3}
   DropChange: 0
@@ -30,4 +31,8 @@ MonoBehaviour:
     value: 100
   - statModifier: {fileID: 11400000, guid: 6b1908dfa7076424b9f7d61e0c87337d, type: 2}
     value: 10000
+  - statModifier: {fileID: 11400000, guid: 1c62f77e86cab5c4e9b55b1170b9caff, type: 2}
+    value: 20
+  - statModifier: {fileID: 11400000, guid: 6e34c77934da45e4e83ef76a3e7ba1b4, type: 2}
+    value: 20
   <actionSFX>k__BackingField: {fileID: 0}

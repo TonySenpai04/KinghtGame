@@ -49,6 +49,10 @@ public class ChacracterData : ScriptableObject
     [Header("Position")]
     public float XPos;
     public float YPos;
+    [Header("Absorb")]
+    public int BloodAbsorb = 0;
+    public int ManaAbsorb = 0;
+    
     public ChacracterData() { }
 
 }

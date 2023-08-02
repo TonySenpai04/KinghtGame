@@ -40,3 +40,7 @@ MonoBehaviour:
   DogdeAtk: 0
   QuantityHpBotte: 10
   QuantityMPBotte: 10
+  XPos: 0
+  YPos: 0
+  BloodAbsorb: 0
+  ManaAbsorb: 0

@@ -32,6 +32,8 @@ public class AttackFunction : MonoBehaviour
         CanX2 = true;
         IsTonic = false;
         damageAdd = PlayerData.Intance.characterData.DmgAdd;
+        BloodAbsorb = PlayerData.Intance.characterData.BloodAbsorb;
+        ManaAbsorb = PlayerData.Intance.characterData.ManaAbsorb;
     }
    
     public void ItemDmg()
@@ -58,12 +60,9 @@ public class AttackFunction : MonoBehaviour
         {
             HpEnemy.Instance.FloatingText.GetComponent<TextMeshPro>().color = Color.red;
             Attack((int)(Dmg * skillS0[0].DmgAdd), skillS0[0].ManaConsumption);
-            HPController.Instance.currenthp += Dmg * skillS0[0].DmgAdd * BloodAbsorb;
-         
-
         }
     }
-    protected void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(pointatk.position, radius);
     }
@@ -137,7 +136,18 @@ public class AttackFunction : MonoBehaviour
                 var.GetComponent<HpEnemy>().TakeDamageEnemy(Dmg);
                 MPController.Instance.MpAttack(Mp);
                 Effect.Instance.HitEffect(var.transform);
-                HPController.Instance.currenthp += BloodAbsorb;
+                if (BloodAbsorb <= 0)
+                {
+                    Debug.Log(Dmg);
+                }
+                else
+                {
+                    Debug.Log(Dmg* BloodAbsorb/100);
+                    HPController.Instance.currenthp += Dmg * BloodAbsorb / 100;
+                    MPController.Instance.Currentmp += Dmg * ManaAbsorb / 100;
+
+                }
+
             }
         }
     }

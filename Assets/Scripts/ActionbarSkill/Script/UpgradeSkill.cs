@@ -10,7 +10,6 @@ public class UpgradeSkill : ItemAction
 {
     public static new UpgradeSkill Instance;
     [SerializeField] public SkillS0 Skill;
-   // public SkillS0 shop;
 
     public new void Start()
     {
@@ -44,6 +43,7 @@ public class UpgradeSkill : ItemAction
         {
             skill.LevelSkill++;
             skill.DmgAdd += skill.IncreasesWithLevel;
+            DataSkills.Intance.SkillData[DescriptionSkillUI.Instance.index]= skill;
             SkillPage.Instance.SkillPoint -= 1;
             SkillPage.Instance.SkillsPointUI();
             SkillPage.Instance.IntializeInventory();

@@ -8,6 +8,7 @@ public class ChacracterDamageModifie : CharacterStatModifierSO
     {
             AttackFunction.Instance.damageAdd += (int)val;
             PlayerData.Intance.characterData.DmgStart = AttackFunction.Instance.OriginalDmg + AttackFunction.Instance.damageAdd;
+        PlayerData.Intance.characterData.DmgAdd = AttackFunction.Instance.damageAdd;
             if (AttackFunction.Instance.IsTonic == true)
             {
                 AttackFunction.Instance.dmg = (AttackFunction.Instance.OriginalDmg + AttackFunction.Instance.damageAdd) * 2;

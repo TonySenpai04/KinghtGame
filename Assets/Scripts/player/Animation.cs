@@ -38,7 +38,8 @@ public class AnimationPlayer : OldAnimation
         if (IsDead == false)
         {
             Isfactright();
-            Walk(); 
+            Walk();
+            JumpDown();
 
         }
 
@@ -53,7 +54,7 @@ public class AnimationPlayer : OldAnimation
             Skill2();
             Skill3();
             Skill4();
-            JumpDown();
+           
         }
 
     }

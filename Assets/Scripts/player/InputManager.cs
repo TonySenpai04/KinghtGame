@@ -18,21 +18,22 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool isSkill2;
     [SerializeField] private bool Isjump;
     [SerializeField] private bool isSkill1;
-    // Start is called before the first frame update
     void Start()
     {
         Instance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        Skill1();
-        Jump();
-        Skill2();
-        Skill3();
-        Skill4();
+        if (NpcClick.Instance.IsSkill)
+        {
+            MovePlayer();
+            Skill1();
+            Jump();
+            Skill2();
+            Skill3();
+            Skill4();
+        }
     }
     public void MovePlayer()
     {
