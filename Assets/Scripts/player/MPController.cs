@@ -68,7 +68,7 @@ public class MPController : MonoBehaviour
         MPRecuperate = MaxMp / 5;
         PlayerData.Intance.characterData .MpStart = MaxMp;
     }
-    protected void RecuperateMp()
+    public void RecuperateMp()
     {
         if (CurrentBottle > 0)
         {

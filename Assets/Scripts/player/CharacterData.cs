@@ -52,7 +52,7 @@ public class ChacracterData : ScriptableObject
     [Header("Absorb")]
     public int BloodAbsorb = 0;
     public int ManaAbsorb = 0;
-    
+    public int SkillPoint;
     public ChacracterData() { }
 
 }

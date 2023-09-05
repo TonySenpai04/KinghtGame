@@ -8,11 +8,11 @@ using UnityEngine.UI;
 
 public class ActionbarUi : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
-        public Image Image;
-        public Image borderImage;
-        public SkillS0 Skill;
-        public event Action<ActionbarUi> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
-        public bool empty = true;
+   public Image Image;
+   public Image borderImage;
+   public SkillS0 Skill;
+   public event Action<ActionbarUi> OnItemDropOn, OnItemBeginDrap, OnItemEndDrap, OnRightMouseBtnClick, OnItemClicked;
+   public bool empty = true;
         
     public void SetData()
     {

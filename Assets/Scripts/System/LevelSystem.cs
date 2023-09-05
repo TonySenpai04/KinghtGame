@@ -45,6 +45,7 @@ public class LevelSystem : MonoBehaviour
         level = PlayerData.Intance.characterData.Level;
         nextLevelXp = PlayerData.Intance.characterData.nextLevelXp;
         maxLevel = PlayerData.Intance.characterData.MaxLevel;
+        skillPage.SkillPoint = PlayerData.Intance.characterData.SkillPoint;
     }
     void Update()
     {
@@ -117,6 +118,7 @@ public class LevelSystem : MonoBehaviour
         GetComponent<HPController>().IncreaseHealth(level);
         GetComponent<MPController>().IncreaseMP(level);
         AudioSource.PlayClipAtPoint(AudioPlayer.instance.levelUpSound, transform.position);
+        PlayerData.Intance.characterData.SkillPoint+=1;
         skillPage.SkillPoint+=1;
         skillPage.SkillsPointUI();
         UpdateWhenX2();

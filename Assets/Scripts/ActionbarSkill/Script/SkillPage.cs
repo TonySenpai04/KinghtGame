@@ -40,6 +40,7 @@ public class SkillPage : Page
             UiSkills[i].SkillPlayer = Player.GetComponent<AttackFunction>().skillS0[i];
         }
         IntializeInventory();
+
     }
     internal void UpdateDescription(int itemIndex)
     {

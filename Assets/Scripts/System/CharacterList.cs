@@ -17,10 +17,11 @@ public class CharacterList : MonoBehaviour
     public InventoryPage InventoryPage;
     public GameObject pannelRevival;
     public InventoryPageUsingItem InventoryPageUsingItem;
+    public Button HpBtn;
+    public Button MpBtn;
     private void Awake()
     {
-        pannelRevival.SetActive(false);
-        
+        pannelRevival.SetActive(false); 
     }
     private void Start()
     {
@@ -31,6 +32,8 @@ public class CharacterList : MonoBehaviour
             {
                 Character[i].SetActive(true);
                 AvataCharacter.sprite = Avata[i];
+                HpBtn.onClick.AddListener(Character[i].GetComponentInChildren<HPController>().RecuperateHp);
+                MpBtn.onClick.AddListener(Character[i].GetComponentInChildren<MPController>().RecuperateMp);
             }
             else
             {
@@ -41,8 +44,8 @@ public class CharacterList : MonoBehaviour
         PannelSkillDescription.GetComponent<SkillPage>().SetSkill();
         InventoryPage.SetInventoryData();
         InventoryPageUsingItem.SetInventoryData();
+       
     }
-
 
     private void Reset()
     {

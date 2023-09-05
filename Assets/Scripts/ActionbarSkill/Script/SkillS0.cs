@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
+[System.Serializable]
 public class SkillS0 : ScriptableObject
 {
     [field: SerializeField] public Sprite Icon;
@@ -16,5 +18,5 @@ public class SkillS0 : ScriptableObject
     [field: SerializeField] public int LevelSkill { get; set; } = 1;
     [field: SerializeField] public float IncreasesWithLevel;
     [field: SerializeField] public int MaxLevelSkill;
-
+    public SkillS0() { }
 }

@@ -1,13 +1,10 @@
 ﻿using Inventory.Model;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.Playables;
-using UnityEngine.Rendering;
-using UnityEngine.TextCore.Text;
+
+
+[System.Serializable]
 
 public class SaveGameManager : MonoBehaviour
 {
@@ -20,12 +17,14 @@ public class SaveGameManager : MonoBehaviour
     public InventorySO Inventory;
     public List<InventorySO> listInventoryUsingItem;
     public InventorySO InventoryUsingItem;
-    public List<DataSkills> SkillsS0;
-    public List<AttackFunction> AttackFunctions;
-    public DataSkills atk;
+    public List<DataSkills> CharacterDataSkill;
+    public DataSkills DataSkill;
+    public List<SkillS0> skillS0s;
+    public SkillS0 player;
     private void Awake()
     {
         instance = this;
+
     }
     private void Start()
     {
@@ -37,12 +36,12 @@ public class SaveGameManager : MonoBehaviour
                 gameData = GameData[i];
                 Inventory = listInventory[i];
                 InventoryUsingItem = listInventoryUsingItem[i];
-                atk= SkillsS0[i];
+                DataSkill= CharacterDataSkill[i];
+                skillS0s = DataSkill.SkillData;
             }
 
         }
         LoadData();
-        
     }
     public void SaveData()
     {
@@ -92,9 +91,10 @@ public class SaveGameManager : MonoBehaviour
         string jsonDatainventoryUsingItem = JsonUtility.ToJson(InventoryUsingItem);
         File.WriteAllText(filePathInentoryUsingItem, jsonDatainventoryUsingItem);
         //Skill
-        string filePathSkill= Path.Combine(Application.persistentDataPath, jsonDataSkillName);
-        string jsonDataSkill = JsonUtility.ToJson(atk);
+        string filePathSkill = Path.Combine(Application.persistentDataPath, jsonDataSkillName);
+        string jsonDataSkill = JsonUtility.ToJson(player); // Chuyển đổi skillDataContainer thành JSON
         File.WriteAllText(filePathSkill, jsonDataSkill);
+        Debug.Log(filePathSkill);
         Debug.Log("Game data saved.");
         PlayerPrefs.SetInt("HasSaveData", 1);
         PlayerPrefs.Save();
@@ -119,7 +119,8 @@ public class SaveGameManager : MonoBehaviour
             JsonUtility.FromJsonOverwrite(jsonDatainventoryUsingItem, InventoryUsingItem);
             //Skill
             string jsonDataSkill = File.ReadAllText(filePathSkill);
-            JsonUtility.FromJsonOverwrite(jsonDataSkill, atk);
+        //   JsonUtility.FromJsonOverwrite(jsonDataSkill, player);
+          //  skillS0s = skillDataContainer.skillData;
             Debug.Log("Game data loaded.");
         }
         else
@@ -127,4 +128,5 @@ public class SaveGameManager : MonoBehaviour
             Debug.Log("No saved game data found.");
         }
     }
+
 }

@@ -10,4 +10,5 @@ public class DataSkills : MonoBehaviour
     {
         Intance = this; 
     }
+
 }
